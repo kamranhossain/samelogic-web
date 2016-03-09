@@ -1,6 +1,9 @@
 language: node_js
 node_js:
-- stable
+  - stable
+before_install:
+  - curl https://install.meteor.com/ | sh
+services: mongodb
 deploy:
   provider: heroku
   api_key:
