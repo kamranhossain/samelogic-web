@@ -1,0 +1,26 @@
+{
+  "name": "samelogic-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "samelogic-web.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "meteor",
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://shawnmclean@github.com/Samelogic/samelogic-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samelogic/samelogic-web/issues"
+  },
+  "homepage": "https://github.com/Samelogic/samelogic-web#readme",
+  "devDependencies": {
+    "spacejam": "^1.5.2"
+  }
+}
