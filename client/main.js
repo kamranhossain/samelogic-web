@@ -1,5 +1,5 @@
 /* jshint: esnext: true */
 /* global System */
-"use strict";
+"use strict"
 
-System.import('client/index');
+System.import('/client/index')
