@@ -8,11 +8,28 @@
 1. Run `npm install` to install non meteor dependencies.
 1. Run `npm start` or `meteor` to start meteor server. Visit [http://localhost:3000/](http://localhost:3000/).
 
-## Guidelines
+## Contributing
 
 Any push to `master` will result in a travis-ci build being deployed to heroku production environment. **PLEASE USE PULL REQUESTS**.
 
 ### Making changes via Pull Requests
 
- -
- - 
+
+## Development Guidelines
+
+### Stack
+
+This is a full meteorjs (javascript) stack with mongodb database. Client and Server code is shared and separated physically by the file system (`client` and `server` directories)
+
+### Stylsheets
+
+- Stylesheets are handled by LESS.
+- Custom Bootstrap is used for everything. (see `/client/lib/styles/custom.bootstrap.less` for toggling bootstrap components)
+
+### Build
+
+Build is handled by NPM, which acts as a proxy to Meteor.
+
+### Tests
+
+No tests, we may or may not do tests.
