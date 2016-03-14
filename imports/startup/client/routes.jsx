@@ -22,6 +22,6 @@ export const renderRoutes = () => (
 );
 */
 
-import AppContainer from '../../ui/admin/AdminApp'
+import AppContainer from '../../ui/admin/containers/AdminAppContainer'
 
 export const renderRoutes = () => (<AppContainer/>)
