@@ -34,7 +34,7 @@ export const renderRoutes = () => (
   <Provider store={store}>
     <div>
       <Router history={history}>
-        <Route path="/" component={AdminAppContainer}>
+        <Route path="/admin" component={AdminAppContainer}>
         </Route>
       </Router>
       <DevTools />
