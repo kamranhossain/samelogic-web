@@ -1,27 +1,43 @@
-import React from 'react';/*
-import { Router, Route, browserHistory } from 'react-router';
 
-// route components
+import { createDevTools } from 'redux-devtools'
+import LogMonitor from 'redux-devtools-log-monitor'
+import DockMonitor from 'redux-devtools-dock-monitor'
 
-import AppContainer from '../../ui/containers/AppContainer.jsx';
-import ListContainer from '../../ui/containers/ListContainer.jsx';
-import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.jsx';
-import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
-import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
+//import * as adminReducers from 'imports/ui/admin/AdminReducers'
+import AdminAppContainer from '/imports/ui/admin/containers/AdminAppContainer.jsx'
+
+const reducer = combineReducers({
+  //...adminReducers,
+  routing: routerReducer
+})
+
+const DevTools = createDevTools(
+  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
+    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
+  </DockMonitor>
+)
+
+const store = createStore(
+  reducer,
+  DevTools.instrument()
+)
+const history = syncHistoryWithStore(browserHistory, store)
 
 export const renderRoutes = () => (
-  <Router history={browserHistory}>
-    <Route path="/" component={AppContainer}>
-      <Route path="lists/:id" component={ListContainer}/>
-      <Route path="signin" component={AuthPageSignIn}/>
-      <Route path="join" component={AuthPageJoin}/>
-      <Route path="*" component={NotFoundPage}/>
-    </Route>
-  </Router>
-);
-*/
-
-import AppContainer from '../../ui/admin/containers/AdminAppContainer'
-
-export const renderRoutes = () => (<AppContainer/>)
+  <Provider store={store}>
+    <div>
+      <Router history={history}>
+        <Route path="/" component={AdminAppContainer}>
+        </Route>
+      </Router>
+      <DevTools />
+    </div>
+  </Provider>
+)
