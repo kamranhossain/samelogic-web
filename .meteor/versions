@@ -59,6 +59,7 @@ reactive-var@1.0.6
 reload@1.1.5-beta.12
 retry@1.0.4
 routepolicy@1.0.7-beta.12
+samelogic:devtools@0.0.1
 session@1.1.2-beta.12
 spacebars@1.0.8-beta.12
 spacebars-compiler@1.0.8-beta.12

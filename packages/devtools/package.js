@@ -7,13 +7,21 @@ Package.describe({
   git: '',
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.
-  documentation: 'README.md'
+  documentation: 'README.md',
+  debugOnly: true
+});
+
+Npm.depends({
+  'react': '0.14.7',
+  'redux-devtools': '3.1.1',
+  'redux-devtools-dock-monitor': '1.1.0',
+  'redux-devtools-log-monitor': '1.0.5'
 });
 
 Package.onUse(function(api) {
   api.versionsFrom('1.3-beta.12');
   api.use('ecmascript');
-  api.mainModule('devtools.js');
+  api.mainModule('DevTools.jsx', 'client');
 });
 
 Package.onTest(function(api) {
