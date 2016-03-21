@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import DevTools from 'meteor/devtools'
+import DevTools from 'meteor/samelogic-devtools'
 
 //import * as adminReducers from 'imports/ui/admin/AdminReducers'
 import AdminAppContainer from '/imports/ui/admin/containers/AdminAppContainer.jsx'
