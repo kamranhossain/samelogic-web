@@ -17,7 +17,7 @@ const reducer = combineReducers({
 
 const store = createStore(
   reducer,
-  DevTools.instrument()
+  DevTools || DevTools.instrument()
 )
 const history = syncHistoryWithStore(browserHistory, store)
 
