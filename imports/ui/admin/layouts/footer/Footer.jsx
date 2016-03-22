@@ -18,7 +18,7 @@ export default class Layout extends Component {
             <div className="col-md-4">
             </div>
             <div className="col-md-4 text-center">
-              <a href="http://grik.ly" target="_blank">
+              <a href="http://samelogic.com" target="_blank">
                 <img src="/img/grikly-logo.png"/>
               </a>
             </div>

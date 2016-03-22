@@ -8,7 +8,8 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import DevTools from 'meteor/samelogic-devtools'
 
 //import * as adminReducers from 'imports/ui/admin/AdminReducers'
-import AdminAppContainer from '/imports/ui/admin/containers/AdminAppContainer.jsx'
+import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
+import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
   //...adminReducers,
@@ -22,12 +23,14 @@ const store = isDev ? createStore(reducer, DevTools.instrument()) : createStore(
 const history = syncHistoryWithStore(browserHistory, store)
 
 var devTools = isDev ? <DevTools /> : null
-
+console.log(AdminRoutes)
 export const renderRoutes = () => (
   <Provider store={store}>
     <div>
       <Router history={history}>
-        <Route path="/admin" component={AdminAppContainer}>
+        <Route path="/">
+            {AdminRoutes}
+            <IndexRoute component={ AppContainer } />
         </Route>
       </Router>
       {devTools}
