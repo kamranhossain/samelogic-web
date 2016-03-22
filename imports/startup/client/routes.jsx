@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
@@ -15,11 +15,13 @@ const reducer = combineReducers({
   routing: routerReducer
 })
 
-const store = createStore(
-  reducer,
-  DevTools || DevTools.instrument()
-)
+let isDev = typeof DevTools.instrument === 'function'
+
+const store = isDev ? createStore(reducer, DevTools.instrument()) : createStore(reducer)
+
 const history = syncHistoryWithStore(browserHistory, store)
+
+var devTools = isDev ? <DevTools /> : null
 
 export const renderRoutes = () => (
   <Provider store={store}>
@@ -28,7 +30,7 @@ export const renderRoutes = () => (
         <Route path="/admin" component={AdminAppContainer}>
         </Route>
       </Router>
-      <DevTools />
+      {devTools}
     </div>
   </Provider>
 )
