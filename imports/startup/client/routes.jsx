@@ -9,6 +9,7 @@ import DevTools from 'meteor/samelogic-devtools'
 
 //import * as adminReducers from 'imports/ui/admin/AdminReducers'
 import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
+import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
 import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
@@ -23,13 +24,14 @@ const store = isDev ? createStore(reducer, DevTools.instrument()) : createStore(
 const history = syncHistoryWithStore(browserHistory, store)
 
 var devTools = isDev ? <DevTools /> : null
-console.log(AdminRoutes)
+
 export const renderRoutes = () => (
   <Provider store={store}>
     <div>
       <Router history={history}>
         <Route path="/">
             {AdminRoutes}
+            {SurveyRoutes}
             <IndexRoute component={ AppContainer } />
         </Route>
       </Router>
