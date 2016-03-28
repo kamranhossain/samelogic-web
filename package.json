@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "meteor run --settings settings.json",
-    "test": "echo \"Error: no test specified\"",    
+    "test": "npm run --silent lint",    
     "lint": "eslint ."
   },
   "repository": {
