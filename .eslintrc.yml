@@ -1,18 +1,22 @@
 env:
   browser: true
-  commonjs: true
+  meteor: true
+  mongo: true
   node: true
 extends: 'eslint:recommended'
 parserOptions:
+  ecmaVersion: 6
+  sourceType: module
   ecmaFeatures:
     experimentalObjectRestSpread: true
     jsx: true
+    modules: true
 plugins:
   - react
 rules:
   indent:
     - error
-    - tab
+    - 4
   linebreak-style:
     - error
     - windows
