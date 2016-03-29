@@ -34,3 +34,9 @@ Surveys.adminFields = {
     description: 1,
     createdAt: 1
 }
+
+Surveys.publicFields = {
+    title: 1,
+    description: 1,
+    createdAt: 1
+}
