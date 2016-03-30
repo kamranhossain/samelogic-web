@@ -23,3 +23,5 @@ samelogic-devtools
 aldeed:simple-schema
 check
 mdg:validated-method
+aldeed:collection2
+ddp-rate-limiter
