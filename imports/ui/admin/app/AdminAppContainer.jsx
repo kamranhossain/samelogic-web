@@ -1,7 +1,36 @@
 import React,{Component} from 'react'
 
-export default class AdminAppContainer extends Component{
-  render(){
-    return <div>Admin</div>
-  }
+import { create } from '/imports/api/surveys/methods'
+
+export default class AdminAppContainer extends Component{    
+    constructor(props){
+        super(props)
+
+        this.state = {
+            survey: {
+                surveyId: '',
+                title: ''
+            }
+        }
+    }
+
+
+    componentDidMount(){
+        const surveyId = create.call({ 
+            title : 'some title',
+            description: 'some description'
+        },  (err) =>{
+            console.error(err)
+        })
+        console.log('surveyId: ' + surveyId)
+    }
+
+    componentWillUnmount(){
+        
+    }
+    render(){
+        return <div>
+        {this.state.survey.surveyId}        
+        </div>
+    }
 }
