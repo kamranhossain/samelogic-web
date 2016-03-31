@@ -19,8 +19,13 @@ export default class AdminAppContainer extends Component{
         const surveyId = create.call({ 
             title : 'some title',
             description: 'some description'
-        },  (err) =>{
-            console.error(err)
+        },  (err, resp) =>{
+            if(err){         
+                console.error(err)
+            }
+            else{
+                console.log(resp)
+            }
         })
         console.log('surveyId: ' + surveyId)
     }

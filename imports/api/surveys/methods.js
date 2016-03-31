@@ -20,7 +20,7 @@ export const create = new ValidatedMethod({
             createdAt: new Date()
         }
         
-        Surveys.insert(survey)
+        return Surveys.insert(survey)
     }
 })
 
