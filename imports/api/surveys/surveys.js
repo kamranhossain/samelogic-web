@@ -12,6 +12,16 @@ class SurveysCollection extends Mongo.Collection {
 
 export const Surveys = new SurveysCollection('Surveys')
 
+const SurveyResponseSchema = new SimpleSchema ({
+    type: {
+        type: String
+    },
+    contentUrl: {
+        type: String,
+        optional: true
+    }
+})
+
 Surveys.schema = new SimpleSchema({
     title: {
         type: String,
@@ -20,6 +30,9 @@ Surveys.schema = new SimpleSchema({
     description: {
         type: String,
         max: 1000
+    },
+    responses: {
+        type: [SurveyResponseSchema]
     },
     createdAt: {
         type: Date,
