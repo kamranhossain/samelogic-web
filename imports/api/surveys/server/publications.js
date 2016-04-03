@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
-import { Surveys } from '../surveys'
+import { Surveys } from '../collections/surveys'
 
 Meteor.publish('survey.public', (surveyId) => {
     new SimpleSchema({

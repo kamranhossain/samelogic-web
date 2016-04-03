@@ -1,7 +1,7 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
-import { Surveys } from './../surveys'
+import { Surveys } from '../collections/surveys'
 
 export default new ValidatedMethod({
     name: 'surveys.create',
@@ -13,8 +13,7 @@ export default new ValidatedMethod({
 
         const survey = {
             title,
-            description,
-            createdAt: new Date()
+            description
         }
 
         return Surveys.insert(survey)

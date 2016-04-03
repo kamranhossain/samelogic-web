@@ -3,12 +3,14 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter'
 import { _ } from 'meteor/underscore'
 
 import create from './create'
+import createVideoResponse from './createVideoResponse'
 
-export { create }
+export { create, createVideoResponse }
 
 // Get list of all method names on Surveys
 const METHODS = _.pluck([
-    create
+    create,
+    createVideoResponse
 ], 'name')
 
 if (Meteor.isServer) {

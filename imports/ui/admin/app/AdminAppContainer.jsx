@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 
 import { Slingshot } from 'meteor/edgee:slingshot'
 
-import { create } from '/imports/api/surveys/methods'
+import { createVideoResponse } from '/imports/api/surveys/methods'
 
 export default class AdminAppContainer extends Component{    
     constructor(props){
@@ -26,13 +26,23 @@ export default class AdminAppContainer extends Component{
     }
     
     upload(event){
-        const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {surveyResponseId: 'test'} )
-
-        uploader.send( event.target.files[0], ( error, url ) => {
-            if ( error ) {
-                console.error('error: '+ error)
+        const responseId = createVideoResponse.call({
+            surveyId: 'test'
+        }, (err, resp) =>{
+            if ( err ) {
+                console.error('mongo error: '+ err)
             } else {
-                console.log('success: '+ url)
+                console.log('mongo success: '+ resp)
+            }
+        })
+        
+        const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {surveyResponseId: responseId} )
+
+        uploader.send( event.target.files[0], ( err, url ) => {
+            if ( err ) {
+                console.error('aws error: '+ err)
+            } else {
+                console.log('aws success: '+ url)
             }
         })
     }
