@@ -2,8 +2,8 @@
 import { Slingshot } from 'meteor/edgee:slingshot'
 
 Slingshot.fileRestrictions( 'uploadSurveyVideo', {
-    allowedFileTypes: [ 'video/mp4' ],
-    maxSize: 1 * 1024 * 1024
+    allowedFileTypes: [ 'video/mp4', 'video/m4v' ],
+    maxSize: null
 })
 
 Slingshot.createDirective( 'uploadSurveyVideo', Slingshot.S3Storage, {
