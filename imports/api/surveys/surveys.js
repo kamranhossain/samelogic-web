@@ -18,6 +18,7 @@ const SurveyResponseSchema = new SimpleSchema ({
     },
     contentUrl: {
         type: String,
+        regEx: SimpleSchema.RegEx.Domain,
         optional: true
     }
 })
@@ -32,7 +33,8 @@ Surveys.schema = new SimpleSchema({
         max: 1000
     },
     responses: {
-        type: [SurveyResponseSchema]
+        type: [SurveyResponseSchema],
+        optional: true
     },
     createdAt: {
         type: Date,
