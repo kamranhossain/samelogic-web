@@ -21,7 +21,7 @@ SurveyResponses.schema = new SimpleSchema ({
     },
     contentUrl: {
         type: String,
-        regEx: SimpleSchema.RegEx.Domain,
+        regEx: SimpleSchema.RegEx.Url,
         optional: true
     }
 })
@@ -35,5 +35,5 @@ SurveyResponses.adminFields = {
 }
 
 SurveyResponses.publicFields = {
-    surveyId: 1,
+    surveyId: 1
 }

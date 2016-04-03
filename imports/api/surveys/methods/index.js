@@ -4,13 +4,15 @@ import { _ } from 'meteor/underscore'
 
 import create from './create'
 import createVideoResponse from './createVideoResponse'
+import updateVideoResponseUrl from './updateVideoResponseUrl'
 
-export { create, createVideoResponse }
+export { create, createVideoResponse, updateVideoResponseUrl }
 
 // Get list of all method names on Surveys
 const METHODS = _.pluck([
     create,
-    createVideoResponse
+    createVideoResponse,
+    updateVideoResponseUrl
 ], 'name')
 
 if (Meteor.isServer) {
