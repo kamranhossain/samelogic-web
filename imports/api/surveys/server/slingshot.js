@@ -1,5 +1,7 @@
 
 import { Slingshot } from 'meteor/edgee:slingshot'
+import { Meteor } from 'meteor/meteor'
+
 
 Slingshot.fileRestrictions( 'uploadSurveyVideo', {
     allowedFileTypes: [ 'video/mp4', 'video/m4v' ],
@@ -7,7 +9,7 @@ Slingshot.fileRestrictions( 'uploadSurveyVideo', {
 })
 
 Slingshot.createDirective( 'uploadSurveyVideo', Slingshot.S3Storage, {
-    bucket: 'samelogic-videos',
+    bucket: Meteor.settings.AWSVideoBucket,
     acl: 'public-read',
     authorize: function () {
         return true
