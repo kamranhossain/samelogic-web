@@ -33,3 +33,13 @@ Build is handled by NPM, which acts as a proxy to Meteor.
 ### Tests
 
 No tests, we may or may not do tests.
+
+### Deployments
+
+#### Production
+
+Run the following command for publishing new `settings.json` to prod servers: 
+
+`heroku config:set METEOR_SETTINGS="$(cat settings-prod.json)" --app samelogic-web`.
+
+Use bash shell on windows when running this command.
