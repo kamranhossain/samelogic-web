@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor'
 
 
 Slingshot.fileRestrictions( 'uploadSurveyVideo', {
-    allowedFileTypes: [ 'video/mp4', 'video/m4v' ],
+    allowedFileTypes: [ 'video/mp4', 'video/m4v', 'video/quicktime', 'video/x-ms-wmv' ],
     maxSize: null
 })
 
