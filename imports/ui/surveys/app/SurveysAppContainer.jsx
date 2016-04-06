@@ -11,11 +11,12 @@ export default class SurveysAppContainer extends Component{
                     <p className="mAuto smwtxt notm op80">Position at Company, Company Name</p>
                     <p className="mAuto mtopm mwtxt">How did the experience make the customer feel?</p>
                     <a href="#" className="opt">
-                        Tell me with a Snap
+                      Tell Me with a Snap 
                     </a>
                 </div>
             </div>
         )
+        
 
 
     }
