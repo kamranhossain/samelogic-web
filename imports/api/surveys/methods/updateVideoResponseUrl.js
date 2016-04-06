@@ -23,7 +23,6 @@ export default new ValidatedMethod({
                 url
             })
             .priority('normal')
-            .delay(60*60*1000)
             .save()
         }
     }
