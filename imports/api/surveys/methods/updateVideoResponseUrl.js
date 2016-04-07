@@ -23,6 +23,9 @@ export default new ValidatedMethod({
                 url
             })
             .priority('normal')
+            .retry({
+                wait: 60000
+            })
             .save()
         }
     }
