@@ -1,2 +1,2 @@
 
-import '/imports/api/surveys/server/surveyJobs'
+import '/imports/api/surveys/server/workers'

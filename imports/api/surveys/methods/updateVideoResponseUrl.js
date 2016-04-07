@@ -1,6 +1,6 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
-import { Job }from 'meteor/vsivsi:job-collection'
+import { Job } from 'meteor/vsivsi:job-collection'
 
 import { SurveyResponses } from '../collections/surveyResponses'
 

@@ -1,54 +1,12 @@
 import { Meteor } from 'meteor/meteor'
 import { HTTP } from 'meteor/http'
 
-import { JobCollection, Job } from 'meteor/vsivsi:job-collection'
+import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
+import { Job } from 'meteor/vsivsi:job-collection'
+import jc from './jobCollection'
 
-var jc = JobCollection('surveyJobQueue')
-
-//jc.setLogStream(process.stdout)
-
-jc.startJobServer()
-
-jc.processJobs('startVideoAnalysis', (job, callback) =>{
-    HTTP.post('https://api.projectoxford.ai/emotion/v1.0/recognizeInVideo', {
-        headers : {
-            'Ocp-Apim-Subscription-Key': Meteor.settings.OxfordApiKey
-        },
-        data: {
-            url: job.data.url
-        }
-    }, (err, resp) =>{
-        if(err){
-            if(err.response.data.error.code == 'RateLimitExceeded'){
-                // Fail the job so we can retry if rate limited
-                job.fail('Rate limited')
-            }
-            else{
-                // Cancel job if some other error than rate limiting.               
-                job.log('Starting Oxford video analysis failed.',{
-                    level: 'warning',
-                    data: err.response
-                })
-                job.cancel()
-            }
-        }
-        else{
-            new Job('surveyJobQueue', 'queryOxfordResult',{
-                surveyResponseId: job.data.surveyResponseId,
-                operationLocation: resp.headers['operation-location']
-            })
-            .priority('normal')
-            .delay(6000)
-            .retry({
-                wait: 60000 // wait 1 minute between runs
-            })
-            .save()
-            job.done()
-        }
-        callback()
-    })    
-})
+import { SurveyResponses } from '../../collections/surveyResponses'
 
 jc.processJobs('queryOxfordResult', (job, callback) =>{
     HTTP.get(job.data.operationLocation, {
@@ -85,7 +43,9 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 job.cancel()
                 break
             case 'Succeeded':
-                job.done(resp.data)
+                console.log(JSON.parse(resp.data.processingResult))
+                SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: { emotionData:{hi:'hi'} }})
+                job.done()
                 break
             default:
                 job.log('Unknown status reported.',{
@@ -98,3 +58,15 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
         callback()
     })    
 })
+/*
+new Job('surveyJobQueue', 'queryOxfordResult',{
+    surveyResponseId:'4nwAP2fruEPrt5fye',
+    operationLocation: 'https://api.projectoxford.ai/emotion/v1.0/operations/7c2e3d8a-8061-48f7-b39f-522f355bc100'
+})
+.priority('normal')
+.retry({
+    wait: 6000 // wait 1 minute between runs
+})
+.save()
+SurveyResponses.update({_id: '4nwAP2fruEPrt5fye'}, { $set: { emotionData:{hi:'test1'} }})
+*/

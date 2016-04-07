@@ -19,9 +19,17 @@ SurveyResponses.schema = new SimpleSchema ({
     type: {
         type: String
     },
+    createdAt: {
+        type: Date,
+        denyUpdate: true
+    },
     contentUrl: {
         type: String,
         regEx: SimpleSchema.RegEx.Url,
+        optional: true
+    },
+    emotionData: {
+        type: Object,
         optional: true
     }
 })
