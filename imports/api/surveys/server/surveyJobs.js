@@ -6,7 +6,7 @@ import { JobCollection, Job } from 'meteor/vsivsi:job-collection'
 
 var jc = JobCollection('surveyJobQueue')
 
-jc.setLogStream(process.stdout)
+//jc.setLogStream(process.stdout)
 
 jc.startJobServer()
 
