@@ -1,9 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { HTTP } from 'meteor/http'
 
-import { SimpleSchema } from 'meteor/aldeed:simple-schema'
-
-import { Job } from 'meteor/vsivsi:job-collection'
+//import { Job } from 'meteor/vsivsi:job-collection'
 import jc from './jobCollection'
 
 import { SurveyResponses } from '../../collections/surveyResponses'
@@ -43,7 +41,7 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 job.cancel()
                 break
             case 'Succeeded':
-                console.log(JSON.parse(resp.data.processingResult))
+                //console.log(JSON.parse(resp.data.processingResult))
                 SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: { emotionData:{hi:'hi'} }})
                 job.done()
                 break
