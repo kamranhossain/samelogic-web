@@ -30,7 +30,8 @@ SurveyResponses.schema = new SimpleSchema ({
     },
     emotionData: {
         type: Object,
-        optional: true
+        optional: true,
+        blackbox: true
     }
 })
 

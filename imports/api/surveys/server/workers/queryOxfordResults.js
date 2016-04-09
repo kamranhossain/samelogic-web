@@ -43,8 +43,7 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 job.cancel()
                 break
             case 'Succeeded':
-                console.log(JSON.parse(resp.data.processingResult))
-                SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: { emotionData:{hi:'hi'} }})
+                SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: { emotionData: JSON.parse(resp.data.processingResult) }})
                 job.done()
                 break
             default:
@@ -58,15 +57,3 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
         callback()
     })    
 })
-/*
-new Job('surveyJobQueue', 'queryOxfordResult',{
-    surveyResponseId:'4nwAP2fruEPrt5fye',
-    operationLocation: 'https://api.projectoxford.ai/emotion/v1.0/operations/7c2e3d8a-8061-48f7-b39f-522f355bc100'
-})
-.priority('normal')
-.retry({
-    wait: 6000 // wait 1 minute between runs
-})
-.save()
-SurveyResponses.update({_id: '4nwAP2fruEPrt5fye'}, { $set: { emotionData:{hi:'test1'} }})
-*/
