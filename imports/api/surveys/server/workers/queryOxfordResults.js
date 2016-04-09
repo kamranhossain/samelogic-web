@@ -1,9 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { HTTP } from 'meteor/http'
 
-import { SimpleSchema } from 'meteor/aldeed:simple-schema'
-
-import { Job } from 'meteor/vsivsi:job-collection'
 import jc from './jobCollection'
 
 import { SurveyResponses } from '../../collections/surveyResponses'
