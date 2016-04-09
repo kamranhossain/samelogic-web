@@ -27,8 +27,7 @@
     "eslint-plugin-react": "^4.2.3",
     "redux-devtools": "^3.1.1",
     "redux-devtools-dock-monitor": "^1.1.0",
-    "redux-devtools-log-monitor": "^1.0.5",
-    "spacejam": "^1.5.2"
+    "redux-devtools-log-monitor": "^1.0.5"
   },
   "dependencies": {
     "react": "^0.14.7",
