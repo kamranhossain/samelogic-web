@@ -33,5 +33,9 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
+# Webstorm/Idea settings directory
+/.idea
+
+# Meteor Settings files
 settings.json
 settings-prod.json
