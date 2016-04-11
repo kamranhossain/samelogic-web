@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "meteor run --settings settings.json",
-    "test": "npm run --silent lint",    
+    "test": "npm run --silent lint",
     "lint": "eslint ."
   },
   "repository": {
@@ -30,8 +30,9 @@
     "redux-devtools-log-monitor": "^1.0.5"
   },
   "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^15.0.1",
+    "react-addons-pure-render-mixin": "^15.0.1",
+    "react-dom": "^15.0.1",
     "react-redux": "^4.4.1",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.0",
