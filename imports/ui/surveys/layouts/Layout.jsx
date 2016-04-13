@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
 import Footer from '/imports/ui/surveys/layouts/footer/Footer.jsx'
 
-export default class Layout extends Component {
+class Layout extends Component {
     render() {
         const {
-            children
+            loading,
+            children,
+            survey
         } = this.props
+        
+        const clonedChildren = children && React.cloneElement(children, {
+            survey
+        })
         return (            
             <div>
-                {children}
+                { loading 
+                    ? <div>Loading...</div>
+                    : clonedChildren}
                 <Footer />
             </div>
         )
     }
 }
+
+Layout.propTypes = {
+    loading: React.PropTypes.bool,
+    children: React.PropTypes.element,
+    survey: React.PropTypes.object    
+}
+
+export default Layout
