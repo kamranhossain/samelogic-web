@@ -32,6 +32,11 @@ SurveyResponses.schema = new SimpleSchema ({
         type: Object,
         optional: true,
         blackbox: true
+    },
+    rawOxfordData: {
+        type: Object,
+        optional: true,
+        blackbox: true
     }
 })
 
