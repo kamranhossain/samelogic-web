@@ -11,7 +11,7 @@ Meteor.publish('survey.public', (surveyId) => {
         _id: surveyId
     }
     
-    return Surveys.findOne(query, {
+    return Surveys.find(query, {
         fields: Surveys.publicFields
     })    
 })
