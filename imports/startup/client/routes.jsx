@@ -13,8 +13,8 @@ import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
 import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
-  //...adminReducers,
-  routing: routerReducer
+    //...adminReducers,
+    routing: routerReducer
 })
 
 let isDev = typeof DevTools.instrument === 'function'
