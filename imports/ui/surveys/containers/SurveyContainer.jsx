@@ -22,5 +22,15 @@ const SurveyContainer = createContainer(({params: {surveyId}}) => {
     }
 }, Layout)
 
+const mapStateToProps = (state) => {
+    return {
+    }
+}
 
-export default connect()(SurveyContainer)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyContainer)
