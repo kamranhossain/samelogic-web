@@ -11,6 +11,6 @@ export default (
         <Route name="survey-routes" path="/surveys/:surveyId" component={ SurveyContainer }>
             <Route name="snap" path="snap" component={ SnapPage } />   
         </Route>
-        <Route name="notFound" path="*" component={ NotFound } /> 
+        <Route name="notFound" path="/404" component={ NotFound } /> 
     </Route>
 )
