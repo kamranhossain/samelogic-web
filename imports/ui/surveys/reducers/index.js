@@ -13,7 +13,9 @@ function state(state = initialState, action){
 
 
 
-export const surveyReducers = combineReducers({
+const surveyReducers = combineReducers({
     state,
     snaps
 })
+
+export default surveyReducers

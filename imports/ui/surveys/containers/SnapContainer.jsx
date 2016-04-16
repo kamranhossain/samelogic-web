@@ -4,32 +4,20 @@ import { connect } from 'react-redux'
 import createVideoSurveyResponse from '/imports/ui/surveys/actions/createVideoSurveyResponse'
 
 class SnapPage extends Component{
-    constructor(props){
-        super(props)
-        
-        this.state = {
-            title: this.props.survey.title,
-            description: this.props.survey.description
-        }
-    }
-    
-    componentWillMount(){
-        
-    }
+
     render(){
-        const { dispatch } = this.props
-        const surveyId = this.props.survey._id
+        const { dispatch, survey, uploading } = this.props
         return(
             <div>
                 <h1>Snaps</h1>
-                <div>Title: {this.state.title}</div>
-                <div>Description: {this.state.description}</div>
+                <div>Title: {survey.title}</div>
+                <div>Description: {survey.description}</div>
                 
                 <h1>File Upload</h1>
                 <form id="upload">
-                    <input type="file" onChange={(event) => dispatch(createVideoSurveyResponse(surveyId, 1, event.target.files[0]))} />
+                    <input type="file" onChange={(event) => dispatch(createVideoSurveyResponse(survey._id, 1, event.target.files[0]))} />
                 </form>
-                <span cssClass="sr-only">{this.state.progress}% Complete</span>
+                <span cssClass="sr-only">{uploading ? <div>true</div> : <div>false</div>}% Complete</span>
             </div>
         )
     }
@@ -45,11 +33,13 @@ SnapPage.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
+        uploading: state.surveying.snaps.uploading
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {        
+        dispatch
     }
 }
 

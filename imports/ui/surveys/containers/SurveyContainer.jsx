@@ -8,7 +8,8 @@ import { Surveys } from '/imports/api/surveys/collections/surveys'
 
 import Layout from '/imports/ui/surveys/layouts/Layout.jsx'
 
-const SurveyContainer = createContainer(({params: {surveyId}}) => {
+const SurveyContainer = createContainer(({params}) => {
+    const {surveyId} = params
     const surveyHandle = Meteor.subscribe('survey.public', surveyId)
     const loading = !surveyHandle.ready()
     const survey = Surveys.findOne(surveyId)

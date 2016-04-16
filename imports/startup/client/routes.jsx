@@ -10,7 +10,7 @@ import ReduxThunk from 'redux-thunk'
 import DevTools from 'meteor/samelogic-devtools'
 
 //import * as adminReducers from 'imports/ui/admin/AdminReducers'
-import * as surveyReducers from '/imports/ui/surveys/reducers'
+import surveyReducers from '/imports/ui/surveys/reducers'
 
 import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
 import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
@@ -18,7 +18,7 @@ import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
     //...adminReducers,
-    ...surveyReducers,
+    surveying: surveyReducers,
     routing: routerReducer
 })
 
