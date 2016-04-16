@@ -1,25 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import createLogger from 'redux-logger'
+import ReduxThunk from 'redux-thunk'
 
 import DevTools from 'meteor/samelogic-devtools'
 
 //import * as adminReducers from 'imports/ui/admin/AdminReducers'
+import * as surveyReducers from '/imports/ui/surveys/reducers'
+
 import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
 import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
 import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
     //...adminReducers,
+    ...surveyReducers,
     routing: routerReducer
 })
 
 let isDev = typeof DevTools.instrument === 'function'
-
-const store = isDev ? createStore(reducer, DevTools.instrument()) : createStore(reducer)
+const logger = createLogger()
+const store = isDev ? createStore(reducer, DevTools.instrument(), applyMiddleware(ReduxThunk, logger)) : createStore(reducer, {}, applyMiddleware(ReduxThunk, logger))
 
 const history = syncHistoryWithStore(browserHistory, store)
 
