@@ -30,12 +30,14 @@ Surveys.schema = new SimpleSchema({
 Surveys.attachSchema(Surveys.schema)
 
 Surveys.adminFields = {
+    _id: 1,
     title: 1,
     description: 1,
     createdAt: 1
 }
 
 Surveys.publicFields = {
+    _id: 1,
     title: 1,
     description: 1,
     createdAt: 1
