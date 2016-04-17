@@ -33,7 +33,7 @@ SnapPage.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        uploading: state.surveying.snaps.uploading
+        uploading: state.surveys.snaps.uploading
     }
 }
 

@@ -1,1 +1,1 @@
-import './createVideoSurveyResponse'
+export * from './createVideoSurveyResponse'

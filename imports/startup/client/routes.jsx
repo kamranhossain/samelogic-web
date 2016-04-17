@@ -18,7 +18,7 @@ import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
     //...adminReducers,
-    surveying: surveyReducers,
+    surveys: surveyReducers,
     routing: routerReducer
 })
 
