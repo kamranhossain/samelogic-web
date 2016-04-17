@@ -24,7 +24,7 @@ const reducer = combineReducers({
 
 let isDev = typeof DevTools.instrument === 'function'
 const logger = createLogger()
-const store = isDev ? createStore(reducer, DevTools.instrument(), applyMiddleware(ReduxThunk, logger)) : createStore(reducer, {}, applyMiddleware(ReduxThunk, logger))
+const store = isDev ? createStore(reducer, {}, compose(applyMiddleware(ReduxThunk, logger), DevTools.instrument())) : createStore(reducer, {}, applyMiddleware(ReduxThunk, logger))
 
 const history = syncHistoryWithStore(browserHistory, store)
 
