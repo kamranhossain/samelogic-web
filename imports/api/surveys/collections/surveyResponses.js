@@ -2,6 +2,8 @@ import { Mongo } from 'meteor/mongo'
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
+import Emojis from './emojis'
+
 class SurveyResponsesCollection extends Mongo.Collection {
     insert(doc, callback){
         const ourDoc = doc
@@ -37,6 +39,23 @@ SurveyResponses.schema = new SimpleSchema ({
         type: Object,
         optional: true,
         blackbox: true
+    },
+    emoji:{
+        type: Number,
+        optional: true,
+        autoValue: () =>{
+            const autoFormField = this.field('emoji')
+            if(!autoFormField.isSet){
+                this.unset()
+                return
+            }
+            const emoji = Emojis.value(autoFormField.value)
+            if(typeof emoji === 'undefined'){
+                this.unset()
+                return
+            }
+            return emoji
+        }
     }
 })
 
