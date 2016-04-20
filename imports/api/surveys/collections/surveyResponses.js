@@ -12,7 +12,11 @@ class SurveyResponsesCollection extends Mongo.Collection {
     }
 }
 
-export const SurveyResponses = new SurveyResponsesCollection('SurveyResponses')
+export const SurveyResponses = new SurveyResponsesCollection('SurveyResponses',{
+    transform: (doc) => {
+        return doc
+    }
+})
 
 SurveyResponses.schema = new SimpleSchema ({
     surveyId: {
@@ -43,7 +47,7 @@ SurveyResponses.schema = new SimpleSchema ({
     emoji:{
         type: Number,
         optional: true,
-        autoValue: () =>{
+        autoValue: function(){            
             const autoFormField = this.field('emoji')
             if(!autoFormField.isSet){
                 this.unset()
@@ -59,7 +63,7 @@ SurveyResponses.schema = new SimpleSchema ({
     }
 })
 
-SurveyResponses.attachSchema(SurveyResponses.schema)
+SurveyResponses.attachSchema(SurveyResponses.schema, {transform: true})
 
 SurveyResponses.adminFields = {
     surveyId: 1,
