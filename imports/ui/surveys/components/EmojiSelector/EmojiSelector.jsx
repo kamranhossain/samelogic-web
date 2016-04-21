@@ -1,15 +1,24 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class EmojiSelector extends Component{
+    constructor(props){
+        super(props)
+        this.onChange = props.onChange
+    }
+    
+    handleChange(event){
+        this.onChange(event.target.value)
+    }
+    
     render(){
-        const { emojis, onSelectionChanged } = this.props
-        console.log(emojis)
+        const { emojis } = this.props
         return (
             <div> 
-                <ul>
+                <ul className="emoji-list">
                 {emojis.map(emoji =>
-                    <li key={emoji.key}>
-                        {emoji.label} - {emoji.value} - icon: {emoji.icon} selected: {emoji.selected ? 'true' : 'false'}
+                    <li key={emoji.key} className={emoji.key}>
+                        <label htmlFor={emoji.key}>{emoji.label}</label>
+                        <input type="radio" name="emoji" checked={emoji.selected} value={emoji.value} onChange={this.handleChange.bind(this)} />
                     </li>
                 )}
                 </ul>
@@ -19,6 +28,6 @@ export default class EmojiSelector extends Component{
 }
 
 EmojiSelector.propTypes = {
-    selected: React.PropTypes.number,
-    onSelectionChanged: React.PropTypes.func
+    emojis: PropTypes.array,
+    onChange: PropTypes.func
 }
