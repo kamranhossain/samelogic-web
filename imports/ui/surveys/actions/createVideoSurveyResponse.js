@@ -19,7 +19,7 @@ export default (surveyId, emoji, videoFile) => {
         
         // create response so we can get an id related to that response.
         const responseId = createVideoResponse.call({
-            surveyId: 'test'
+            surveyId: surveyId
         }, (err, resp) =>{
             if ( err ) {
                 console.error('mongo error: '+ err)
