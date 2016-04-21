@@ -3,16 +3,13 @@ import { connect } from 'react-redux'
 
 import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
 
-import Emojis from '/imports/api/surveys/collections/emojis' 
 import createVideoSurveyResponse from '/imports/ui/surveys/actions/createVideoSurveyResponse'
 
 class SnapPage extends Component{
 
     render(){
-        const { dispatch, survey, uploading } = this.props
-        
-        const emojis = Emojis.nodes.filter((e) => e.includeInSnapsSurvey)
-        
+        const { dispatch, survey, uploading, params, emojis } = this.props
+
         return(
             <div>
                 <h1>Snaps</h1>
@@ -36,7 +33,8 @@ SnapPage.propTypes = {
         _id: React.PropTypes.string,
         title: React.PropTypes.string,
         description: React.PropTypes.string
-    })
+    }),
+    emojis: React.PropTypes.array
 }
 
 const mapStateToProps = (state) => {

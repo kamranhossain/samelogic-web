@@ -6,10 +6,12 @@ class Layout extends Component {
         const {
             loading,
             children,
-            survey
+            survey,
+            emojis
         } = this.props
         const clonedChildren = children && React.cloneElement(children, {
-            survey
+            survey,
+            emojis
         })
         return (            
             <div>
@@ -26,7 +28,8 @@ Layout.propTypes = {
     loading: React.PropTypes.bool,
     children: React.PropTypes.element,
     survey: React.PropTypes.object,
-    dispatch: React.PropTypes.func
+    dispatch: React.PropTypes.func,
+    emojis: React.PropTypes.array
 }
 
 export default Layout
