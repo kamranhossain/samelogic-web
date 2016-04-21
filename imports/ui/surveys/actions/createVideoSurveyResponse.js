@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Slingshot } from 'meteor/edgee:slingshot'
 
 import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/surveys/methods'
