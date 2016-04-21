@@ -23,7 +23,7 @@ const SurveyContainer = createContainer(({params, location, emojiSelected}) => {
         push('/404')
     }
     if(!loading){
-        emojiSelected((query && query.emoji) ? parseInt(query.emoji) : 0)
+        emojiSelected((query && query.emoji) ? query.emoji : 0)
     }
     return {
         loading,

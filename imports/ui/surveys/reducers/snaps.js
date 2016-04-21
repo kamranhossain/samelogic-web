@@ -11,7 +11,7 @@ function emojis(state = initialState.emojis, action){
     
     if(type === ActionTypes.EMOJI_SELECTED){
         return state.map((e) => {
-            e.selected = selectedEmojiValue === e.value
+            e.selected = parseInt(selectedEmojiValue) === e.value
             return e
         })
     }

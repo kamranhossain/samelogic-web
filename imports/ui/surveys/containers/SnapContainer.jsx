@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 
 import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
 
+import emojiSelected from '/imports/ui/surveys/actions/emojiSelected'
 import createVideoSurveyResponse from '/imports/ui/surveys/actions/createVideoSurveyResponse'
 
 class SnapPage extends Component{
 
     render(){
-        const { dispatch, survey, uploading, params, emojis } = this.props
+        const { createVideoSurveyResponse, emojiSelected, survey, uploading, params, emojis } = this.props
 
         return(
             <div>
@@ -16,13 +17,13 @@ class SnapPage extends Component{
                 <div>Title: {survey.title}</div>
                 <div>Description: {survey.description}</div>
                 
-                <EmojiSelector emojis={emojis} />
+                <EmojiSelector emojis={emojis} onChange={emojiSelected} />
                 
                 <h1>File Upload</h1>
                 <form id="upload">
-                    <input type="file" onChange={(event) => dispatch(createVideoSurveyResponse(survey._id, 1, event.target.files[0]))} />
+                    <input type="file" onChange={(event) => createVideoSurveyResponse(survey._id, 1, event.target.files[0])} />
                 </form>
-                <span cssClass="sr-only">{uploading ? <div>true</div> : <div>false</div>}% Complete</span>
+                <span className="sr-only">{uploading ? <div>true</div> : <div>false</div>}% Complete</span>
             </div>
         )
     }
@@ -46,7 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {        
-        dispatch
+        emojiSelected: (selectedEmojiValue) => dispatch(emojiSelected(selectedEmojiValue)),
+        createVideoSurveyResponse: (surveyId, selectedEmoji, file) => dispatch(createVideoSurveyResponse(surveyId, selectedEmoji, file))
     }
 }
 
