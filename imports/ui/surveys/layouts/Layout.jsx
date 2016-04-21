@@ -6,12 +6,10 @@ class Layout extends Component {
         const {
             loading,
             children,
-            survey,
-            emojis
+            survey
         } = this.props
         const clonedChildren = children && React.cloneElement(children, {
-            survey,
-            emojis
+            survey
         })
         return (            
             <div>
