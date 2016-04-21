@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
+
+import Emojis from '/imports/api/surveys/collections/emojis' 
 import createVideoSurveyResponse from '/imports/ui/surveys/actions/createVideoSurveyResponse'
 
 class SnapPage extends Component{
 
     render(){
         const { dispatch, survey, uploading } = this.props
+        
+        const emojis = Emojis.nodes.filter((e) => e.includeInSnapsSurvey)
+        
         return(
             <div>
                 <h1>Snaps</h1>
                 <div>Title: {survey.title}</div>
                 <div>Description: {survey.description}</div>
+                
+                <EmojiSelector emojis={emojis} />
                 
                 <h1>File Upload</h1>
                 <form id="upload">

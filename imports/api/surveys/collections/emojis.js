@@ -1,6 +1,6 @@
 import { SEnum } from 'meteor/zeroasterisk:s-enum'
 
-export const Emojis = SEnum([
+export default SEnum([
     {
         key: 'smiling_face_with_heart_shaped_eyes',
         value: 1,
