@@ -4,6 +4,7 @@ import { combineReducers } from 'redux'
 import snaps from './snaps'
 
 const initialState = {
+    loading: false
 }
 
 /*eslint-disable no-unused-vars*/

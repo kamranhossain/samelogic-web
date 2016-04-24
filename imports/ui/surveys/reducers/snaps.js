@@ -3,17 +3,23 @@ import Emojis from '/imports/api/surveys/collections/emojis'
 
 const initialState = {
     uploading: false,
-    emojis: Emojis.nodes.filter((e) => e.includeInSnapsSurvey)
+    emojis: {
+        data: Emojis.nodes.filter((e) => e.includeInSnapsSurvey), 
+        selectedValue: 0
+    }
 }
 
 function emojis(state = initialState.emojis, action){
-    const { type, selectedEmojiValue } = action
-    
+    const { type } = action
+    const selectedEmojiValue = parseInt(action.selectedEmojiValue)
     if(type === ActionTypes.EMOJI_SELECTED){
-        return state.map((e) => {
-            e.selected = parseInt(selectedEmojiValue) === e.value
-            return e
-        })
+        return {
+            data: state.data.map((e) => {
+                e.selected = selectedEmojiValue === e.value
+                return e
+            }),
+            selectedValue: selectedEmojiValue
+        }
     }
     return state
 }

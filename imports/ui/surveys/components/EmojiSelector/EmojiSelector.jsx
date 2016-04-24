@@ -15,7 +15,7 @@ export default class EmojiSelector extends Component{
         return (
             <div> 
                 <ul className="emoji-list">
-                {emojis.map(emoji =>
+                {emojis.data.map(emoji =>
                     <li key={emoji.key} className={emoji.key}>
                         <label htmlFor={emoji.key}>{emoji.label}</label>
                         <input type="radio" name="emoji" checked={emoji.selected} value={emoji.value} onChange={this.handleChange.bind(this)} />

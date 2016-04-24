@@ -6,12 +6,14 @@ import { SurveyResponses } from '../collections/surveyResponses'
 export default new ValidatedMethod({
     name: 'surveys.createVideoResponse',
     validate: new SimpleSchema({
-        surveyId: { type: String }
+        surveyId: { type: String },
+        emoji: { type: Number}
     }).validator(),
-    run({ surveyId}) {
+    run({ surveyId, emoji}) {
 
         const surveyResponse = {
             surveyId,
+            emoji,
             type: 'video'
         }
 

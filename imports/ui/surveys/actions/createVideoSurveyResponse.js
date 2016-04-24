@@ -12,14 +12,15 @@ function setSnapUploading(uploading) {
     }
 }
 
-export function createVideoSurveyResponse(surveyId, emoji, videoFile) {
-    return (dispatch) => {
-        
+export function createVideoSurveyResponse(surveyId, videoFile) {
+    return (dispatch, getState) => {
         dispatch(setSnapUploading(true))
         
+        const state = getState()
         // create response so we can get an id related to that response.
         const responseId = createVideoResponse.call({
-            surveyId: surveyId
+            surveyId: surveyId,
+            emoji: state.surveys.snaps.emojis.selectedValue
         }, (err, resp) =>{
             if ( err ) {
                 console.error('mongo error: '+ err)
