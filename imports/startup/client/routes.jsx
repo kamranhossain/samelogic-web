@@ -7,8 +7,6 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import createLogger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 
-import DevTools from 'meteor/samelogic-devtools'
-
 //import * as adminReducers from 'imports/ui/admin/AdminReducers'
 import surveyReducers from '/imports/ui/surveys/reducers'
 
@@ -22,13 +20,14 @@ const reducer = combineReducers({
     routing: routerReducer
 })
 
-let isDev = typeof DevTools.instrument === 'function'
 const logger = createLogger()
-const store = isDev ? createStore(reducer, {}, compose(applyMiddleware(ReduxThunk, logger), DevTools.instrument())) : createStore(reducer, {}, applyMiddleware(ReduxThunk, logger))
+const store = createStore(reducer, {}, compose(
+    applyMiddleware(ReduxThunk, logger), 
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+)
 
 const history = syncHistoryWithStore(browserHistory, store)
-
-var devTools = isDev ? <DevTools /> : null
 
 export const renderRoutes = () => (
   <Provider store={store}>
@@ -40,7 +39,6 @@ export const renderRoutes = () => (
             <IndexRoute component={ AppContainer } />
         </Route>
       </Router>
-      {devTools}
     </div>
   </Provider>
 )
