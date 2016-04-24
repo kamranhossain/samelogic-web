@@ -12,7 +12,7 @@ function setSnapUploading(uploading) {
     }
 }
 
-export default (surveyId, emoji, videoFile) => {
+export function createVideoSurveyResponse(surveyId, emoji, videoFile) {
     return (dispatch) => {
         
         dispatch(setSnapUploading(true))

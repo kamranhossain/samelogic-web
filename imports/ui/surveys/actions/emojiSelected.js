@@ -1,6 +1,6 @@
 export const EMOJI_SELECTED = 'EMOJI_SELECTED'
 
-export default (selectedEmojiValue) => {
+export function emojiSelected(selectedEmojiValue) {
     return {
         type: EMOJI_SELECTED,
         selectedEmojiValue        

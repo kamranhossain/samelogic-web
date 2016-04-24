@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
 
-import emojiSelected from '/imports/ui/surveys/actions/emojiSelected'
-import createVideoSurveyResponse from '/imports/ui/surveys/actions/createVideoSurveyResponse'
+import * as SurveyActions from '/imports/ui/surveys/actions'
 
 class SnapPage extends Component{
 
     render(){
-        const { createVideoSurveyResponse, emojiSelected, survey, uploading, params, emojis } = this.props
-
+        const { actions, survey, uploading, params, emojis } = this.props
+        console.log(actions)
         return(
             <div>
                 <h1>Snaps</h1>
                 <div>Title: {survey.title}</div>
                 <div>Description: {survey.description}</div>
                 
-                <EmojiSelector emojis={emojis} onChange={emojiSelected} />
+                <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
                 <h1>File Upload</h1>
                 <form id="upload">
-                    <input type="file" onChange={(event) => createVideoSurveyResponse(survey._id, 1, event.target.files[0])} />
+                    <input type="file" onChange={(event) => actions.createVideoSurveyResponse(survey._id, 1, event.target.files[0])} />
                 </form>
                 <span className="sr-only">{uploading ? <div>true</div> : <div>false</div>}% Complete</span>
             </div>
@@ -30,12 +30,13 @@ class SnapPage extends Component{
 }
 
 SnapPage.propTypes = {
-    survey: React.PropTypes.shape({
-        _id: React.PropTypes.string,
-        title: React.PropTypes.string,
-        description: React.PropTypes.string
+    survey: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string
     }),
-    emojis: React.PropTypes.array
+    emojis: PropTypes.array,
+    actions: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -46,9 +47,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {        
-        emojiSelected: (selectedEmojiValue) => dispatch(emojiSelected(selectedEmojiValue)),
-        createVideoSurveyResponse: (surveyId, selectedEmoji, file) => dispatch(createVideoSurveyResponse(surveyId, selectedEmoji, file))
+    return {
+        actions: bindActionCreators(SurveyActions, dispatch)
     }
 }
 

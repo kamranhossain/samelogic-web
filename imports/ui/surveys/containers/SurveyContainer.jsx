@@ -6,7 +6,7 @@ import { push } from 'react-router-redux'
 
 import { Surveys } from '/imports/api/surveys/collections/surveys'
 
-import emojiSelected from '/imports/ui/surveys/actions/emojiSelected'
+import {emojiSelected} from '/imports/ui/surveys/actions/emojiSelected'
 
 import Layout from '/imports/ui/surveys/layouts/Layout.jsx'
 
