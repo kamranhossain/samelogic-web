@@ -4,13 +4,22 @@ import { bindActionCreators } from 'redux'
 
 import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
 import SnapSelector from '/imports/ui/surveys/components/SnapSelector/SnapSelector.jsx'
+import SnapPlayer from '/imports/ui/surveys/components/SnapPlayer/SnapPlayer.jsx'
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
 class SnapContainer extends Component{
 
     render(){
-        const { actions, survey, saving, emojis, errors } = this.props
+        const { actions, survey, saving, emojis, errors, selectedVideo } = this.props
+        let snapPlayer
+        
+        if(selectedVideo){
+            snapPlayer = (
+                <SnapPlayer video={selectedVideo} />
+            )
+        }
+        
         return(
             <div>
                 <div>{errors.errorMessage}</div>
@@ -20,6 +29,7 @@ class SnapContainer extends Component{
                 
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
+                {snapPlayer}           
                 <h1>File Upload</h1>
                 <SnapSelector onSend={actions.createVideoSurveyResponse} onChange={actions.snapSelected} />
                 <form id="upload">
@@ -40,14 +50,16 @@ SnapContainer.propTypes = {
     saving: PropTypes.bool.isRequired,
     emojis: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    selectedVideo: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
     return {
         saving: state.surveys.snaps.saving,
         emojis: state.surveys.snaps.emojis,
-        errors: state.surveys.errors
+        errors: state.surveys.errors,
+        selectedVideo: state.surveys.snaps.selectedVideo
     }
 }
 
