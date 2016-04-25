@@ -21,7 +21,7 @@ class SnapContainer extends Component{
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
                 <h1>File Upload</h1>
-                <SnapSelector onSend={actions.createVideoSurveyResponse} />
+                <SnapSelector onSend={actions.createVideoSurveyResponse} onChange={actions.snapSelected} />
                 <form id="upload">
                     <input type="file" onChange={(event) => actions.createVideoSurveyResponse(survey._id, event.target.files[0])} />
                 </form>

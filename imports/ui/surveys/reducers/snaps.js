@@ -6,10 +6,11 @@ const initialState = {
     emojis: {
         data: Emojis.nodes.filter((e) => e.includeInSnapsSurvey), 
         selectedValue: 0
-    }
+    },
+    selectedVideo: null
 }
 
-function emojis(state = initialState.emojis, action){
+function emojiSelected(state = initialState.emojis, action){
     const { type } = action
     const selectedEmojiValue = parseInt(action.selectedEmojiValue)
     if(type === ActionTypes.EMOJI_SELECTED){
@@ -24,18 +25,24 @@ function emojis(state = initialState.emojis, action){
     return state
 }
 
+function snapsSelected(state = initialState.selectedVideo, action){
+    const { type, selectedVideo } = action
+    if(type === ActionTypes.SNAP_SELECTED){
+        return selectedVideo
+    }
+    return state
+}
+
 export default function snaps(state = initialState, action){
     const { type, saving } = action
     
     switch(type){
     case ActionTypes.SNAP_SAVING:
-        return Object.assign({}, state, {
-            saving
-        })
+        return {...state, saving}
     default:
-        return{
-            loading: state.loading,
-            emojis: emojis(state.emojis, action)
+        return {...state, 
+            emojis: emojiSelected(state.emojis, action),
+            selectedVideo: snapsSelected(state.selectedVideo, action)
         }
     }            
 }
