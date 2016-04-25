@@ -6,22 +6,31 @@ export default class SnapPlayer extends Component{
         this.video = props.video
         
         this.state = {
-            source: null
+            source: null,
+            duration: 0
         }
     }
     
     componentDidMount(){
         const fileReader = new FileReader()
         fileReader.onload = (event) => {
-            this.setState({source: event.target.result})
+            const audio = new Audio(event.target.result)
+            audio.onloadedmetadata = () => {                
+                this.setState({
+                    source: event.target.result,
+                    duration: audio.duration
+                })
+            }
         }
         fileReader.readAsDataURL(this.video)        
     }
-        
-    render(){
+    
+    
+    render(){        
         return (
             <div>
-            <video src={this.state.source}></video>
+                <video src={this.state.source}></video>
+                <div>Duration: {this.state.duration}</div>
             </div>
         )
     }
