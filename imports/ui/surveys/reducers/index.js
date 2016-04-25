@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 //import * as ActionTypes from '/imports/ui/surveys/actions'
 
 import snaps from './snaps'
+import errors from './errors'
 
 const initialState = {
     loading: false
@@ -17,7 +18,8 @@ function state(state = initialState, action){
 
 const surveyReducers = combineReducers({
     state,
-    snaps
+    snaps,
+    errors
 })
 
 export default surveyReducers

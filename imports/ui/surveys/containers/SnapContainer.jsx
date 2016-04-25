@@ -7,12 +7,13 @@ import SnapSelector from '/imports/ui/surveys/components/SnapSelector/SnapSelect
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
-class SnapPage extends Component{
+class SnapContainer extends Component{
 
     render(){
-        const { actions, survey, uploading, params, emojis } = this.props
+        const { actions, survey, uploading, emojis, errors } = this.props
         return(
             <div>
+                <div>{errors.errorMessage}</div>
                 <h1>Snaps</h1>
                 <div>Title: {survey.title}</div>
                 <div>Description: {survey.description}</div>
@@ -30,20 +31,22 @@ class SnapPage extends Component{
     }
 }
 
-SnapPage.propTypes = {
+SnapContainer.propTypes = {
     survey: PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string
     }),
-    emojis: PropTypes.array,
+    emojis: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
     return {
         uploading: state.surveys.snaps.uploading,
-        emojis: state.surveys.snaps.emojis
+        emojis: state.surveys.snaps.emojis,
+        errors: state.surveys.errors
     }
 }
 
@@ -56,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SnapPage)
+)(SnapContainer)
