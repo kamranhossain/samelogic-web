@@ -10,7 +10,7 @@ import * as SurveyActions from '/imports/ui/surveys/actions'
 class SnapContainer extends Component{
 
     render(){
-        const { actions, survey, uploading, emojis, errors } = this.props
+        const { actions, survey, saving, emojis, errors } = this.props
         return(
             <div>
                 <div>{errors.errorMessage}</div>
@@ -25,7 +25,7 @@ class SnapContainer extends Component{
                 <form id="upload">
                     <input type="file" onChange={(event) => actions.createVideoSurveyResponse(survey._id, event.target.files[0])} />
                 </form>
-                <span className="sr-only">{uploading ? <div>true</div> : <div>false</div>}% Complete</span>
+                <span className="sr-only">{saving ? <div>true</div> : <div>false</div>}% Complete</span>
             </div>
         )
     }
@@ -37,6 +37,7 @@ SnapContainer.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string
     }),
+    saving: PropTypes.bool.isRequired,
     emojis: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
@@ -44,7 +45,7 @@ SnapContainer.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        uploading: state.surveys.snaps.uploading,
+        saving: state.surveys.snaps.saving,
         emojis: state.surveys.snaps.emojis,
         errors: state.surveys.errors
     }
