@@ -28,6 +28,9 @@ export default class EmojiSelector extends Component{
 }
 
 EmojiSelector.propTypes = {
-    emojis: PropTypes.array,
+    emojis: PropTypes.shape({
+        data: PropTypes.array,
+        selectedValue: PropTypes.number
+    }),
     onChange: PropTypes.func
 }
