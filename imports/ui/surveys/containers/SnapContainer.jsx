@@ -11,12 +11,12 @@ import * as SurveyActions from '/imports/ui/surveys/actions'
 class SnapContainer extends Component{
 
     render(){
-        const { actions, survey, saving, emojis, errors, selectedVideo } = this.props
+        const { actions, survey, saving, emojis, errors, selectedSnap } = this.props
         let snapPlayer
         
-        if(selectedVideo){
+        if(selectedSnap.data){
             snapPlayer = (
-                <SnapPlayer video={selectedVideo} />
+                <SnapPlayer snap={selectedSnap} />
             )
         }
         
@@ -51,7 +51,7 @@ SnapContainer.propTypes = {
     emojis: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
-    selectedVideo: PropTypes.object
+    selectedSnap: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
         saving: state.surveys.snaps.saving,
         emojis: state.surveys.snaps.emojis,
         errors: state.surveys.errors,
-        selectedVideo: state.surveys.snaps.selectedVideo
+        selectedSnap: state.surveys.snaps.selectedSnap
     }
 }
 

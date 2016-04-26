@@ -7,7 +7,10 @@ const initialState = {
         data: Emojis.nodes.filter((e) => e.includeInSnapsSurvey), 
         selectedValue: 0
     },
-    selectedVideo: null
+    selectedSnap: {
+        data: null,
+        duration: 0
+    }
 }
 
 function emojiSelected(state = initialState.emojis, action){
@@ -25,10 +28,13 @@ function emojiSelected(state = initialState.emojis, action){
     return state
 }
 
-function snapsSelected(state = initialState.selectedVideo, action){
-    const { type, selectedVideo } = action
+function snapsSelected(state = initialState.selectedSnap, action){
+    const { type, selectedVideo, duration } = action
     if(type === ActionTypes.SNAP_SELECTED){
-        return selectedVideo
+        return {
+            data: selectedVideo,
+            duration
+        }
     }
     return state
 }
@@ -42,7 +48,7 @@ export default function snaps(state = initialState, action){
     default:
         return {...state, 
             emojis: emojiSelected(state.emojis, action),
-            selectedVideo: snapsSelected(state.selectedVideo, action)
+            selectedSnap: snapsSelected(state.selectedSnap, action)
         }
     }            
 }

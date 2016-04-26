@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 export default class SnapPlayer extends Component{
     constructor(props){
         super(props)
-        this.video = props.video
+        this.snap = props.snap
         
         this.state = {
             source: null,
@@ -13,18 +13,14 @@ export default class SnapPlayer extends Component{
     
     componentDidMount(){
         const fileReader = new FileReader()
-        fileReader.onload = (event) => {
-            const audio = new Audio(event.target.result)
-            audio.onloadedmetadata = () => {                
-                this.setState({
-                    source: event.target.result,
-                    duration: audio.duration
-                })
-            }
+        fileReader.onload = (event) => {        
+            this.setState({
+                source: event.target.result,
+                duration: this.snap.duration
+            })
         }
-        fileReader.readAsDataURL(this.video)        
-    }
-    
+        fileReader.readAsDataURL(this.snap.data)        
+    }    
     
     render(){        
         return (
@@ -37,5 +33,5 @@ export default class SnapPlayer extends Component{
 }
 
 SnapPlayer.propTypes = {
-    video: PropTypes.object
+    snap: PropTypes.object
 }
