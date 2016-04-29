@@ -1,22 +1,31 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class SnapSelector extends Component{    
-    constructor(props){
-        super(props)
-        this.onSend = props.onSend
-        this.onChange = props.onChange
-    }
+export default class SnapSelector extends Component{
     
-    handleChange(event){
-        this.onChange(event.target.files[0])
-    }
-    
-    render(){
+    render(){        
+        const { snapSelected, onChange }= this.props
+        
+        let input =  <input type="file" onChange={(event) => onChange(event.target.files[0])} />
+        
+        let button = (        
+            <span className="btn btn-default btn-file">
+                Record
+                {input}
+            </span>
+        )
+        
+        if(snapSelected){
+            button = (
+                <span className="btn btn-default btn-file">
+                    Retake?
+                    {input}
+                </span>
+            )
+        }
+        
         return(
             <div>
-                <form id="upload">
-                    <input type="file" onChange={this.handleChange.bind(this)} />
-                </form>
+                {button}
             </div>
         )
     }
@@ -25,5 +34,6 @@ export default class SnapSelector extends Component{
 
 SnapSelector.propTypes = {
     onSend: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    snapSelected: PropTypes.bool
 }

@@ -12,9 +12,12 @@ class SnapContainer extends Component{
 
     render(){
         const { actions, survey, saving, emojis, errors, selectedSnap } = this.props
+        
+        const isSnapSelected = selectedSnap.data !== null
+        
         let snapPlayer
         
-        if(selectedSnap.data){
+        if(isSnapSelected){
             snapPlayer = (
                 <SnapPlayer snap={selectedSnap} />
             )
@@ -30,8 +33,8 @@ class SnapContainer extends Component{
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
                 {snapPlayer}           
-                <h1>File Upload</h1>
-                <SnapSelector onSend={actions.createVideoSurveyResponse} onChange={actions.snapSelected} />
+                <h1>File Upload</h1>       
+                <SnapSelector onSend={actions.createVideoSurveyResponse} onChange={actions.snapSelected} snapSelected={isSnapSelected} />
                 <form id="upload">
                     <input type="file" onChange={(event) => actions.createVideoSurveyResponse(survey._id, event.target.files[0])} />
                 </form>
