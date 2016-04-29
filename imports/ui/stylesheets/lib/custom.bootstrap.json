@@ -10,7 +10,7 @@
     "grid"                 : true,
     "tables"               : false,
     "forms"                : false,
-    "buttons"              : false,
+    "buttons"              : true,
 
     "component-animations" : false,
     "dropdowns"            : false,

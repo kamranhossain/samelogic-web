@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
 import SnapSelector from '/imports/ui/surveys/components/SnapSelector/SnapSelector.jsx'
 import SnapPlayer from '/imports/ui/surveys/components/SnapPlayer/SnapPlayer.jsx'
+import SendSnapButton from '/imports/ui/surveys/components/SendSnapButton/SendSnapButton.jsx'
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
@@ -15,12 +16,11 @@ class SnapContainer extends Component{
         
         const isSnapSelected = selectedSnap.data !== null
         
-        let snapPlayer
+        let snapPlayer, sendSnapButton
         
         if(isSnapSelected){
-            snapPlayer = (
-                <SnapPlayer snap={selectedSnap} />
-            )
+            snapPlayer = <SnapPlayer snap={selectedSnap} />
+            sendSnapButton = <SendSnapButton onSend={() => actions.createVideoSurveyResponse(survey._id)} />
         }
         
         return(
@@ -32,12 +32,9 @@ class SnapContainer extends Component{
                 
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
-                {snapPlayer}           
-                <h1>File Upload</h1>       
-                <SnapSelector onSend={actions.createVideoSurveyResponse} onChange={actions.snapSelected} snapSelected={isSnapSelected} />
-                <form id="upload">
-                    <input type="file" onChange={(event) => actions.createVideoSurveyResponse(survey._id, event.target.files[0])} />
-                </form>
+                {snapPlayer}      
+                <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
+                {sendSnapButton}
                 <span className="sr-only">{saving ? <div>true</div> : <div>false</div>}% Complete</span>
             </div>
         )

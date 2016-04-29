@@ -21,7 +21,7 @@ function setError(message){
 }
 
 
-export function createVideoSurveyResponse(surveyId, videoFile) {
+export function createVideoSurveyResponse(surveyId) {
     return (dispatch, getState) => {
         dispatch(setSnapSaving(true))
         
@@ -42,7 +42,7 @@ export function createVideoSurveyResponse(surveyId, videoFile) {
         // trigger the file upload
         const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {surveyResponseId: responseId} )
         
-        uploader.send(videoFile, ( err, url ) => {
+        uploader.send(state.surveys.snaps.selectedSnap.data, ( err, url ) => {
             if ( err ) {
                 dispatch(setSnapSaving(false))
                 dispatch(setError('aws error: '+ err))
