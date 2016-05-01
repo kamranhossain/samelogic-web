@@ -22,6 +22,7 @@ SurveyorIdentity.propTypes = {
     identity: PropTypes.shape({
         name: PropTypes.string,
         position: PropTypes.string,
+        company: PropTypes.string,
         photoUrl: PropTypes.string
     })
 }
