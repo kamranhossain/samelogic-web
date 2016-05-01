@@ -6,6 +6,7 @@ import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSel
 import SnapSelector from '/imports/ui/surveys/components/SnapSelector/SnapSelector.jsx'
 import SnapPlayer from '/imports/ui/surveys/components/SnapPlayer/SnapPlayer.jsx'
 import SendSnapButton from '/imports/ui/surveys/components/SendSnapButton/SendSnapButton.jsx'
+import SurveyorIdentity from '/imports/ui/surveys/components/SurveyorIdentity/SurveyorIdentity.jsx'
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
@@ -26,19 +27,14 @@ class SnapContainer extends Component{
         return(
             <div>
                 <div>{errors.errorMessage}</div>
-                
-                <div className="SenderPic">
-                </div>
-                
-                <div className="SenderName">Firstname Lastname</div>
-                <div className="SenderPosition">Position at Company, Company Name</div>
-                
+
+                <SurveyorIdentity />
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
                 {snapPlayer}      
                 <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
                 {sendSnapButton}
-                <span className="sr-only">{saving ? <div>true</div> : <div>false</div>}% Complete</span>
+                <span className="sr-only">{saving ? <div>true</div> : <div>false</div>}</span>
             </div>
         )
     }
