@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { routerMiddleware, syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import createLogger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 
@@ -22,7 +22,7 @@ const reducer = combineReducers({
 
 const logger = createLogger()
 const store = createStore(reducer, {}, compose(
-    applyMiddleware(ReduxThunk, logger), 
+    applyMiddleware(ReduxThunk, logger, routerMiddleware(browserHistory)), 
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
