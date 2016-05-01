@@ -17,11 +17,14 @@ class SnapContainer extends Component{
         
         const isSnapSelected = selectedSnap.data !== null
         
-        let snapPlayer, sendSnapButton
+        let snapPlayer, sendSnapButton, snapRequestMessage
+        
+        snapRequestMessage = <div>Tell us how you feel in <strong>15 seconds</strong>!</div>
         
         if(isSnapSelected){
             snapPlayer = <SnapPlayer snap={selectedSnap} />
             sendSnapButton = <SendSnapButton onSend={() => actions.createVideoSurveyResponse(survey._id)} />
+            snapRequestMessage = null
         }
         
         return(
@@ -31,6 +34,7 @@ class SnapContainer extends Component{
                 <SurveyorIdentity />
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 
+                {snapRequestMessage}
                 {snapPlayer}      
                 <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
                 {sendSnapButton}
