@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 import { Slingshot } from 'meteor/edgee:slingshot'
+import { push } from 'react-router-redux'
 
 import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/surveys/methods'
 
@@ -41,8 +41,6 @@ export function createVideoSurveyResponse(surveyId) {
             if ( err ) {                
                 dispatch(setSnapSaving(false))
                 dispatch(setError('Mongo Error: ' + err))
-            } else {
-                console.log('mongo success: '+ resp)
             }
         })
         
@@ -63,6 +61,7 @@ export function createVideoSurveyResponse(surveyId) {
                         dispatch(setError('mongo update error: '+ err))
                     } else {
                         dispatch(snapSaved())
+                        dispatch(push(`surveys/${surveyId}/thank-you`))
                     }
                 })
             }

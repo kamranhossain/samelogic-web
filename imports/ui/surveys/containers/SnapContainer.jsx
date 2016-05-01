@@ -46,7 +46,6 @@ SnapContainer.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string
     }),
-    saved: PropTypes.bool.isRequired,
     saving: PropTypes.bool.isRequired,
     emojis: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
@@ -56,7 +55,6 @@ SnapContainer.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        saved: state.surveys.snaps.saved,
         saving: state.surveys.snaps.saving,
         emojis: state.surveys.snaps.emojis,
         errors: state.surveys.errors,
