@@ -1,39 +1,67 @@
 
 .emoji-list{
-    li{
+    list-style: none;
+}
+.emoji-list li{
         display: inline;
-        float: left;
-        height: 45px;
-        width: 45px;
-        
-        input[type=radio]:not(old){
-        width: 2em;
-        margin: 0;
-        padding: 0;
-        font-size: 1em;
-        opacity: 1;
-        }
-    input[type=radio]:not(old) + label{
-        display      : inline-block;
-        margin-left  : -28px;
-        padding-left : 28px;
-        line-height  : 24px;
-        }
-     input[type=radio]:not(old):checked + label{
-        background-position : 0 -48px;
-        }
     }
-    .smiling_face_with_heart_shaped_eyes{
-        background: url("img/emojis/emoji_sprites.png") no-repeat 0 0;
-    }
-    .grinning_face{
-        background: url("img/emojis/emoji_sprites.png") no-repeat -45px 0;
-    }
-    .neutral_face{
-        background: url("img/emojis/emoji_sprites.png") no-repeat -90px 0;
-    }
-    .angry_face{
-        background: url("img/emojis/emoji_sprites.png") no-repeat -135px 0;
-    } 
+
+input[type=radio   ]:not(old){
+  width   : 28px;
+  margin  : 0;
+  padding : 0;
+  opacity : 0;
+  display: inline;
 }
 
+.smiling_face_with_heart_shaped_eyes > input[type=radio   ]:not(old) + label{
+    display: inline-block;
+    margin-left: -28px;
+    padding-left: 28px;
+    background: url("img/emojis/emoji_sprites.png") no-repeat 0 0;
+    line-height: 24px;
+    width: 18px;
+    height: 45px;
+}
+
+.smiling_face_with_heart_shaped_eyes > input[type=radio]:not(old):checked + label{
+  background-position : 0 -45px;
+}
+.grinning_face > input[type=radio   ]:not(old) + label{
+    display: inline-block;
+    margin-left: -28px;
+    padding-left: 28px;
+    background: url("img/emojis/emoji_sprites.png") no-repeat -45px 0;
+    line-height: 24px;
+    width: 18px;
+    height: 45px;
+}
+.grinning_face > input[type=radio]:not(old):checked + label{
+  background-position : -45px -45px;
+}
+
+.neutral_face > input[type=radio   ]:not(old) + label{
+    display: inline-block;
+    margin-left: -28px;
+    padding-left: 28px;
+    background: url("img/emojis/emoji_sprites.png") no-repeat -90px 0;
+    line-height: 24px;
+    width: 18px;
+    height: 45px;
+}
+
+.neutral_face > input[type=radio]:not(old):checked + label{
+  background-position : -90px -45px;
+}
+.angry_face > input[type=radio   ]:not(old) + label{
+    display: inline-block;
+    margin-left: -28px;
+    padding-left: 28px;
+    background: url("img/emojis/emoji_sprites.png") no-repeat -135px 0;
+    line-height: 24px;
+    width: 18px;
+    height: 45px;
+}
+.angry_face > input[type=radio]:not(old):checked + label{
+  background-position : -135px -45px;
+}
