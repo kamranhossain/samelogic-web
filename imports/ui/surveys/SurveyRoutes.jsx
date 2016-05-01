@@ -12,7 +12,7 @@ export default (
         <Route name="notFound" path="404" component={ NotFound } /> 
         <Route name="survey-routes" path=":surveyId" component={ SurveyContainer }>
             <Route name="snap" path="snap" component={ SnapContainer } /> 
-            <Route name="completed" path="thank-you"  component={SurveyCompleted} /> 
+            <Route name="completed" path="completed"  component={SurveyCompleted} /> 
         </Route>
     </Route>
 )

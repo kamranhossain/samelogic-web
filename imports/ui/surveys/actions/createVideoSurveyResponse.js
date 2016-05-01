@@ -61,7 +61,7 @@ export function createVideoSurveyResponse(surveyId) {
                         dispatch(setError('mongo update error: '+ err))
                     } else {
                         dispatch(snapSaved())
-                        dispatch(push('thank-you'))
+                        dispatch(push(`/surveys/${surveyId}/completed`))
                     }
                 })
             }
