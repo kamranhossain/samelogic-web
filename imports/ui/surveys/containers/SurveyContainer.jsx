@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         emojiSelected: (selectedEmojiValue) => dispatch(emojiSelected(selectedEmojiValue)),
-        surveyNotFound: () => dispatch(push('/404'))
+        surveyNotFound: () => dispatch(push('/surveys/404'))
     }
 }
 

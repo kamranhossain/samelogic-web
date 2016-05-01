@@ -37,7 +37,7 @@ export function createVideoSurveyResponse(surveyId) {
         const responseId = createVideoResponse.call({
             surveyId: surveyId,
             emoji: state.surveys.snaps.emojis.selectedValue
-        }, (err, resp) =>{
+        }, (err) =>{
             if ( err ) {                
                 dispatch(setSnapSaving(false))
                 dispatch(setError('Mongo Error: ' + err))
@@ -55,13 +55,13 @@ export function createVideoSurveyResponse(surveyId) {
                 updateVideoResponseUrl.call({
                     surveyResponseId: responseId,
                     url: url
-                }, (err, resp) =>{                    
+                }, (err) =>{                    
                     dispatch(setSnapSaving(false))
                     if ( err ) {
                         dispatch(setError('mongo update error: '+ err))
                     } else {
                         dispatch(snapSaved())
-                        dispatch(push(`surveys/${surveyId}/thank-you`))
+                        dispatch(push('thank-you'))
                     }
                 })
             }

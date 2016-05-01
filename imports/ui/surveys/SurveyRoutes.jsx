@@ -8,11 +8,11 @@ import SurveyCompleted from '/imports/ui/surveys/components/SurveyCompleted/Surv
 import NotFound from '/imports/ui/surveys/components/404/404.jsx'
 
 export default (
-    <Route>
-        <Route name="survey-routes" path="/surveys/:surveyId" component={ SurveyContainer }>
+    <Route path="/surveys">
+        <Route name="notFound" path="404" component={ NotFound } /> 
+        <Route name="survey-routes" path=":surveyId" component={ SurveyContainer }>
             <Route name="snap" path="snap" component={ SnapContainer } /> 
             <Route name="completed" path="thank-you"  component={SurveyCompleted} /> 
         </Route>
-        <Route name="notFound" path="/404" component={ NotFound } /> 
     </Route>
 )
