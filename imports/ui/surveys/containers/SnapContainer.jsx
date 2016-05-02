@@ -7,6 +7,7 @@ import SnapSelector from '/imports/ui/surveys/components/SnapSelector/SnapSelect
 import SnapPlayer from '/imports/ui/surveys/components/SnapPlayer/SnapPlayer.jsx'
 import SendSnapButton from '/imports/ui/surveys/components/SendSnapButton/SendSnapButton.jsx'
 import SurveyorIdentity from '/imports/ui/surveys/components/SurveyorIdentity/SurveyorIdentity.jsx'
+import EmojiFeedback from '/imports/ui/surveys/components/EmojiFeedback/EmojiFeedback.jsx'
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
@@ -33,6 +34,7 @@ class SnapContainer extends Component{
 
                 <SurveyorIdentity />
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
+                <EmojiFeedback emojis={emojis} />
                 
                 {snapRequestMessage}
                 {snapPlayer}      
