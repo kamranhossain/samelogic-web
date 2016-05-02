@@ -11,7 +11,7 @@ export default class SurveyorIdentity extends Component{
                 </div>
                 
                 <div className="SenderName">Firstname Lastname</div>
-                <div className="SenderPosition">Position at Company, Company Name</div>
+                <div className="small-lite-txt">Position at Company, Company Name</div>
             </div>
         )
     }

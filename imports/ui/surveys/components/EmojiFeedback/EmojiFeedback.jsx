@@ -12,7 +12,7 @@ export default class EmojiFeedback extends Component{
             feedback = selectedFeedback.feedback
                 
         return(
-            <div className="white-space-pre">
+            <div className="white-space-pre small-lite-txt">
                 {feedback}
             </div>
         )
