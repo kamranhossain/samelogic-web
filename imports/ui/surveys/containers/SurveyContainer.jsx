@@ -10,7 +10,7 @@ import {emojiSelected} from '/imports/ui/surveys/actions/emojiSelected'
 
 import Layout from '/imports/ui/surveys/layouts/Layout.jsx'
 
-const SurveyContainer = createContainer(({params, location, emojiSelected}) => {
+const SurveyContainer = createContainer(({params, location, emojiSelected, surveyNotFound}) => {
     const {surveyId} = params
     const { query } = location
     
@@ -20,7 +20,7 @@ const SurveyContainer = createContainer(({params, location, emojiSelected}) => {
     
     
     if(!loading && !survey){
-        push('/404')
+        surveyNotFound()
     }
     if(!loading){
         emojiSelected((query && query.emoji) ? query.emoji : 0)
@@ -40,7 +40,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        emojiSelected: (selectedEmojiValue) => dispatch(emojiSelected(selectedEmojiValue))
+        emojiSelected: (selectedEmojiValue) => dispatch(emojiSelected(selectedEmojiValue)),
+        surveyNotFound: () => dispatch(push('/surveys/404'))
     }
 }
 

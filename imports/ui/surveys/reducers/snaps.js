@@ -2,6 +2,7 @@ import * as ActionTypes from '/imports/ui/surveys/actions'
 import Emojis from '/imports/api/surveys/collections/emojis' 
 
 const initialState = {
+    saved: false,
     saving: false,
     emojis: {
         data: Emojis.nodes.filter((e) => e.includeInSnapsSurvey), 
@@ -11,6 +12,14 @@ const initialState = {
         data: null,
         duration: 0
     }
+}
+
+function snapSaved(state= initialState.saved, action){
+    const { type, saved } = action
+    if(type === ActionTypes.SNAP_SAVED){
+        return saved
+    }
+    return state
 }
 
 function emojiSelected(state = initialState.emojis, action){
@@ -46,7 +55,8 @@ export default function snaps(state = initialState, action){
     case ActionTypes.SNAP_SAVING:
         return {...state, saving}
     default:
-        return {...state, 
+        return {...state,
+            saved: snapSaved(state.saved, action),
             emojis: emojiSelected(state.emojis, action),
             selectedSnap: snapsSelected(state.selectedSnap, action)
         }

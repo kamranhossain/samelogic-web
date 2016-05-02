@@ -1,10 +1,11 @@
-/* eslint-disable no-console */
 import { Slingshot } from 'meteor/edgee:slingshot'
+import { push } from 'react-router-redux'
 
 import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/surveys/methods'
 
 export const SET_CREATE_SURVEY_RESPONSE_ERROR = 'SET_CREATE_SURVEY_RESPONSE_ERROR'
 export const SNAP_SAVING = 'SNAP_SAVING'
+export const SNAP_SAVED = 'SNAP_SAVED'
 
 function setSnapSaving(saving) {
     return {
@@ -20,6 +21,12 @@ function setError(message){
     }
 }
 
+function snapSaved(){
+    return{
+        type: SNAP_SAVED,
+        saved: true
+    }
+}
 
 export function createVideoSurveyResponse(surveyId) {
     return (dispatch, getState) => {
@@ -30,12 +37,10 @@ export function createVideoSurveyResponse(surveyId) {
         const responseId = createVideoResponse.call({
             surveyId: surveyId,
             emoji: state.surveys.snaps.emojis.selectedValue
-        }, (err, resp) =>{
+        }, (err) =>{
             if ( err ) {                
                 dispatch(setSnapSaving(false))
                 dispatch(setError('Mongo Error: ' + err))
-            } else {
-                console.log('mongo success: '+ resp)
             }
         })
         
@@ -50,12 +55,13 @@ export function createVideoSurveyResponse(surveyId) {
                 updateVideoResponseUrl.call({
                     surveyResponseId: responseId,
                     url: url
-                }, (err, resp) =>{                    
+                }, (err) =>{                    
                     dispatch(setSnapSaving(false))
                     if ( err ) {
                         dispatch(setError('mongo update error: '+ err))
                     } else {
-                        console.log('mongo update success: '+ resp)
+                        dispatch(snapSaved())
+                        dispatch(push(`/surveys/${surveyId}/completed`))
                     }
                 })
             }
