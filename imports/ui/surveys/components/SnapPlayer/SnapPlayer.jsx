@@ -24,9 +24,12 @@ export default class SnapPlayer extends Component{
     
     render(){        
         return (
-            <div>
-                <video src={this.state.source}></video>
-                <div>Duration: {this.state.duration}</div>
+            <div className="vidContainer">
+                <div className="vidContainerInner">
+                    <video className="SnapVideo" src={this.state.source}>
+                    </video>
+                    <div className="SnapDuration">Your Snap is <b>{this.state.duration}s</b> long!</div>
+                </div>              
             </div>
         )
     }
