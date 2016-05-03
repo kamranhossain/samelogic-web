@@ -7,11 +7,16 @@ export default class SnapSelector extends Component{
         
         let input =  <input type="file" onChange={(event) => onChange(event.target.files[0])} />
         
-        let button = (        
-            <span className="btn btn-default btn-file btn-record">
-                {input}
-            </span>
+        
+        let button = ( 
+            <div className="btn-disc">  
+                <h3>Tap to Record</h3>     
+                <span className="btn btn-default btn-file btn-record">
+                    {input}
+                </span>
+            </div>
         )
+        
         
         if(snapSelected){
             button = (
