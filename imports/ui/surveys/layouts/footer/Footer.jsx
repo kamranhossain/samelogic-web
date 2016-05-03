@@ -15,15 +15,13 @@ export default class Layout extends Component {
       <footer className="footer">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-            </div>
-            <div className="col-md-4 text-center">
+            <div className="col-md-12 text-center">
               <a href="http://samelogic.com" target="_blank">
-                <img src="/img/grikly-logo.png"/>
+                <img src="/img/samelogic-logo-small-white.png"/>
               </a>
             </div>
-            <div className="col-md-4 text-muted text-right">
-              {this.state.version}
+            <div className="col-md-12 small-lite-txt">
+              v{this.state.version}
             </div>
           </div>
          </div>

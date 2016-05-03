@@ -20,7 +20,7 @@ class SnapContainer extends Component{
         
         let snapPlayer, sendSnapButton, snapRequestMessage
         
-        snapRequestMessage = <div className="medium-lite-txt">Tell us how you feel in <strong>15 seconds</strong>!</div>
+        snapRequestMessage = <div className="medium-lite-txt lmt lmb">Tell us how you feel in <strong>15 seconds</strong>!</div>
         
         if(isSnapSelected){
             snapPlayer = <SnapPlayer snap={selectedSnap} />
