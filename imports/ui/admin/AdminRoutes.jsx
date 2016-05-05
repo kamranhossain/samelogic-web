@@ -1,12 +1,11 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-import Layout from '/imports/ui/admin/layouts/Layout.jsx'
-import AdminAppContainer from '/imports/ui/admin/app/AdminAppContainer.jsx'
+import AdminContainer from '/imports/ui/admin/containers/AdminContainer.jsx'
+import DashboardContainer from '/imports/ui/admin/containers/DashboardContainer.jsx'
 
 export default (
-  <Route name="admin-routes" path="/admin" component={ Layout }>
-    <Route name="home" component={ AdminAppContainer } />
-    <IndexRoute component={ AdminAppContainer } />
+  <Route name="admin-routes" path="/admin" component={ AdminContainer }>
+    <IndexRoute component={ DashboardContainer } />
   </Route>
 )
