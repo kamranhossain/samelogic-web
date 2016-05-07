@@ -20,11 +20,13 @@ export default class SnapSelector extends Component{
         
         if(snapSelected){
             button = (
-                <div className="btn-disc">  
-                    <h3>Re-Record?</h3>
-                    <span className="btn btn-default btn-file btn-record">
-                        {input}
-                    </span>
+                <div className="col-md-12">
+                    <div className="btn-disc">  
+                        <h3>Re-Record?</h3>
+                        <span className="btn btn-default btn-file btn-record">
+                            {input}
+                        </span>
+                    </div>
                 </div>
             )
         }
