@@ -24,7 +24,7 @@ export default class SnapPlayer extends Component{
     
     render(){        
         return (
-            <div className="vidContainer">
+            <div className="col-md-12 vidContainer">
                 <div className="vidContainerInner">
                     <video className="SnapVideo" src={this.state.source}>
                     </video>
