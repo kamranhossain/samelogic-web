@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "samelogic-web.js",
+  "engines": {
+    "node": "6.1.0"
+  },
   "directories": {
     "test": "tests"
   },
