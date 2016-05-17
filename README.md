@@ -6,6 +6,19 @@
 1. Install [meteor](https://www.meteor.com/install).
 1. Git clone this into a directory.
 1. Run `npm install` to install non meteor dependencies.
+1. Create a `settings.json` file at the root with the following format:
+
+  ```json 
+  {
+    "public": {
+      "environment": "development"
+    },
+    "AWSAccessKeyId": "your key here",
+    "AWSSecretAccessKey": "your secret here",
+    "AWSVideoBucket": "samelogic-videos-development",
+    "OxfordApiKey": "your key here"
+  }
+  ```
 1. Run `npm start` or `meteor` to start meteor server. Visit [http://localhost:3000/](http://localhost:3000/).
 
 ## Contributing

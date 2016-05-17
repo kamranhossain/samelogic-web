@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
 import Footer from '/imports/ui/admin/layouts/footer/Footer.jsx'
+import Header from '/imports/ui/admin/layouts/header/Header.jsx'
 
-class Layout extends Component {
+export default class Layout extends Component {
     render() {
-        const {
-            loading,
-            children
-        } = this.props
-        const clonedChildren = children && React.cloneElement(children, {})
-        return (            
-            <div>
-                { loading 
-                    ? <div>Loading...</div>
-                    : clonedChildren}
-                <Footer />
-            </div>
+        return (
+          <div>
+            <Header />
+              {this.props.children}
+            <Footer />
+          </div>
         )
     }
 }
