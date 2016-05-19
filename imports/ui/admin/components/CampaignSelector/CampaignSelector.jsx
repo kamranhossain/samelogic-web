@@ -2,8 +2,16 @@ import React, { Component, PropTypes } from 'react'
 import Dropdown from 'react-dropdown'
 
 export default class CampaignSelector extends Component{
+    constructor(props){
+        super(props)
+        this.onChange = props.onChange
+    }
+    
+    handleChange(event){
+        this.onChange(event.value)
+    }
     render(){
-        const {campaigns, onChange, selectedCampaign} = this.props
+        const {campaigns, selectedCampaign} = this.props
         
         const options = campaigns.map((c) => {
             return {
@@ -11,15 +19,19 @@ export default class CampaignSelector extends Component{
                 label: c.title
             }
         })
-        const selected = {
-            value: selectedCampaign._id,
-            label: selectedCampaign.title
+        
+        let selected = undefined
+        if(selectedCampaign){
+            selected = {
+                value: selectedCampaign._id,
+                label: selectedCampaign.title
+            }   
         }
         
         return (
             <div>
                 <h3>Campaigns</h3>
-                <Dropdown options={options} onChange={onChange} value={selected} placeholder="Select a campaign" />
+                <Dropdown options={options} onChange={this.handleChange.bind(this)} value={selected} placeholder="Select a campaign" />
             </div>
         )
     }
