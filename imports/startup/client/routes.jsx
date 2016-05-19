@@ -7,7 +7,7 @@ import { routerMiddleware, syncHistoryWithStore, routerReducer } from 'react-rou
 import createLogger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 
-//import * as adminReducers from 'imports/ui/admin/AdminReducers'
+import adminReducers from '/imports/ui/admin/reducers'
 import surveyReducers from '/imports/ui/surveys/reducers'
 
 import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
@@ -15,7 +15,7 @@ import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
 import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 const reducer = combineReducers({
-    //...adminReducers,
+    admin: adminReducers,
     surveys: surveyReducers,
     routing: routerReducer
 })
