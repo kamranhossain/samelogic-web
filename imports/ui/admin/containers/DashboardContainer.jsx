@@ -3,14 +3,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
+import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
 
 class DashboardContainer extends Component{
 
     render(){
         
+        const campaigns = [{_id: '1', title: 'Customer Calls'}, {_id:'2', title: 'Email Sentiments'}]
+        
         return(
             <div>
                 <div>Dashboard</div>
+                
+                <CampaignSelector campaigns={campaigns} selectedCampaign={campaigns[0]} />
             </div>
         )
     }
