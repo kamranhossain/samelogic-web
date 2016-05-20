@@ -4,14 +4,16 @@ import Dropdown from 'react-dropdown'
 export default class CampaignSelector extends Component{
     constructor(props){
         super(props)
-        this.onChange = props.onChange
     }
     
     handleChange(event){
-        this.onChange(event.value)
+        this.props.onChange({
+            _id: event.value,
+            title: event.label
+        })
     }
     render(){
-        const {campaigns, selectedCampaign} = this.props
+        const {campaigns, selected} = this.props
         
         const options = campaigns.map((c) => {
             return {
@@ -20,18 +22,18 @@ export default class CampaignSelector extends Component{
             }
         })
         
-        let selected = undefined
-        if(selectedCampaign){
-            selected = {
-                value: selectedCampaign._id,
-                label: selectedCampaign.title
+        let selectedCampaign = undefined
+        if(selected){
+            selectedCampaign = {
+                value: selected._id,
+                label: selected.title
             }   
         }
         
         return (
             <div>
                 <h3>Campaigns</h3>
-                <Dropdown options={options} onChange={this.handleChange.bind(this)} value={selected} placeholder="Select a campaign" />
+                <Dropdown options={options} onChange={this.handleChange.bind(this)} value={selectedCampaign} placeholder="Select a campaign" />
             </div>
         )
     }
@@ -40,7 +42,7 @@ export default class CampaignSelector extends Component{
 CampaignSelector.propTypes = {
     onChange: PropTypes.func,
     campaigns: PropTypes.array,
-    selectedCampaign: PropTypes.shape({
+    selected: PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string
     })
