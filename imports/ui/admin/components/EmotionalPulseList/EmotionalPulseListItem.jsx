@@ -12,7 +12,8 @@ class EmotionalPulseListItem extends Component {
             }
         )
         return (
-            <div className={classes} title={value.label}>
+            <div className={classes} title={value.label}
+                onClick={this.props.onClick.bind(this, value)}>
                 <span className={value.key}></span>
                 {value.percent}%
             </div>
@@ -24,10 +25,10 @@ EmotionalPulseListItem.propTypes = {
     value: PropTypes.shape({
         key: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
-        percent: PropTypes.number.isRequired,
-        emotion: PropTypes.string.isRequired
+        percent: PropTypes.number.isRequired
     }).isRequired,
-    selected: PropTypes.bool.isRequired
+    selected: PropTypes.bool,
+    onClick: PropTypes.func
 }
 
 export default EmotionalPulseListItem
