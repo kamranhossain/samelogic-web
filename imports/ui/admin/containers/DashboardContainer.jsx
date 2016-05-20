@@ -5,11 +5,22 @@ import { bindActionCreators } from 'redux'
 import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
 import EmotionalPulseList from '/imports/ui/admin/components/EmotionalPulseList/EmotionalPulseList.jsx'
+import EmotionalPulseDetail from '/imports/ui/admin/components/EmotionalPulseDetail/EmotionalPulseDetail.jsx'
 
 class DashboardContainer extends Component{
 
     render(){
         const { actions, selectedCampaign, campaigns, selectedEmotion, emotions } = this.props
+        
+        let details
+        
+        if(selectedEmotion){
+            details = (
+                <div>
+                    <EmotionalPulseDetail emotion={selectedEmotion} />
+                </div>
+            )
+        }
         
         return(
             <div>
@@ -18,6 +29,8 @@ class DashboardContainer extends Component{
                 <CampaignSelector campaigns={campaigns} selected={selectedCampaign} onChange={actions.campaignSelected} />
                 
                 <EmotionalPulseList emotions={emotions} selected={selectedEmotion} onChange={actions.emotionSelected} />
+                
+                {details}
             </div>
         )
     }
