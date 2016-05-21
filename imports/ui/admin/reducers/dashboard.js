@@ -35,7 +35,11 @@ const initialState = {
             percent: 20,
             order: 5
         }
-    ]
+    ],
+    feedbackFilter: {
+        orderby: ''
+    },
+    feedbacks: []
 }
 
 
@@ -55,6 +59,14 @@ function emotionSelected(state = initialState.selectedEmotion, action){
     return state
 }
 
+function loadFeedbacks(state = initialState.feedbacks, action){
+    const { type, feedbacks } = action
+    if(type === ActionTypes.LOAD_CAMPAIGN_FEEDBACKS){
+        return feedbacks 
+    }
+    return state    
+}
+
 export default function dashboard(state = initialState, action){
     const { type } = action
     
@@ -62,7 +74,8 @@ export default function dashboard(state = initialState, action){
     default:
         return {...state,
             selectedCampaign: campaignSelected(state.selectedCampaign, action),
-            selectedEmotion: emotionSelected(state.selectedEmotion, action)
+            selectedEmotion: emotionSelected(state.selectedEmotion, action),
+            feedbacks: loadFeedbacks(state.feedbacks, action)
         }
     }            
 }
