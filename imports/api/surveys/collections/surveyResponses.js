@@ -34,6 +34,10 @@ SurveyResponses.schema = new SimpleSchema ({
         regEx: SimpleSchema.RegEx.Url,
         optional: true
     },
+    textResponse: {
+        type: String,
+        optional: true  
+    },
     emotionData: {
         type: Object,
         optional: true,
