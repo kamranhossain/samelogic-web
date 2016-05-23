@@ -31,7 +31,7 @@ class SnapContainer extends Component{
         return(
             <div>
                 <div>{errors.errorMessage}</div>
-
+                <h2>{survey.title}</h2>
                 <SurveyorIdentity />
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 <EmojiFeedback emojis={emojis} />
