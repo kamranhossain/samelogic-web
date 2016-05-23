@@ -72,7 +72,11 @@ SurveyResponses.attachSchema(SurveyResponses.schema, {transform: true})
 SurveyResponses.adminFields = {
     surveyId: 1,
     type: 1,
-    contentUrl: 1
+    contentUrl: 1,
+    textResponse: 1,
+    emoji: 1,
+    emotionData: 1,
+    createdAt: 1
 }
 
 SurveyResponses.publicFields = {

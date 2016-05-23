@@ -2,36 +2,40 @@ import * as ActionTypes from '/imports/ui/admin/actions'
 
 const initialState = {
     selectedCampaign: undefined,
-    campaigns: [{_id:'1', title: 'Customer Calls'}, {_id:'2', title:'Some other Campaign'}],
     selectedEmotion: undefined,
     emotions: [
         {
             key: 'delighted',
             label: 'Delighted',
+            amount: 50,
             percent: 20,
             order: 1
         },
         {
             key: 'happiness',
             label: 'Happiness',
+            amount: 50,
             percent: 20,
             order: 2
         },
         {
             key: 'neutral',
             label: 'Neutral',
+            amount: 50,
             percent: 20,
             order: 3
         },
         {
             key: 'unsatisfied',
             label: 'Unsatisfied',
+            amount: 50,
             percent: 20,
             order: 4
         },
         {
             key: 'disgusted',
             label: 'Disgusted',
+            amount: 50,
             percent: 20,
             order: 5
         }
