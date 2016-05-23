@@ -28,6 +28,8 @@ class Dashboard extends Component{
                     <EmotionalPulseDetail emotion={selectedEmotion} />
                 </div>
             )
+        }
+        if(selectedCampaign && selectedEmotion){
             customerFeedbackContainer = (
                 <CustomerFeedbackContainer />
             )
