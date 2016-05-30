@@ -14,6 +14,8 @@ import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
 import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
 import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
+import { meteorInsert, meteorUpdate, meteorRemove, meteorDataSource, meteorSubscription, meteorMethod } from 'meteor/shawnmclean:redux-meteorware'
+
 const reducer = combineReducers({
     admin: adminReducers,
     surveys: surveyReducers,
@@ -21,8 +23,20 @@ const reducer = combineReducers({
 })
 
 const logger = createLogger()
+const middlewares = [
+    ReduxThunk,
+    logger,
+    routerMiddleware(browserHistory),
+    meteorInsert,
+    meteorUpdate,
+    meteorRemove,
+    meteorDataSource,
+    meteorSubscription,
+    meteorMethod
+]
+
 const store = createStore(reducer, {}, compose(
-    applyMiddleware(ReduxThunk, logger, routerMiddleware(browserHistory)), 
+    applyMiddleware(...middlewares), 
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
