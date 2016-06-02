@@ -1,7 +1,7 @@
 import { Slingshot } from 'meteor/edgee:slingshot'
 import { push } from 'react-router-redux'
 
-import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/surveys/methods'
+import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/methods'
 
 export const SET_CREATE_SURVEY_RESPONSE_ERROR = 'SET_CREATE_SURVEY_RESPONSE_ERROR'
 export const SNAP_SAVING = 'SNAP_SAVING'

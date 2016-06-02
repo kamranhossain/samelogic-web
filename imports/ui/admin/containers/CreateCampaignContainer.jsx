@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react'
-import create from '/imports/api/surveys/methods/create'
+import createCampaign from '/imports/api/methods/createCampaign'
 
 class CreateCampaignContainer extends Component {
     render() {
-        const id = create.call({
+        const id = createCampaign.call({
             title: 'This is a demo Title',
             description: 'This is a demo description'
         }, (err, resp) => {

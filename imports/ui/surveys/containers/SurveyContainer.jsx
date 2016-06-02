@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data'
 import { connect }  from 'react-redux'
 import { push } from 'react-router-redux'
 
-import { Surveys } from '/imports/api/surveys/collections/surveys'
+import { Campaigns } from '/imports/api/collections/campaigns'
 
 import {emojiSelected} from '/imports/ui/surveys/actions/emojiSelected'
 
@@ -14,9 +14,9 @@ const SurveyContainer = createContainer(({params, location, emojiSelected, surve
     const {surveyId} = params
     const { query } = location
     
-    const surveyHandle = Meteor.subscribe('survey.public', surveyId)
+    const surveyHandle = Meteor.subscribe('campaign.public', surveyId)
     const loading = !surveyHandle.ready()
-    const survey = Surveys.findOne(surveyId)
+    const survey = Campaigns.findOne(surveyId)
     
     
     if(!loading && !survey){

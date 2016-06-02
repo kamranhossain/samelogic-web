@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo'
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
-class SurveysCollection extends Mongo.Collection {
+class CampaignsCollection extends Mongo.Collection {
     insert(doc, callback){
         const ourDoc = doc
         ourDoc.createdAt = ourDoc.createdAt || new Date()
@@ -10,9 +10,9 @@ class SurveysCollection extends Mongo.Collection {
     }
 }
 
-export const Surveys = new SurveysCollection('Surveys')
+export const Campaigns = new CampaignsCollection('Campaigns')
 
-Surveys.schema = new SimpleSchema({
+Campaigns.schema = new SimpleSchema({
     title: {
         type: String,
         max: 100
@@ -27,16 +27,16 @@ Surveys.schema = new SimpleSchema({
     }
 })
 
-Surveys.attachSchema(Surveys.schema)
+Campaigns.attachSchema(Campaigns.schema)
 
-Surveys.adminFields = {
+Campaigns.adminFields = {
     _id: 1,
     title: 1,
     description: 1,
     createdAt: 1
 }
 
-Surveys.publicFields = {
+Campaigns.publicFields = {
     _id: 1,
     title: 1,
     description: 1,

@@ -1,5 +1,5 @@
 import * as ActionTypes from '/imports/ui/surveys/actions'
-import Emojis from '/imports/api/surveys/collections/emojis' 
+import Emojis from '/imports/api/collections/emojis' 
 
 const initialState = {
     saved: false,

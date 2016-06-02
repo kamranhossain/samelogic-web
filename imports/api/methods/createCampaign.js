@@ -1,22 +1,22 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
-import { Surveys } from '../collections/surveys'
+import { Campaigns } from '../collections/campaigns'
 
 export default new ValidatedMethod({
-    name: 'surveys.create',
+    name: 'campaigns.create',
     validate: new SimpleSchema({
         title: { type: String },
         description: { type: String }
     }).validator(),
     run({ title, description}) {
 
-        const survey = {
+        const campaign = {
             title,
             description
         }
 
-        return Surveys.insert(survey)
+        return Campaigns.insert(campaign)
     }
 })
 

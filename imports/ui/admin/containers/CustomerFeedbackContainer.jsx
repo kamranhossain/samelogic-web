@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data'
 import React, { Component, PropTypes } from 'react'
 import { connect }  from 'react-redux'
 
-import { SurveyResponses } from '/imports/api/surveys/collections/surveyResponses'
+import { SurveyResponses } from '/imports/api/collections/surveyResponses'
 
 
 import CampaignFeedbackList from '/imports/ui/admin/components/CampaignFeedbackList/CampaignFeedbackList.jsx'

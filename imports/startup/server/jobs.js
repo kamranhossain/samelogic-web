@@ -1,1 +1,1 @@
-import '/imports/api/surveys/server/workers'
+import '/imports/api/server/workers'

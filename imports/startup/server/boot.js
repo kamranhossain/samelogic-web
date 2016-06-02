@@ -1,4 +1,4 @@
-import createIndexes from '/imports/api/surveys/server/indexes'
+import createIndexes from '/imports/api/server/indexes'
 
 export default function bootup(){
     createIndexes()

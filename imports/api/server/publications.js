@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
-import { Surveys } from '../collections/surveys'
+import { Campaigns } from '../collections/campaigns'
 import { SurveyResponses } from '../collections/surveyResponses'
 
 
-Meteor.publish('survey.public', (surveyId) => {
+Meteor.publish('campaign.public', (surveyId) => {
     new SimpleSchema({
         surveyId: { type: String }
     }).validate({surveyId})
@@ -13,14 +13,14 @@ Meteor.publish('survey.public', (surveyId) => {
         _id: surveyId
     }
     
-    return Surveys.find(query, {
-        fields: Surveys.publicFields
+    return Campaigns.find(query, {
+        fields: Campaigns.publicFields
     })    
 })
 
 Meteor.publish('campaigns.admin', () => {
-    return Surveys.find({},{
-        fields: Surveys.adminFields
+    return Campaigns.find({},{
+        fields: Campaigns.adminFields
     })    
 })
 

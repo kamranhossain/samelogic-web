@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Surveys } from '/imports/api/surveys/collections/surveys'
+import { Campaigns } from '/imports/api/collections/campaigns'
 
 import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
@@ -72,7 +72,7 @@ const DashboardContainer = createContainer(({actions, selectedCampaign, selected
     
     const campaignHandle = Meteor.subscribe('campaigns.admin')
     const loading = !campaignHandle.ready()
-    const campaigns = Surveys.find({}).fetch()
+    const campaigns = Campaigns.find({}).fetch()
     
     
     if(!loading && !campaigns){
