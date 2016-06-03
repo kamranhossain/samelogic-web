@@ -18,7 +18,7 @@ Meteor.publish('campaign.public', (surveyId) => {
     })    
 })
 
-Meteor.publish('campaigns.admin', (campaignName) => {
+Meteor.publish('campaigns.admin', () => {
     return Campaigns.find({},{
         fields: Campaigns.adminFields
     })    

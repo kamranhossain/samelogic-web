@@ -5,8 +5,6 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Campaigns } from '/imports/api/collections/campaigns'
-
 import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
 import EmotionalPulseList from '/imports/ui/admin/components/EmotionalPulseList/EmotionalPulseList.jsx'
@@ -17,7 +15,7 @@ import CustomerFeedbackContainer from '/imports/ui/admin/containers/CustomerFeed
 
 class Dashboard extends Component{
     componentDidMount() {
-        this.props.loadCampaigns('')
+        this.props.loadCampaigns()
     }
     render(){
         const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions, } = this.props

@@ -10,12 +10,12 @@ export const CAMPAIGNS_INSERT = actionTypeBuilder.type('CAMPAIGNS_INSERT')
 export const CAMPAIGNS_UPDATE = actionTypeBuilder.type('CAMPAIGNS_UPDATE')
 
 export function loadCampaignsFactory() {
-    return campaignName => {
+    return () => {
         return dispatch => {
             dispatch({
                 type: CAMPAIGNS,
                 meteor: {
-                    subscribe: () => Meteor.subscribe('campaigns.admin', campaignName, {
+                    subscribe: () => Meteor.subscribe('campaigns.admin', {
                         onStop: error => {
                             if (error && error.error === 401) {
                                 dispatch(newErrorNotification('failed to load campaigns'))
