@@ -75,7 +75,7 @@ export function updateCampaignFactory(collection) {
                         id,
                         modifiers: {
                             $set: {
-                                date: moment(date).toDate()
+                                date: date
                             }
                         },
                         collection
