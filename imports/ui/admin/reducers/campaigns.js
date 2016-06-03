@@ -12,10 +12,10 @@ export default function(state = initialState, action) {
 
     switch (type) {
     case actionTypeBuilder.ready(ActionTypes.CAMPAIGNS):
-        return {...state, 
-            ready,
-            items: data
-        }
+        return {...state, ready}
+
+    case actionTypeBuilder.changed(ActionTypes.CAMPAIGNS):
+        return {...state, items: data}
     default:
         return state
     }

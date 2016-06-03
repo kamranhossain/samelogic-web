@@ -22,7 +22,7 @@ export function loadCampaignsFactory() {
                             }
                         }
                     }),
-                    get: () => Campaigns.findCampaignsByName(campaignName).fetch()
+                    get: () => Campaigns.find({}).fetch()
                 }
             })
         }

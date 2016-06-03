@@ -15,12 +15,12 @@ export default class CampaignSelector extends Component{
     render(){
         const {campaigns, selected} = this.props
         
-        const options = campaigns.map((c) => {
+        const options = campaigns.items !== undefined ? campaigns.items.map((c) => {
             return {
                 value: c._id,
                 label: c.title
             }
-        })
+        }) : []
         
         let selectedCampaign = undefined
         if(selected){
@@ -41,7 +41,9 @@ export default class CampaignSelector extends Component{
 
 CampaignSelector.propTypes = {
     onChange: PropTypes.func,
-    campaigns: PropTypes.array,
+    campaigns: PropTypes.shape({
+        items: PropTypes.array
+    }),
     selected: PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string

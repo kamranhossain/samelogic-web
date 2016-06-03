@@ -1,7 +1,5 @@
 export default function(campaignCollection) {
     return (campaignName) => {
-        return campaignCollection.find({
-            title: campaignName
-        })
+        return campaignCollection.find({ $text: { $search: campaignName } })
     }
 }

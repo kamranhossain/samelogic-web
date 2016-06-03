@@ -90,7 +90,7 @@ const mapStateToProps = (state) => {
         selectedCampaign: state.admin.dashboard.selectedCampaign,
         selectedEmotion: state.admin.dashboard.selectedEmotion,
         emotions: state.admin.dashboard.emotions,
-        campaigns: state.admin.campaigns.items
+        campaigns: state.admin.campaigns
     }
 }
 
