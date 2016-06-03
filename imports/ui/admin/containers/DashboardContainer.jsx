@@ -16,7 +16,9 @@ import CustomerFeedbackContainer from '/imports/ui/admin/containers/CustomerFeed
 
 
 class Dashboard extends Component{
-
+    componentDidMount() {
+        //this.props.loadCoachees()
+    }
     render(){
         const { loading, campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions } = this.props
         
@@ -66,6 +68,7 @@ Dashboard.propTypes = {
     campaigns: PropTypes.array,
     selectedEmotion: PropTypes.object,
     emotions: PropTypes.array
+    
 }
 
 const DashboardContainer = createContainer(({actions, selectedCampaign, selectedEmotion, emotions}) => {
