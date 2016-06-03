@@ -16,6 +16,9 @@ import AppContainer from '/imports/ui/app/AppContainer.jsx'
 
 import { meteorInsert, meteorUpdate, meteorRemove, meteorDataSource, meteorSubscription, meteorMethod } from 'meteor/shawnmclean:redux-meteorware'
 
+
+import { newSuccessNotification, newErrorNotification } from '/imports/ui/app/actions/notifications'
+
 const reducer = combineReducers({
     admin: adminReducers,
     surveys: surveyReducers,
@@ -27,12 +30,12 @@ const middlewares = [
     ReduxThunk,
     logger,
     routerMiddleware(browserHistory),
-    meteorInsert,
-    meteorUpdate,
-    meteorRemove,
+    meteorMethod(newSuccessNotification, newErrorNotification),
+    meteorInsert(newSuccessNotification, newErrorNotification),
+    meteorUpdate(newSuccessNotification, newErrorNotification),
+    meteorRemove(newSuccessNotification, newErrorNotification),
     meteorDataSource,
-    meteorSubscription,
-    meteorMethod
+    meteorSubscription
 ]
 
 const store = createStore(reducer, {}, compose(
