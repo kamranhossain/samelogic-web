@@ -45,7 +45,6 @@ const initialState = {
     }
 }
 
-
 function campaignSelected(state = initialState.selectedCampaign, action){
     const { type, selectedCampaign } = action
     if(type === ActionTypes.CAMPAIGN_SELECTED){

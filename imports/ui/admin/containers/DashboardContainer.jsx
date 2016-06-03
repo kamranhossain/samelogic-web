@@ -17,10 +17,10 @@ import CustomerFeedbackContainer from '/imports/ui/admin/containers/CustomerFeed
 
 class Dashboard extends Component{
     componentDidMount() {
-        //this.props.loadCoachees()
+        this.props.loadCampaigns('')
     }
     render(){
-        const { loading, campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions } = this.props
+        const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions, } = this.props
         
         let details, customerFeedbackContainer
         
@@ -50,9 +50,7 @@ class Dashboard extends Component{
         )
         return(
             <div>
-                { loading 
-                    ? <div>Loading...</div>
-                    : dash}
+                    {dash}
             </div>
         )
     }
@@ -63,6 +61,7 @@ Dashboard.propTypes = {
         _id: PropTypes.string.required,
         title: PropTypes.string.required
     }),
+    loadCampaigns: PropTypes.func.isRequired,
     campaignSelected: PropTypes.func.isRequired,
     emotionSelected: PropTypes.func.isRequired,
     campaigns: PropTypes.array,
@@ -71,19 +70,10 @@ Dashboard.propTypes = {
     
 }
 
-const DashboardContainer = createContainer(({actions, selectedCampaign, selectedEmotion, emotions}) => {
-    
-    const campaignHandle = Meteor.subscribe('campaigns.admin')
-    const loading = !campaignHandle.ready()
-    const campaigns = Campaigns.find({}).fetch()
-    
-    
-    if(!loading && !campaigns){
-        // error here
-        alert('error, campaign not found')
-    }
+const DashboardContainer = createContainer(({actions, selectedCampaign, selectedEmotion, emotions, campaigns}) => {
+
     return {
-        loading,
+        loadCampaigns: actions.loadCampaigns,
         campaigns,
         selectedCampaign,
         selectedEmotion,
@@ -99,13 +89,18 @@ const mapStateToProps = (state) => {
     return {
         selectedCampaign: state.admin.dashboard.selectedCampaign,
         selectedEmotion: state.admin.dashboard.selectedEmotion,
-        emotions: state.admin.dashboard.emotions
+        emotions: state.admin.dashboard.emotions,
+        campaigns: state.admin.campaigns.items
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(AdminActions, dispatch)
+        actions: bindActionCreators(
+            {...AdminActions,
+                loadCampaigns: AdminActions.loadCampaignsFactory()
+            }, dispatch)
+        
     }
 }
 

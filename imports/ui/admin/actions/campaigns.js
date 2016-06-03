@@ -22,7 +22,7 @@ export function loadCampaignsFactory() {
                             }
                         }
                     }),
-                    get: () => Campaigns.fineCampaignsByName(campaignName).fetch()
+                    get: () => Campaigns.findCampaignsByName(campaignName).fetch()
                 }
             })
         }
@@ -85,3 +85,4 @@ export function updateCampaignFactory(collection) {
         }
     }
 }
+

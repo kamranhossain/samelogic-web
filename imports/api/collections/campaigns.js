@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo'
-
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
+
+import findCampaignsByName from './campaigns/findCampaignsByName'
 
 class CampaignsCollection extends Mongo.Collection {
     insert(doc, callback){
@@ -28,6 +29,8 @@ Campaigns.schema = new SimpleSchema({
 })
 
 Campaigns.attachSchema(Campaigns.schema)
+
+Campaigns.findCampaignsByName = findCampaignsByName(Campaigns)
 
 Campaigns.adminFields = {
     _id: 1,
