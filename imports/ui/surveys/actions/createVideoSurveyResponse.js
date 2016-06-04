@@ -35,7 +35,7 @@ export function createVideoSurveyResponse(surveyId) {
         const state = getState()
         // create response so we can get an id related to that response.
         const responseId = createVideoResponse.call({
-            surveyId: surveyId,
+            campaignId: surveyId,
             emoji: state.surveys.snaps.emojis.selectedValue
         }, (err) =>{
             if ( err ) {                

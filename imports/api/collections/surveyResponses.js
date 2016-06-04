@@ -12,14 +12,14 @@ class SurveyResponsesCollection extends Mongo.Collection {
     }
 }
 
-export const SurveyResponses = new SurveyResponsesCollection('SurveyResponses',{
+export const SurveyResponses = new SurveyResponsesCollection('CampaignResponses',{
     transform: (doc) => {
         return doc
     }
 })
 
 SurveyResponses.schema = new SimpleSchema ({
-    surveyId: {
+    campaignId: {
         type: String
     },
     type: {
@@ -70,7 +70,7 @@ SurveyResponses.schema = new SimpleSchema ({
 SurveyResponses.attachSchema(SurveyResponses.schema, {transform: true})
 
 SurveyResponses.adminFields = {
-    surveyId: 1,
+    campaignId: 1,
     type: 1,
     contentUrl: 1,
     textResponse: 1,
@@ -80,5 +80,5 @@ SurveyResponses.adminFields = {
 }
 
 SurveyResponses.publicFields = {
-    surveyId: 1
+    campaignId: 1
 }

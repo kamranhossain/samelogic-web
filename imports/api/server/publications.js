@@ -25,14 +25,14 @@ Meteor.publish('campaigns.admin', () => {
 })
 
 
-Meteor.publish('surveyResponses.admin', (surveyId, emotionKey) => {
+Meteor.publish('surveyResponses.admin', (campaignId, emotionKey) => {
     new SimpleSchema({
-        surveyId: { type: String },
+        campaignId: { type: String },
         emotionKey: {type: String}
         
-    }).validate({surveyId, emotionKey})
+    }).validate({campaignId, emotionKey})
     const query = {
-        surveyId: surveyId
+        campaignId: campaignId
     }
     return SurveyResponses.find(query,{
         fields: SurveyResponses.adminFields

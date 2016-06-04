@@ -36,7 +36,7 @@ const CustomerFeedbackContainer = createContainer(({selectedCampaign, selectedEm
 
     const surveyResponseHandle = Meteor.subscribe('surveyResponses.admin', selectedCampaign._id, selectedEmotion.key)
     const loading = !surveyResponseHandle.ready()
-    const feedbacks = SurveyResponses.find({surveyId: selectedCampaign._id}).fetch()
+    const feedbacks = SurveyResponses.find({campaignId: selectedCampaign._id}).fetch()
     
     
     if(!loading && !feedbacks){

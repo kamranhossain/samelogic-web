@@ -4,7 +4,7 @@ import createCampaign from '/imports/api/methods/createCampaign'
 class CreateCampaignContainer extends Component {
     render() {
         const id = createCampaign.call({
-            title: 'This is a demo Title',
+            title: 'PitchIT Feedback',
             description: 'This is a demo description'
         }, (err, resp) => {
              
