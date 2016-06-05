@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 
 import dashboard from './dashboard'
 import campaigns from './campaigns'
+import emotions from './emotions'
 
 const initialState = {
     loading: false
@@ -19,7 +20,8 @@ function state(state = initialState, action){
 const adminReducers = combineReducers({
     state,
     dashboard,
-    campaigns
+    campaigns,
+    emotions
 })
 
 export default adminReducers

@@ -20,8 +20,13 @@ class Dashboard extends Component{
     render(){
         const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions, } = this.props
         
-        let details, customerFeedbackContainer
+        let details, emotionDisplayContainer, customerFeedbackContainer
         
+        if(selectedCampaign){
+            emotionDisplayContainer = (
+                <EmotionalPulseList emotions={emotions} selected={selectedEmotion} onChange={emotionSelected} />
+            )
+        }
         if(selectedEmotion){
             details = (
                 <div>
@@ -40,7 +45,7 @@ class Dashboard extends Component{
                 
                 <CampaignSelector campaigns={campaigns} selected={selectedCampaign} onChange={campaignSelected} />
                 
-                <EmotionalPulseList emotions={emotions} selected={selectedEmotion} onChange={emotionSelected} />
+                {emotionDisplayContainer}
                 
                 {details}
                 {customerFeedbackContainer}
@@ -62,15 +67,16 @@ Dashboard.propTypes = {
     loadCampaigns: PropTypes.func.isRequired,
     campaignSelected: PropTypes.func.isRequired,
     emotionSelected: PropTypes.func.isRequired,
-    campaigns: PropTypes.array,
+    campaigns: PropTypes.object,
     selectedEmotion: PropTypes.object,
-    emotions: PropTypes.array
+    emotions: PropTypes.object
     
 }
 
 const DashboardContainer = createContainer(({actions, selectedCampaign, selectedEmotion, emotions, campaigns}) => {
 
     return {
+        loadEmotions: actions.loadEmotion,
         loadCampaigns: actions.loadCampaigns,
         campaigns,
         selectedCampaign,
@@ -87,7 +93,7 @@ const mapStateToProps = (state) => {
     return {
         selectedCampaign: state.admin.dashboard.selectedCampaign,
         selectedEmotion: state.admin.dashboard.selectedEmotion,
-        emotions: state.admin.dashboard.emotions,
+        emotions: state.admin.emotions,
         campaigns: state.admin.campaigns
     }
 }
@@ -96,7 +102,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(
             {...AdminActions,
-                loadCampaigns: AdminActions.loadCampaignsFactory()
+                loadCampaigns: AdminActions.loadCampaignsFactory(),
+                loadEmotions: AdminActions.loadEmotionsFactory()
             }, dispatch)
         
     }

@@ -7,7 +7,7 @@ class EmotionalPulseList extends Component {
         let selectedKey = selected === undefined ? '' : selected.key
         return (
             <div>
-                {emotions.map((emotion) =>
+                {emotions.items.map((emotion) =>
                     <EmotionalPulseListItem key={emotion.key} value={emotion} selected={selectedKey === emotion.key} onClick={this.props.onChange} />
                 )}
             </div>
@@ -16,7 +16,7 @@ class EmotionalPulseList extends Component {
 }
 
 EmotionalPulseList.propTypes = {
-    emotions: PropTypes.array.isRequired,
+    emotions: PropTypes.object.isRequired,
     selected: PropTypes.object,
     onChange: PropTypes.func
 }
