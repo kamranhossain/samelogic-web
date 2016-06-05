@@ -5,8 +5,8 @@ export default class SurveyCompleted extends Component{
     render(){        
         const { survey } = this.props       
         return(
-            <div>                            
-                Thanks for completing
+            <div className="col-md-12">                            
+                <h2>Thanks for Completing!</h2>
             </div>
         )
     }

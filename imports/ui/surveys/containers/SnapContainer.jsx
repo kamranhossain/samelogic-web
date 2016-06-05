@@ -20,7 +20,7 @@ class SnapContainer extends Component{
         
         let snapPlayer, sendSnapButton, snapRequestMessage
         
-        snapRequestMessage = <div className="medium-lite-txt lmt lmb">Tell us how you feel in <strong>15 seconds</strong>!</div>
+        snapRequestMessage = <div className="medium-lite-txt lmt lmb">Tell us about your experience in <strong>15 - 60 seconds</strong>!</div>
         
         if(isSnapSelected){
             snapPlayer = <SnapPlayer snap={selectedSnap} />
@@ -31,7 +31,7 @@ class SnapContainer extends Component{
         return(
             <div>
                 <div>{errors.errorMessage}</div>
-                <h2>{survey.title}</h2>
+                <h3 className="medium-lite-txt"><b>{survey.title}</b></h3>
                 <SurveyorIdentity />
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 <EmojiFeedback emojis={emojis} />
@@ -40,7 +40,7 @@ class SnapContainer extends Component{
                 {snapPlayer}      
                 <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
                 {sendSnapButton}
-                <span className="sr-only">{saving ? <div>true</div> : <div>false</div>}</span>
+                <span className="sr-only font-zero">{saving ? <div>true</div> : <div>false</div>}</span>
             </div>
         )
     }

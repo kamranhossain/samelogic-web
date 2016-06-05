@@ -13,20 +13,20 @@ export default SEnum([
         value: 2,
         label: 'Happy',
         includeInSnapsSurvey: true,
-        feedback: 'Test!\n I\'d love to hear more!'       
+        feedback: 'Happy you had a good experience with us!\n I\'d love to hear more!'       
     },
     {
         key: 'neutral_face',
         value: 3,
         label: 'Meh',
         includeInSnapsSurvey: true,
-        feedback: 'grinning_face!\n I\'d love to hear more!'         
+        feedback: 'I’m sorry you didn’t have a good experience.\n I\’d love to know how you feel that we can improve our service.\n I\'d love to hear more!'         
     },
     {
         key: 'angry_face',
         value: 4,
         label: 'Unsatisfied',
         includeInSnapsSurvey: true,
-        feedback: 'angry_face!\n I\'d love to hear more!'         
+        feedback: 'I\’m so sorry you had a horrible experience Cindy.\n I\’d really love to hear how you felt so we can make this better.'         
     }
 ])
