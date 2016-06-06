@@ -34,7 +34,7 @@ export function loadEmotionsFactory() {
                         responses.forEach((r) => {
                             if(r.emotionData){
                                 emotions.forEach(em => {
-                                    if(em.emotion == r.emotionData.key){
+                                    if(em.key == r.emotionData.emotion){
                                         em.count++
                                     }
                                 })
