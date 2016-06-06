@@ -5,7 +5,7 @@ export const CAMPAIGN_SELECTED = 'CAMPAIGN_SELECTED'
 
 
 export function campaignSelected(selectedCampaign) {
-    return (dispatch, state) => {
+    return (dispatch) => {
         dispatch({
             type: CAMPAIGN_SELECTED,
             selectedCampaign  
