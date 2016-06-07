@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import Crouton from 'react-crouton'
 import ProgressBar from 'react-progress-bar-plus'
 
+import SurveyNotFound from '/imports/ui/surveys/components/SurveyNotFound/SurveyNotFound.jsx'
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
 class SurveyAppContainer extends Component {
@@ -40,7 +41,7 @@ class SurveyAppContainer extends Component {
                     timeout={notificationData.timeout}
                     autoMiss={notificationData.autoMiss}/>
 
-                {details}
+                {survey.current ? details : <SurveyNotFound />}
             </div>
         )
     }
