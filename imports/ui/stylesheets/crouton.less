@@ -1,0 +1,63 @@
+@green: #31D2B1;
+@black: #2D3036;
+@white: #F8F9FC;
+@headers: #EFF5FE;
+@grey: #ABB6C6;
+@gutter: 20px;
+@radius: 2px;
+@smaller: 14px;
+
+.crouton {
+  color: #FFF;
+  font-size: @smaller;
+  line-height: 140%;
+  border-radius: @radius;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  max-width: 700px;
+  width: 90%;
+  text-align: center;
+  z-index: 99999;
+  margin: 0 auto;
+  div {
+    padding: @gutter/2;
+
+    &.info { background-color: #1F8DD6; }
+    &.success { background-color: #50CD84; }
+    &.warning { background-color: #FF8859; }
+    &.error { background-color: #FF5F5F; }
+    span {
+      display: block;
+      margin-bottom: 0;
+      margin-left: @gutter / 2;
+    }
+
+    .buttons {
+      text-align: right;
+      button {
+        &.btn,
+        &.retry,
+        &.close,
+        &.cancel,
+        &.ignore {
+          padding: @gutter/4 (@gutter - 5);
+          border: 1px solid transparent;
+          border-radius: @radius;
+        }
+        &:hover { opacity: .75; }
+        &.retry {
+          border-color: #FFF;
+        }
+        &.btn {
+          &.close {
+            border-color: #FF5F5F;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+
+}

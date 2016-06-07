@@ -14,7 +14,7 @@ class SurveyAppContainer extends Component {
         this.props.actions.loadSurvey(surveyId)
     }
     render() {
-        const {children, survey} = this.props
+        const {children, survey, notification} = this.props
         const loading = !survey.ready
         const notificationData = {
             id: Date.now(),
@@ -31,16 +31,16 @@ class SurveyAppContainer extends Component {
         return (
             <div>
                 <ProgressBar onTop={true} autoIncrement={true} percent={loading ? 0 : 100} />
-                <Crouton
-                    id={notificationData.id}
-                    type={notificationData.type}
-                    message={notificationData.message}
-                    onDismiss={notificationData.onDismiss}
+                
+                {notification && notification.level &&
+                    <Crouton
+                    id={Date.now()}
+                    type={notification.level}
+                    message={notification.message}
                     buttons={notificationData.buttons}
                     hidden={notificationData.hidden}
-                    timeout={notificationData.timeout}
-                    autoMiss={notificationData.autoMiss}/>
-
+                    timeout={notificationData.timeout}/>
+                }
                 {survey.current ? details : <SurveyNotFound />}
             </div>
         )
@@ -52,7 +52,8 @@ SurveyAppContainer.propTypes = {
     survey: PropTypes.shape({
         ready: PropTypes.bool.isRequired,
         current: PropTypes.object.isRequired
-    })
+    }),
+    notification: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
