@@ -1,6 +1,7 @@
 export * from './createVideoSurveyResponse'
 export * from './emojiSelected'
 export * from './snapSelected'
+export * from './surveys'
 
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE'
 

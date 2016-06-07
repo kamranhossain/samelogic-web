@@ -4,13 +4,13 @@ import { Campaigns } from '../collections/campaigns'
 import { SurveyResponses } from '../collections/surveyResponses'
 
 
-Meteor.publish('campaign.public', (surveyId) => {
+Meteor.publish('campaign.public', (campaignId) => {
     new SimpleSchema({
-        surveyId: { type: String }
-    }).validate({surveyId})
+        campaignId: { type: String }
+    }).validate({campaignId})
     
     const query = {
-        _id: surveyId
+        _id: campaignId
     }
     
     return Campaigns.find(query, {
