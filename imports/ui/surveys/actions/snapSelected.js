@@ -1,7 +1,9 @@
+import { newErrorNotification } from '/imports/ui/app/actions'
+
 export const SNAP_SELECTED = 'SNAP_SELECTED'
 export const SNAP_VALIDATION_ERROR = 'SNAP_VALIDATION_ERROR'
 
-const MAX_SNAP_DURATION = 30 
+const MAX_SNAP_DURATION = 5 
 
 function setSnapSelected(selectedVideo, duration) {
     return {
@@ -25,7 +27,9 @@ export function snapSelected(selectedVideo) {
         audio.onloadedmetadata = () => {      
             dispatch(setSnapSelected(selectedVideo, audio.duration))
             if(audio.duration > MAX_SNAP_DURATION){
-                dispatch(setError(`Video was ${audio.duration}s, Limit: ${MAX_SNAP_DURATION}`))
+                const error = `Video was ${audio.duration}s, Limit: ${MAX_SNAP_DURATION}`
+                dispatch(newErrorNotification(error))
+                dispatch(setError(error))
             }
         }
     }

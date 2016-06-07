@@ -1,6 +1,7 @@
 import { Slingshot } from 'meteor/edgee:slingshot'
 import { push } from 'react-router-redux'
 
+import { newErrorNotification } from '/imports/ui/app/actions'
 import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/methods'
 
 export const SET_CREATE_SURVEY_RESPONSE_ERROR = 'SET_CREATE_SURVEY_RESPONSE_ERROR'
@@ -40,7 +41,7 @@ export function createVideoSurveyResponse(surveyId) {
         }, (err) =>{
             if ( err ) {                
                 dispatch(setSnapSaving(false))
-                dispatch(setError('Mongo Error: ' + err))
+                dispatch(newErrorNotification('There was an error starting the process. Please refresh and try again.'))
             }
         })
         

@@ -15,7 +15,7 @@ export function newNotification(level, message) {
 export function newErrorNotification(message = 'Une erreur est survenue') {
     return {
         type: NEW_NOTIFICATION,
-        level: 'danger',
+        level: 'error',
         message
     }
 }
