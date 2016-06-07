@@ -12,14 +12,14 @@ export function loadSurveyFactory() {
             dispatch({
                 type: SURVEY,
                 meteor: {
-                    subscribe: () => Meteor.subscribe('campaign.public', {campaignId: surveyId}, {
+                    subscribe: () => Meteor.subscribe('campaign.public', surveyId, {
                         onStop: error => {
                             if (error && error.error === 401) {
                                 dispatch(newErrorNotification('failed to load campaigns'))
                             }
                         }
                     }),
-                    get: () => Campaigns.find({_id: surveyId}).fetch()
+                    get: () => Campaigns.findOne(surveyId)
                 }
             })
         }

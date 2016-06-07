@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 
 import snaps from './snaps'
 import errors from './errors'
+import survey from './survey'
 
 const initialState = {
     loading: false
@@ -19,7 +20,8 @@ function state(state = initialState, action){
 const surveyReducers = combineReducers({
     state,
     snaps,
-    errors
+    errors,
+    survey
 })
 
 export default surveyReducers
