@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Crouton from 'react-crouton'
+import ProgressBar from 'react-progress-bar-plus'
 
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
@@ -12,7 +13,8 @@ class SurveyAppContainer extends Component {
         this.props.actions.loadSurvey(surveyId)
     }
     render() {
-        const {children} = this.props
+        const {children, survey} = this.props
+        const loading = !survey.ready
         const notificationData = {
             id: Date.now(),
             type: 'error',
@@ -33,19 +35,28 @@ class SurveyAppContainer extends Component {
                     buttons={notificationData.buttons}
                     hidden={notificationData.hidden}
                     timeout={notificationData.timeout}
-                    autoMiss={notificationData.autoMiss}/>    
+                    autoMiss={notificationData.autoMiss}/>
+
+                { loading 
+                ? <div>Loading...</div>
+                : children}
             </div>
         )
     }
 }
 
 SurveyAppContainer.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    survey: PropTypes.shape({
+        ready: PropTypes.bool.isRequired,
+        current: PropTypes.object.isRequired
+    })
 }
 
 const mapStateToProps = (state) => {
     return {
-        notification: state.app.notification
+        notification: state.app.notification,
+        survey: state.surveys.survey
     }
 }
 

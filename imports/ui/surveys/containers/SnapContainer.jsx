@@ -61,10 +61,12 @@ SnapContainer.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
+        survey: state.surveys.survey.current,
         saving: state.surveys.snaps.saving,
         emojis: state.surveys.snaps.emojis,
         errors: state.surveys.errors,
         selectedSnap: state.surveys.snaps.selectedSnap
+        
     }
 }
 
