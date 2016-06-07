@@ -25,8 +25,11 @@ class SurveyAppContainer extends Component {
             hidden: false,
             timeout: 2000
         }
+        const details = loading ? null : children
+
         return (
             <div>
+                <ProgressBar onTop={true} autoIncrement={true} percent={loading ? 0 : 100} />
                 <Crouton
                     id={notificationData.id}
                     type={notificationData.type}
@@ -37,9 +40,7 @@ class SurveyAppContainer extends Component {
                     timeout={notificationData.timeout}
                     autoMiss={notificationData.autoMiss}/>
 
-                { loading 
-                ? <div>Loading...</div>
-                : children}
+                {details}
             </div>
         )
     }
