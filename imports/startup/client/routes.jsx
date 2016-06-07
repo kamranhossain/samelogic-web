@@ -9,6 +9,7 @@ import ReduxThunk from 'redux-thunk'
 
 import adminReducers from '/imports/ui/admin/reducers'
 import surveyReducers from '/imports/ui/surveys/reducers'
+import appReducers from '/imports/ui/app/reducers'
 
 import AdminRoutes from '/imports/ui/admin/AdminRoutes.jsx'
 import SurveyRoutes from '/imports/ui/surveys/SurveyRoutes.jsx'
@@ -22,7 +23,8 @@ import { newSuccessNotification, newErrorNotification } from '/imports/ui/app/ac
 const reducer = combineReducers({
     admin: adminReducers,
     surveys: surveyReducers,
-    routing: routerReducer
+    routing: routerReducer,
+    app: appReducers
 })
 
 const logger = createLogger()
