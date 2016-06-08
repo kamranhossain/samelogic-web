@@ -41,7 +41,7 @@ class SurveyAppContainer extends Component {
                     hidden={notificationData.hidden}
                     timeout={notificationData.timeout}/>
                 }
-                {survey.current ? details : <SurveyNotFound />}
+                {!survey.current && survey.ready ? <SurveyNotFound /> : details}
             </div>
         )
     }

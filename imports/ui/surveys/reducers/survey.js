@@ -11,7 +11,7 @@ export default function(state = initialState, action) {
 
     switch (type) {
     case actionTypeBuilder.ready(ActionTypes.SURVEY):
-        return {...state, ready}
+        return {...state, ready, current: data}
 
     case actionTypeBuilder.changed(ActionTypes.SURVEY):
         return {...state, current: data}
