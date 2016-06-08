@@ -11,7 +11,9 @@ const initialState = {
     selectedSnap: {
         data: null,
         duration: 0
-    }
+    },
+    maxDuration: 60,
+    minDuration: 15
 }
 
 function snapSaved(state= initialState.saved, action){
