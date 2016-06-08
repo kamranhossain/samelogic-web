@@ -29,7 +29,7 @@ class SurveyAppContainer extends Component {
         const details = loading ? null : children
 
         return (
-            <div>
+            <div className="container">
                 <ProgressBar onTop={true} autoIncrement={true} percent={loading ? 0 : 100} />
                 
                 {notification && notification.level &&

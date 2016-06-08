@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import classNames from 'classnames'
 
 import EmojiSelector from '/imports/ui/surveys/components/EmojiSelector/EmojiSelector.jsx'
 import SnapSelector from '/imports/ui/surveys/components/SnapSelector/SnapSelector.jsx'
@@ -14,19 +15,18 @@ import * as SurveyActions from '/imports/ui/surveys/actions'
 class SnapContainer extends Component{
 
     render(){
-        const { actions, survey, saving, emojis, errors, selectedSnap } = this.props
+        const { actions, survey, saving, emojis, errors, selectedSnap, snaps } = this.props
         
         const isSnapSelected = selectedSnap.data !== null
-        
-        let snapPlayer, sendSnapButton, snapRequestMessage
-        
-        snapRequestMessage = <div className="medium-lite-txt lmt lmb">Tell us about your experience in <strong>15 - 60 seconds</strong>!</div>
-        
-        if(isSnapSelected){
-            snapPlayer = <SnapPlayer snap={selectedSnap} />
-            sendSnapButton = <SendSnapButton onSend={() => actions.createVideoSurveyResponse(survey._id)} />
-            snapRequestMessage = null
-        }
+
+        const snapSelectorSelectedClass = classNames({
+            'col-md-1 col-md-offset-5': isSnapSelected,
+            'col-md-12': !isSnapSelected
+        })
+        const sendSnapSelectedClass = classNames({
+            'col-md-1': isSnapSelected
+        })
+
         
         return(
             <div>
@@ -35,11 +35,25 @@ class SnapContainer extends Component{
                 <SurveyorIdentity />
                 <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 <EmojiFeedback emojis={emojis} />
-                
-                {snapRequestMessage}
-                {snapPlayer}      
-                <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
-                {sendSnapButton}
+                <div className="row">
+                    <div className="col-md-12">
+                        {isSnapSelected ? 
+                            <SnapPlayer snap={selectedSnap} /> :
+                            <div className="medium-lite-txt lmt lmb">Tell us about your experience in <strong>{snaps.minDuration} - {snaps.maxDuration} seconds</strong>!</div>
+                        }
+                    </div>
+                </div>
+                <div className="row">
+                    <div className={snapSelectorSelectedClass}>
+                        <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
+                    </div>
+
+                    <div className={sendSnapSelectedClass}>
+                    {isSnapSelected ? 
+                        <SendSnapButton onSend={() => actions.createVideoSurveyResponse(survey._id)} /> 
+                        : null }
+                    </div>
+                </div>
                 <span className="sr-only font-zero">{saving ? <div>true</div> : <div>false</div>}</span>
             </div>
         )
@@ -56,7 +70,11 @@ SnapContainer.propTypes = {
     emojis: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
-    selectedSnap: PropTypes.object
+    selectedSnap: PropTypes.object,
+    snaps: PropTypes.shape({
+        minDuration: PropTypes.number.isRequired,
+        maxDuration: PropTypes.number.isRequired
+    }).isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -65,8 +83,8 @@ const mapStateToProps = (state) => {
         saving: state.surveys.snaps.saving,
         emojis: state.surveys.snaps.emojis,
         errors: state.surveys.errors,
-        selectedSnap: state.surveys.snaps.selectedSnap
-        
+        selectedSnap: state.surveys.snaps.selectedSnap,
+        snaps: state.surveys.snaps
     }
 }
 
