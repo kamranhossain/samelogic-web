@@ -35,7 +35,7 @@ export function snapSelected(selectedVideo) {
             } else if(audio.duration > maxDuration){
                 error = `Video was ${audio.duration}s, Too short`
             }
-            if(!error){
+            if(error){
                 dispatch(newErrorNotification(error))
                 dispatch(setError(error))
             }
