@@ -1,7 +1,8 @@
 .SnapVideo {
-   width: 100%;
-   border-radius: 4px;
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
+    z-index: 1;
 }
 .SnapDuration{
     background: #FFF;
@@ -9,8 +10,13 @@
     float: right;
     padding: 5px 10px;
     border-radius: 60px;
+    z-index: 2;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
 .vidContainerInner{
+    position: relative;
     width: 40%;
     margin: auto;
-}
+}  
