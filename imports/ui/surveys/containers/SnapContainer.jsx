@@ -40,7 +40,7 @@ class SnapContainer extends Component{
                 <div className="row">
                     <SurveyorIdentity />
                 </div>
-                <div className="row">
+                <div className="row emoji-selector-container">
                     <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
                 </div>
                 <div className="row">
