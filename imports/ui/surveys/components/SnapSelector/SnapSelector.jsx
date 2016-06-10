@@ -4,34 +4,16 @@ export default class SnapSelector extends Component{
     
     render(){        
         const { snapSelected, onChange }= this.props
-        
-        let input =  <input type="file" onChange={(event) => onChange(event.target.files[0])} />
-        
-        
-        let button = ( 
-            <div className="btn-disc">  
-                <h3>Tap to Record</h3>     
-                <span className="btn btn-default btn-file btn-record">
-                    {input}
-                </span>
-            </div>
-        )
-        
-        
-        if(snapSelected){
-            button = (
-                <div className="btn-disc">  
-                    <h3>Re-Record?</h3>
-                    <span className="btn btn-default btn-file btn-record">
-                        {input}
+
+        return(
+            <div className="snap-selector">
+                <div className="btn btn-file btn-disc">  
+                    <h3>{snapSelected ? 'Re-Record?' : 'Tap to Record'}</h3>
+                    <input type="file" onChange={(event) => onChange(event.target.files[0])} />
+                    <span className="inner center-block red-bg">
+                        <i className="glyphicon glyphicon-camera white" />
                     </span>
                 </div>
-            )
-        }
-        
-        return(
-            <div>
-                {button}
             </div>
         )
     }

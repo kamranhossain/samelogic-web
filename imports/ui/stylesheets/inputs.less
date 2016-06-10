@@ -36,7 +36,32 @@
     color: white;
     font-weight: 500;
 }
+.btn-disc > .inner{
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+}
 
+.btn-disc:hover > .inner {
+    color: #333333;
+    box-shadow: 0px -1px 6px rgba(0, 0, 0, 0.52) inset;
+}
+
+.btn-disc > .inner > .glyphicon{
+    position: absolute;
+    top: 50%;
+    margin-top: -25px; /* half icon's height */
+    left: 50%;
+    margin-left: -25px; /* half icon's width */
+    z-index: 999;
+    font-size: 50px;
+    transition: all .25s;
+}
+.btn-disc > .inner {
+    position: relative;
+}
 /* --------Drop Down----------- */
 .Dropdown-root {
   position: relative;

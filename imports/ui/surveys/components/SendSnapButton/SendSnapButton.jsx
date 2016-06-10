@@ -6,9 +6,9 @@ export default class SendSnapButton extends Component{
         const { onSend }= this.props
         return(
             <div className="send-snap-btn">  
-                <button className="btn btn-file btn-disc" onClick={onSend}>
+                <button className="btn btn-disc" onClick={onSend}>
                     <h3>Send</h3>
-                    <div className="inner center-block">
+                    <div className="inner center-block green-bg">
                         <i className="glyphicon glyphicon-ok white" />
                     </div>
                 </button>
