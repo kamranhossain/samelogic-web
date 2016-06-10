@@ -29,12 +29,20 @@ class SnapContainer extends Component{
 
         
         return(
-            <div>
+            <div className="snap-container">
                 <div>{errors.errorMessage}</div>
-                <h3 className="medium-lite-txt"><b>{survey.title}</b></h3>
-                <SurveyorIdentity />
-                <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
-                <EmojiFeedback emojis={emojis} />
+                <div className="row">
+                    <h3 className="medium-lite-txt"><b>{survey.title}</b></h3>
+                </div>
+                <div className="row">
+                    <SurveyorIdentity />
+                </div>
+                <div className="row">
+                    <EmojiSelector emojis={emojis} onChange={actions.emojiSelected} />
+                </div>
+                <div className="row">
+                    <EmojiFeedback emojis={emojis} />
+                </div>
                 <div className="row">
                     <div className="col-md-12">
                         {isSnapSelected ? 
@@ -43,7 +51,7 @@ class SnapContainer extends Component{
                         }
                     </div>
                 </div>
-                <div className="row">
+                <div className="row action-button-container">
                     <div className={snapSelectorSelectedClass}>
                         <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
                     </div>
