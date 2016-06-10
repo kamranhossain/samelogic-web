@@ -16,7 +16,7 @@ export default class SnapPlayer extends Component{
         fileReader.onload = (event) => {        
             this.setState({
                 source: event.target.result,
-                duration: this.snap.duration
+                duration: Math.floor(this.snap.duration)
             })
         }
         fileReader.readAsDataURL(this.snap.data)        
