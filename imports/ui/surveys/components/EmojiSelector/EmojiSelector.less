@@ -9,20 +9,20 @@
         padding: 10px;
     }
 
-    label > input{ /* HIDE RADIO */
-        visibility: hidden; /* Makes input not-clickable */
-        position: absolute; /* Remove input from document flow */
+    label > input{
+        visibility: hidden;
+        position: absolute;
     }
-    label > input + i{ /* IMAGE STYLES */
+    label > input + i{
         cursor:pointer;
     }
-    label:hover > i{ /* HOVER <i> STYLE */
+    label:hover > i{
         background-color: rgba(255, 255, 255, 0.2);
     }
-    label > input:checked + i{ /* (RADIO CHECKED) <i> STYLE */
+    label > input:checked + i{ 
         background-color: rgba(255, 255, 255, 0.5);
     }
-    label > i{   /* DEFAULT <i> STYLE */
+    label > i{
         display: inline-block;
         vertical-align: middle;
         width:  45px;
@@ -31,7 +31,6 @@
         transition: 0.2s;
         background-repeat: no-repeat;
     }
-    /* Find a generic way to put border on hover */
     label.smiling_face_with_heart_shaped_eyes > i{
         background-image: url("img/emojis/emoji_sprites.png");
         background-position: 0 0; 
