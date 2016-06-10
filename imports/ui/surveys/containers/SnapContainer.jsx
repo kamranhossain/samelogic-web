@@ -20,11 +20,14 @@ class SnapContainer extends Component{
         const isSnapSelected = selectedSnap.data !== null
 
         const snapSelectorSelectedClass = classNames({
-            'col-md-1 col-md-offset-5': isSnapSelected,
-            'col-md-12': !isSnapSelected
+            'col-xs-6 snap-selector-selected': isSnapSelected,
+            'col-xs-12': !isSnapSelected
         })
         const sendSnapSelectedClass = classNames({
-            'col-md-1': isSnapSelected
+            'col-xs-6 send-snap-selected': isSnapSelected
+        })
+        const snapSelectorInnerSelectedClass = classNames({
+            'pull-right': isSnapSelected
         })
 
         
@@ -53,12 +56,16 @@ class SnapContainer extends Component{
                 </div>
                 <div className="row action-button-container">
                     <div className={snapSelectorSelectedClass}>
-                        <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
+                        <div className={snapSelectorInnerSelectedClass} >
+                            <SnapSelector onChange={actions.snapSelected} snapSelected={isSnapSelected} />
+                        </div>
                     </div>
 
                     <div className={sendSnapSelectedClass}>
                     {isSnapSelected ? 
-                        <SendSnapButton onSend={() => actions.createVideoSurveyResponse(survey._id)} /> 
+                        <div className="pull-left" >
+                            <SendSnapButton onSend={() => actions.createVideoSurveyResponse(survey._id)} /> 
+                        </div>
                         : null }
                     </div>
                 </div>
