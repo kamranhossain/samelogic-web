@@ -24,12 +24,12 @@ export default class SnapPlayer extends Component{
     
     render(){        
         return (
-            <div className="vidContainerInner">
-                <video className="SnapVideo" src={this.state.source}>
+            <div className="snap-player">
+                <video src={this.state.source}>
                     <p>Your browser does not support the HTML5 Video element.</p>
                 </video>
                 <div className="SnapDuration"><b>{this.state.duration}s</b></div>
-            </div>   
+            </div>
         )
     }
 }
