@@ -29,14 +29,14 @@ function snapSaved(){
     }
 }
 
-export function createVideoSurveyResponse(surveyId) {
+export function createVideoSurveyResponse() {
     return (dispatch, getState) => {
         dispatch(setSnapSaving(true))
         
         const state = getState()
         // create response so we can get an id related to that response.
         const responseId = createVideoResponse.call({
-            campaignId: surveyId,
+            campaignId: state.surveys.survey.current._id,
             emoji: state.surveys.snaps.emojis.selectedValue
         }, (err) =>{
             if ( err ) {                
@@ -62,7 +62,7 @@ export function createVideoSurveyResponse(surveyId) {
                         dispatch(setError('mongo update error: '+ err))
                     } else {
                         dispatch(snapSaved())
-                        dispatch(push(`/surveys/${surveyId}/completed`))
+                        dispatch(push(`/surveys/${state.surveys.survey.current._id}/completed`))
                     }
                 })
             }

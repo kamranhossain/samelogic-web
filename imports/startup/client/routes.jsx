@@ -7,6 +7,7 @@ import { routerMiddleware, syncHistoryWithStore, routerReducer } from 'react-rou
 import createLogger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 
+import {reducer as formReducer} from 'redux-form'
 import adminReducers from '/imports/ui/admin/reducers'
 import surveyReducers from '/imports/ui/surveys/reducers'
 import appReducers from '/imports/ui/app/reducers'
@@ -24,7 +25,8 @@ const reducer = combineReducers({
     admin: adminReducers,
     surveys: surveyReducers,
     routing: routerReducer,
-    app: appReducers
+    app: appReducers,
+    form: formReducer
 })
 
 const logger = createLogger()
