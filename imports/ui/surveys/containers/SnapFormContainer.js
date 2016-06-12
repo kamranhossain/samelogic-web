@@ -1,8 +1,11 @@
+import { reduxForm } from 'redux-form'
+import { bindActionCreators } from 'redux'
+
 import SnapForm from '/imports/ui/surveys/components/SnapForm/SnapForm.jsx'
 /*import {
   createPost, createPostSuccess, createPostFailure, resetNewPost, validatePostFields, validatePostFieldsSuccess, validatePostFieldsFailure
 } from '/imports/ui/surveys/actions/snaps' */
-import { reduxForm } from 'redux-form'
+import * as SurveyActions from '/imports/ui/surveys/actions'
 
 //Client side validation
 function validate(values) {
@@ -20,9 +23,9 @@ function validate(values) {
 
 //For instant async server validation
 const asyncValidate = (values, dispatch) => {
-/*
-  return new Promise((resolve, reject) => {
 
+    return new Promise((resolve, reject) => {
+/*
     dispatch(validatePostFields(values))
       .then((response) => {
         let data = response.payload.data;
@@ -37,15 +40,15 @@ const asyncValidate = (values, dispatch) => {
           resolve(); //this is for redux-form itself
         }
       });
-  });
   */
+    })
 }
 
 //For any field errors upon submission (i.e. not instant check)
 const validateAndCreatePost = (values, dispatch) => {
-/*
-  return new Promise((resolve, reject) => {
 
+    return new Promise((resolve, reject) => {
+/*
 
     let token = sessionStorage.getItem('jwtToken');
     if (!token || token === '') { //if there is no token, dont bother,
@@ -69,25 +72,23 @@ const validateAndCreatePost = (values, dispatch) => {
         }
       });
 
-  });
   */
+    })
 }
 
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createPost: validateAndCreatePost,
-        resetMe: () => {
-            dispatch(resetNewPost())
-        }
+        actions: bindActionCreators(SurveyActions, dispatch)
     }
 }
 
 
 function mapStateToProps(state) {
     return {
-        newSnap: state.surveys.snaps.newSnap
+        newSnap: state.surveys.snaps.newSnap,
+        survey: state.surveys.survey
     }
 }
 
