@@ -1,33 +1,26 @@
-import SnapForm from '/imports/ui/surveys/components/SurveyForm/SurveyForm.jsx'
-import {
+import SnapForm from '/imports/ui/surveys/components/SnapForm/SnapForm.jsx'
+/*import {
   createPost, createPostSuccess, createPostFailure, resetNewPost, validatePostFields, validatePostFieldsSuccess, validatePostFieldsFailure
-}
-from '../actions/posts';
-import {
-  reduxForm
-}
-from 'redux-form';
+} from '/imports/ui/surveys/actions/snaps' */
+import { reduxForm } from 'redux-form'
 
 //Client side validation
 function validate(values) {
-  const errors = {};
+    const errors = {}
 
-  if (!values.title || values.title.trim() === '') {
-    errors.title = 'Enter a Title';
-  }
-  if (!values.categories || values.categories.trim() === '') {
-    errors.categories = 'Enter categories';
-  }
-  if (!values.content || values.content.trim() === '') {
-    errors.content = 'Enter some content';
-  }
+    if (!values.emoji || values.emoji=== 0) {
+        errors.emoji = 'Select an Emoji'
+    }
+    if (!values.snap) {
+        errors.snap = 'Record or Select a Video'
+    }
 
-  return errors;
+    return errors
 }
 
 //For instant async server validation
 const asyncValidate = (values, dispatch) => {
-
+/*
   return new Promise((resolve, reject) => {
 
     dispatch(validatePostFields(values))
@@ -45,11 +38,12 @@ const asyncValidate = (values, dispatch) => {
         }
       });
   });
-};
+  */
+}
 
 //For any field errors upon submission (i.e. not instant check)
 const validateAndCreatePost = (values, dispatch) => {
-
+/*
   return new Promise((resolve, reject) => {
 
 
@@ -76,33 +70,34 @@ const validateAndCreatePost = (values, dispatch) => {
       });
 
   });
-};
+  */
+}
 
 
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    createPost: validateAndCreatePost,
-    resetMe: () => {
-      dispatch(resetNewPost());
+    return {
+        createPost: validateAndCreatePost,
+        resetMe: () => {
+            dispatch(resetNewPost())
+        }
     }
-  }
 }
 
 
-function mapStateToProps(state, ownProps) {
-  return {
-    newPost: state.posts.newPost
-  };
+function mapStateToProps(state) {
+    return {
+        newSnap: state.surveys.snaps.newSnap
+    }
 }
 
 
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
-    form: 'PostsNewForm',
-    fields: ['title', 'categories', 'content'],
+    form: 'SnapForm',
+    fields: ['emoji', 'snap', 'comment'],
     asyncValidate,
-    asyncBlurFields: ['title'],
+    asyncBlurFields: ['emoji'],
     validate
 }, mapStateToProps, mapDispatchToProps)(SnapForm)
