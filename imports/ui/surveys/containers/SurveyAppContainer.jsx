@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Crouton from 'react-crouton'
-import ProgressBar from 'react-progress-bar-plus'
 
 import SurveyNotFound from '/imports/ui/surveys/components/SurveyNotFound/SurveyNotFound.jsx'
 import * as SurveyActions from '/imports/ui/surveys/actions'
@@ -30,7 +29,6 @@ class SurveyAppContainer extends Component {
 
         return (
             <div className="container">
-                <ProgressBar onTop={true} autoIncrement={true} percent={loading ? 0 : 100} />
                 
                 {notification && notification.level &&
                     <Crouton
@@ -41,7 +39,7 @@ class SurveyAppContainer extends Component {
                     hidden={notificationData.hidden}
                     timeout={notificationData.timeout}/>
                 }
-                {!survey.current && survey.ready ? <SurveyNotFound /> : details}
+                {children}
             </div>
         )
     }
