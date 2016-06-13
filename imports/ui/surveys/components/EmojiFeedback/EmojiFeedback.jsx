@@ -3,9 +3,9 @@ import React, { Component, PropTypes } from 'react'
 export default class EmojiFeedback extends Component{
     
     render(){        
-        const { emojis }= this.props
+        const { emojis, value }= this.props
         
-        const selectedFeedback = emojis.data.find((e) => e.selected)
+        const selectedFeedback = emojis.find((e) => e.value == value)
         
         let feedback = ''
         if(selectedFeedback)
@@ -21,8 +21,9 @@ export default class EmojiFeedback extends Component{
 
 
 EmojiFeedback.propTypes = {
-    emojis: PropTypes.shape({
-        data: PropTypes.array,
-        selectedValue: PropTypes.number
-    })
+    value: PropTypes.string,
+    emojis: PropTypes.arrayOf(PropTypes.shape({
+        feedback: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired
+    }))
 }
