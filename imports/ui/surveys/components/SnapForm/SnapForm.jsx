@@ -10,7 +10,7 @@ import EmojiFeedback from '/imports/ui/surveys/components/EmojiFeedback/EmojiFee
 class SnapForm extends Component {
 
     render() {
-        const { asyncValidating, fields: { emoji, snap, comment }, handleSubmit, submitting, submitSnap, actions, newSnap, survey } = this.props
+        const { asyncValidating, fields: { emoji, snap, comment }, handleSubmit, submitting, submitSnap, actions, newSnap, survey, emojis } = this.props
 
         return (
             <div className="snap-form">
@@ -21,6 +21,9 @@ class SnapForm extends Component {
                     </div>
                     <div className="row">
                         <SurveyorIdentity />
+                    </div>                    
+                    <div className="row emoji-selector-container">
+                        <EmojiSelector options={emojis.items} {...emoji} />
                     </div>
                 </form> : null
                 }

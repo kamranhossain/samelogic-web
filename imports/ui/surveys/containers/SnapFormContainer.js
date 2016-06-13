@@ -88,7 +88,8 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state) {
     return {
         newSnap: state.surveys.snaps.newSnap,
-        survey: state.surveys.survey
+        survey: state.surveys.survey,
+        emojis: state.surveys.emojis
     }
 }
 

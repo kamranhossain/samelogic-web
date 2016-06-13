@@ -4,24 +4,13 @@ import { combineReducers } from 'redux'
 import snaps from './snaps'
 import errors from './errors'
 import survey from './survey'
-
-const initialState = {
-    loading: false
-}
-
-/*eslint-disable no-unused-vars*/
-function state(state = initialState, action){
-/*eslint-enable no-unused-vars*/
-    return state
-}
-
-
+import emojis from './emojis'
 
 const surveyReducers = combineReducers({
-    state,
     snaps,
     errors,
-    survey
+    survey,
+    emojis
 })
 
 export default surveyReducers
