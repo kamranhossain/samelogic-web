@@ -7,6 +7,9 @@ import SnapForm from '/imports/ui/surveys/components/SnapForm/SnapForm.jsx'
 } from '/imports/ui/surveys/actions/snaps' */
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
+const MIN_DURATION = 15 
+const MAX_DURATION = 60
+
 //Client side validation
 function validate(values) {
     const errors = {}
@@ -14,7 +17,7 @@ function validate(values) {
     if (!values.emoji || values.emoji=== 0) {
         errors.emoji = 'Select an Emoji'
     }
-    if (!values.snap) {
+    if (!values.snap || !values.snap[0]) {
         errors.snap = 'Record or Select a Video'
     }
 
@@ -24,23 +27,25 @@ function validate(values) {
 //For instant async server validation
 const asyncValidate = (values, dispatch) => {
 
-    return new Promise((resolve, reject) => {
-/*
-    dispatch(validatePostFields(values))
-      .then((response) => {
-        let data = response.payload.data;
-        //if status is not 200 or any one of the fields exist, then there is a field error
-        if (response.payload.status != 200 || data.title || data.categories || data.description) {
-          //let other components know of error by updating the redux` state
-          dispatch(validatePostFieldsFailure(response.payload));
-          reject(data); //this is for redux-form itself
-        } else {
-          //let other components know that everything is fine by updating the redux` state
-          dispatch(validatePostFieldsSuccess(response.payload)); //ps: this is same as dispatching RESET_POST_FIELDS
-          resolve(); //this is for redux-form itself
+    return new Promise((resolve, reject) => {        
+        if (values.snap || values.snap[0]) {
+            const objectUrl = URL.createObjectURL(values.snap[0])
+            const audio = new Audio(objectUrl)
+            audio.onloadedmetadata = () => {
+                let error = undefined
+                if(audio.duration < MIN_DURATION){
+                    error = `Video was ${audio.duration}s, Too short`
+                } else if(audio.duration > MAX_DURATION){
+                    error = `Video was ${audio.duration}s, Too short`
+                }
+                if(error){
+                    reject({snap: error})
+                }
+                else{
+                    resolve()
+                }
+            }
         }
-      });
-  */
     })
 }
 
@@ -100,6 +105,6 @@ export default reduxForm({
     form: 'SnapForm',
     fields: ['emoji', 'snap', 'comment'],
     asyncValidate,
-    asyncBlurFields: ['emoji'],
+    asyncBlurFields: ['snap'],
     validate
 }, mapStateToProps, mapDispatchToProps)(SnapForm)
