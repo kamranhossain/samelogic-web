@@ -41,7 +41,18 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 break
             case 'Succeeded': {
                 const oxfordJson = JSON.parse(resp.data.processingResult)
-                const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
+                let parsedOxfordResult
+                
+                try{
+                    parsedOxfordResult = crunchOxfordJSON(oxfordJson)
+                }
+                catch(e){
+                    job.log('Parse failed', {
+                        level: 'error',
+                        data: resp.data,
+                        exception: e
+                    })
+                }
                 SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: 
                 { 
                     emotionData: parsedOxfordResult,
