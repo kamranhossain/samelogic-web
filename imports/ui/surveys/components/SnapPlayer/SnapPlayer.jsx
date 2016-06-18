@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class SnapPlayer extends Component{
+
+    shouldComponentUpdate(nextProps){
+        return nextProps.snap !== this.props.snap
+    }
+
     render(){
         const videoUrl = URL.createObjectURL(this.props.snap)
         
