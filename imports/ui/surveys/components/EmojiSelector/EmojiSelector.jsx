@@ -7,7 +7,10 @@ export default class EmojiSelector extends Component{
         const selected = options.find((e) => e.value == value)
 
         return (
-            <div className="emoji-selector"> 
+            <div className="emoji-selector">
+                <div className="help-block">
+                    {rest.touched ? rest.error : ''}
+                </div>
                 <ul className="emoji-list">
                     {options.map(emoji =>
                         <li key={emoji.key}>
