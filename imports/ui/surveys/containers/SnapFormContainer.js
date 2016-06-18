@@ -54,15 +54,15 @@ const asyncValidate = (values, dispatch) => {
 const validateAndCreateSnap= (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
+        dispatch(SurveyActions.createSnap(values))
+            .then(() => {
+                resolve()
+            })
+            .catch(e => {
+                reject(e)
+            })
 /*
 
-    let token = sessionStorage.getItem('jwtToken');
-    if (!token || token === '') { //if there is no token, dont bother,
-      let data = {data: {message: 'Please Sign In'}};//axios like error
-      dispatch(createPostFailure(data)); // but let other comps know
-      reject(data); //this is for redux-form itself
-      return;
-    }
     dispatch(createPost(values, token))
       .then((response) => {
         let data = response.payload.data;
@@ -86,7 +86,6 @@ const validateAndCreateSnap= (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSnap: validateAndCreateSnap
     }
 }
 
@@ -107,5 +106,6 @@ export default reduxForm({
     fields: ['emoji', 'snap', 'comment'],
     asyncValidate,
     asyncBlurFields: ['snap'],
-    validate
+    validate,
+    onSubmit: validateAndCreateSnap
 }, mapStateToProps, mapDispatchToProps)(SnapForm)
