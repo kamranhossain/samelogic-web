@@ -21,7 +21,7 @@ class SnapForm extends Component {
     }
 
     render() {
-        const { asyncValidating, fields, handleSubmit, submitting, createSnap, actions, newSnap, survey, emojis } = this.props
+        const { asyncValidating, fields, handleSubmit, submitting, createSnap, newSnap, survey, emojis } = this.props
         const { emoji, snap, comment } = fields
 
         const snapSelectorSelectedClass = classNames({
@@ -63,9 +63,9 @@ class SnapForm extends Component {
                     <div className="row action-button-container">
                         <div className={snapSelectorSelectedClass}>
                             <div className={snapSelectorInnerSelectedClass}>
-                                <div className="btn btn-file btn-disc"> 
+                                <div className="btn btn-file btn-disc" disabled={submitting}> 
                                     <h3>{snap.valid ? 'Re-Record?' : 'Tap to Record'}</h3>
-                                    <input type="file" {...snap} 
+                                    <input type="file" {...snap} disabled={submitting}
                                         value={null} 
                                         onChange={(evt) =>{
                                             snap.onChange(evt)
@@ -79,18 +79,16 @@ class SnapForm extends Component {
                             </div>
                         </div>
                         <div className={sendSnapSelectedClass}>
-                        {snap.valid ? 
-                            <div className="pull-left" >
-                                <div className="send-snap-btn">  
-                                    <button type="submit" className="btn btn-disc">
+                            {snap.valid ? 
+                                <div className="pull-left" >
+                                    <button type="submit" className="btn btn-disc" disabled={submitting}>
                                         <h3>Send</h3>
                                         <div className="inner center-block green-bg">
                                             <i className="glyphicon glyphicon-ok white" />
                                         </div>
                                     </button>
                                 </div>
-                            </div>
-                            : null }
+                                : null }
                         </div>
 
                     </div>
@@ -111,7 +109,7 @@ SnapForm.propTypes = {
     error: PropTypes.string,
     resetForm: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
-    submitSnap: PropTypes.func.isRequired
+    createSnap: PropTypes.func.isRequired
 }
 
 export default SnapForm
