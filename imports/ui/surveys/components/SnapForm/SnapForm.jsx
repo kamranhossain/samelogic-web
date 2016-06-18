@@ -21,13 +21,24 @@ class SnapForm extends Component {
     }
 
     render() {
-        const { asyncValidating, fields, handleSubmit, submitting, submitSnap, actions, newSnap, survey, emojis } = this.props
+        const { asyncValidating, fields, handleSubmit, submitting, createSnap, actions, newSnap, survey, emojis } = this.props
         const { emoji, snap, comment } = fields
+
+        const snapSelectorSelectedClass = classNames({
+            'col-xs-6 snap-selector-selected': snap.valid,
+            'col-xs-12': !snap.valid
+        })
+        const sendSnapSelectedClass = classNames({
+            'col-xs-6 send-snap-selected': snap.valid
+        })
+        const snapSelectorInnerSelectedClass = classNames({
+            'pull-right': snap.valid
+        })
         return (
             <div className="snap-form">
                 {survey.current && survey.ready ?
                 
-                <form>
+                <form onSubmit={handleSubmit(createSnap)}>
                     {this.renderError(newSnap)}
                     <div className="row">
                         <h3 className="medium-lite-txt"><b>{survey.current.title}</b></h3>
@@ -50,20 +61,36 @@ class SnapForm extends Component {
                         </div>
                     </div>
                     <div className="row action-button-container">
-
-                        <div className="snap-selector">
-                            <div className="btn btn-file btn-disc"> 
-                                <input type="file" {...snap} 
-                                    value={null} 
-                                    onChange={(evt) =>{
-                                        snap.onChange(evt)
-                                        snap.onBlur(evt)
-                                    }} 
-                                />
-                                <span className="inner center-block red-bg">
-                                    <i className="glyphicon glyphicon-camera white" />
-                                </span>
+                        <div className={snapSelectorSelectedClass}>
+                            <div className={snapSelectorInnerSelectedClass}>
+                                <div className="btn btn-file btn-disc"> 
+                                    <h3>{snap.valid ? 'Re-Record?' : 'Tap to Record'}</h3>
+                                    <input type="file" {...snap} 
+                                        value={null} 
+                                        onChange={(evt) =>{
+                                            snap.onChange(evt)
+                                            snap.onBlur(evt)
+                                        }} 
+                                    />
+                                    <span className="inner center-block red-bg">
+                                        <i className="glyphicon glyphicon-camera white" />
+                                    </span>
+                                </div>
                             </div>
+                        </div>
+                        <div className={sendSnapSelectedClass}>
+                        {snap.valid ? 
+                            <div className="pull-left" >
+                                <div className="send-snap-btn">  
+                                    <button type="submit" className="btn btn-disc">
+                                        <h3>Send</h3>
+                                        <div className="inner center-block green-bg">
+                                            <i className="glyphicon glyphicon-ok white" />
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            : null }
                         </div>
 
                     </div>

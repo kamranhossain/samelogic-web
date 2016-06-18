@@ -7,7 +7,7 @@ import SnapForm from '/imports/ui/surveys/components/SnapForm/SnapForm.jsx'
 } from '/imports/ui/surveys/actions/snaps' */
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
-const MIN_DURATION = 15 
+const MIN_DURATION = 5 
 const MAX_DURATION = 60
 
 //Client side validation
@@ -51,7 +51,7 @@ const asyncValidate = (values, dispatch) => {
 }
 
 //For any field errors upon submission (i.e. not instant check)
-const validateAndCreatePost = (values, dispatch) => {
+const validateAndCreateSnap= (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
 /*
@@ -86,7 +86,7 @@ const validateAndCreatePost = (values, dispatch) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(SurveyActions, dispatch)
+        createSnap: validateAndCreateSnap
     }
 }
 
