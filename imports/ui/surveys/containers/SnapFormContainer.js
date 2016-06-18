@@ -33,10 +33,11 @@ const asyncValidate = (values, dispatch) => {
             const audio = new Audio(objectUrl)
             audio.onloadedmetadata = () => {
                 let error = undefined
+                const duration = Math.floor(audio.duration)
                 if(audio.duration < MIN_DURATION){
-                    error = `Video was ${audio.duration}s, Too short`
+                    error = `Video was ${duration}s, Too short`
                 } else if(audio.duration > MAX_DURATION){
-                    error = `Video was ${audio.duration}s, Too short`
+                    error = `Video was ${duration}s, Too short`
                 }
                 if(error){
                     reject({snap: error})

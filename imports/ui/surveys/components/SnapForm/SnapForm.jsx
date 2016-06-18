@@ -8,13 +8,27 @@ import SurveyorIdentity from '/imports/ui/surveys/components/SurveyorIdentity/Su
 
 class SnapForm extends Component {
 
+    renderError(newSnap){
+        if(newSnap && newSnap.error && newSnap.error.message) {
+            return (
+                <div className="alert alert-danger">
+                {newSnap ? newSnap.error.message : ''}
+                </div>
+            )
+        } else {
+            return <span></span>
+        }
+    }
+
     render() {
         const { asyncValidating, fields, handleSubmit, submitting, submitSnap, actions, newSnap, survey, emojis } = this.props
         const { emoji, snap, comment } = fields
         return (
             <div className="snap-form">
                 {survey.current && survey.ready ?
+                
                 <form>
+                    {this.renderError(newSnap)}
                     <div className="row">
                         <h3 className="medium-lite-txt"><b>{survey.current.title}</b></h3>
                     </div>
@@ -28,8 +42,11 @@ class SnapForm extends Component {
                         <div className="col-md-12">
                             {snap.valid ? 
                                 <SnapPlayer snap={snap.value[0]} /> : 
-                                <div className="medium-lite-txt lmt lmb">Tell us about your experience in <strong>15 - 16 seconds</strong>!</div>
+                                <div className="medium-lite-txt lmt lmb">Tell us about your experience in <strong>15 - 60 seconds</strong>!</div>
                             }
+                            <div className="help-block">
+                                {snap.touched ? snap.error : ''}
+                            </div>
                         </div>
                     </div>
                     <div className="row action-button-container">
