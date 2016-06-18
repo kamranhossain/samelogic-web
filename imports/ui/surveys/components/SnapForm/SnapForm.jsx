@@ -36,7 +36,13 @@ class SnapForm extends Component {
 
                         <div className="snap-selector">
                             <div className="btn btn-file btn-disc"> 
-                                <input type="file" {...snap} value={null} />
+                                <input type="file" {...snap} 
+                                    value={null} 
+                                    onChange={(evt) =>{
+                                        snap.onChange(evt)
+                                        snap.onBlur(evt)
+                                    }} 
+                                />
                                 <span className="inner center-block red-bg">
                                     <i className="glyphicon glyphicon-camera white" />
                                 </span>
