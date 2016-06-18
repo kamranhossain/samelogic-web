@@ -1,7 +1,6 @@
 import { Slingshot } from 'meteor/edgee:slingshot'
 import { push } from 'react-router-redux'
 
-import { newErrorNotification } from '/imports/ui/app/actions'
 import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/methods'
 
 export const CREATE_SNAP = 'CREATE_SNAP'
@@ -15,15 +14,29 @@ export const VALIDATE_SNAP_FIELDS_SUCCESS = 'VALIDATE_SNAP_FIELDS_SUCCESS'
 export const VALIDATE_SNAP_FIELDS_FAILURE = 'VALIDATE_SNAP_FIELDS_FAILURE'
 export const RESET_SNAP_FIELDS = 'RESET_SNAP_FIELDS'
 
+export function createSnapSuccess(newSnap) {
+    return {
+        type: CREATE_SNAP_SUCCESS,
+        payload: newSnap
+    }
+}
+
+export function createSnapFailure(error) {
+    return {
+        type: CREATE_SNAP_FAILURE,
+        payload: error
+    }
+}
+
 export function createSnap(values) {
-    return (dispatch, getState) => {
-        const state = getState()
+    return (dispatch) => {
         
         return new Promise((resolve, reject) => {
+            dispatch({type: CREATE_SNAP})
             // create response so we can get an id related to that response.
             const responseId = createVideoResponse.call({
-                campaignId: state.surveys.survey.current._id,
-                emoji: values.emoji
+                campaignId: values.surveyId,
+                emoji: parseInt(values.emoji)
             }, (err) =>{
                 if ( err ) {
                     reject('There was an error starting the process. Please refresh and try again.')
@@ -33,7 +46,7 @@ export function createSnap(values) {
             // trigger the file upload
             const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {surveyResponseId: responseId} )
             
-            uploader.send(state.surveys.snaps.selectedSnap.data, ( err, url ) => {
+            uploader.send(values.snap[0], ( err, url ) => {
                 if ( err ) {
                     reject('There was an error uploading the video.')
                 } else {
@@ -44,7 +57,7 @@ export function createSnap(values) {
                         if ( err ) {                            
                             reject('There was an error completing the process.')
                         } else {
-                            resolve()
+                            resolve({id: responseId})
                         }
                     })
                 }

@@ -1,4 +1,5 @@
 import { reduxForm } from 'redux-form'
+import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 
 import SnapForm from '/imports/ui/surveys/components/SnapForm/SnapForm.jsx'
@@ -55,30 +56,15 @@ const validateAndCreateSnap= (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
         dispatch(SurveyActions.createSnap(values))
-            .then(() => {
+            .then((response) => {
+                dispatch(SurveyActions.createSnapSuccess(response))
+                dispatch(push(`/surveys/${values.surveyId}/completed`))
                 resolve()
             })
             .catch(e => {
+                dispatch(SurveyActions.createSnapFailure(e))
                 reject(e)
             })
-/*
-
-    dispatch(createPost(values, token))
-      .then((response) => {
-        let data = response.payload.data;
-        //if any one of these exist, then there is a field error 
-        if (response.payload.status != 200) {
-          //let other components know of error by updating the redux` state
-          dispatch(createPostFailure(response.payload));
-          reject(data); //this is for redux-form itself
-        } else {
-          //let other components know that everything is fine by updating the redux` state
-          dispatch(createPostSuccess(response.payload));
-          resolve(); //this is for redux-form itself
-        }
-      });
-
-  */
     })
 }
 
@@ -94,7 +80,9 @@ function mapStateToProps(state) {
     return {
         newSnap: state.surveys.snaps.newSnap,
         survey: state.surveys.survey,
-        emojis: state.surveys.emojis
+        emojis: state.surveys.emojis,
+        initialValues: { surveyId : state.surveys.survey.current ? state.surveys.survey.current._id : ''}
+
     }
 }
 
@@ -103,7 +91,7 @@ function mapStateToProps(state) {
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
     form: 'SnapForm',
-    fields: ['emoji', 'snap', 'comment'],
+    fields: ['surveyId', 'emoji', 'snap', 'comment'],
     asyncValidate,
     asyncBlurFields: ['snap'],
     validate,

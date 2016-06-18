@@ -21,7 +21,7 @@ class SnapForm extends Component {
 
     render() {
         const { asyncValidating, fields, handleSubmit, submitting, newSnap, survey, emojis } = this.props
-        const { emoji, snap, comment } = fields
+        const { surveyId, emoji, snap, comment } = fields
 
         const snapSelectorSelectedClass = classNames({
             'col-xs-6 snap-selector-selected': snap.valid,
@@ -39,6 +39,8 @@ class SnapForm extends Component {
                 
                 <form onSubmit={handleSubmit}>
                     {this.renderError(newSnap)}
+
+                    <input type="hidden" {...surveyId} />
                     <div className="row">
                         <h3 className="medium-lite-txt"><b>{survey.current.title}</b></h3>
                     </div>
@@ -102,7 +104,8 @@ SnapForm.propTypes = {
     fields: PropTypes.shape({
         emoji: PropTypes.object.isRequired,
         snap: PropTypes.object.isRequired,
-        comment: PropTypes.object.isRequired
+        comment: PropTypes.object.isRequired,
+        surveyId: PropTypes.object.isRequired
     }),
     handleSubmit: PropTypes.func.isRequired,
     error: PropTypes.string,
