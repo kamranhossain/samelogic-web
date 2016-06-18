@@ -4,6 +4,7 @@ env:
   mongo: true
   node: true
 globals:
+  Promise: true
   afterEach: false
   beforeEach: false
   describe: false

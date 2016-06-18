@@ -1,6 +1,5 @@
 import { reduxForm } from 'redux-form'
 import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
 
 import SnapForm from '/imports/ui/surveys/components/SnapForm/SnapForm.jsx'
 /*import {
@@ -26,7 +25,7 @@ function validate(values) {
 }
 
 //For instant async server validation
-const asyncValidate = (values, dispatch) => {
+const asyncValidate = (values) => {
 
     return new Promise((resolve, reject) => {        
         if (values.snap || values.snap[0]) {
@@ -70,7 +69,7 @@ const validateAndCreateSnap= (values, dispatch) => {
 
 
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
     return {
     }
 }

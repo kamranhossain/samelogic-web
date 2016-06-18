@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Header from '/imports/ui/surveys/components/Header/Header.jsx'
 
@@ -7,7 +6,7 @@ function checkLoading(state){
     return !state.surveys.survey.ready
 }
 
-function getLoadingPercent(state){
+function getLoadingPercent(){
     return 0
 }
 
@@ -18,7 +17,7 @@ function mapStateToProps(state) {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
     return {
     }
 }

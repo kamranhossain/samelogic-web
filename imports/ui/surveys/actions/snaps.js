@@ -1,6 +1,4 @@
 import { Slingshot } from 'meteor/edgee:slingshot'
-import { push } from 'react-router-redux'
-
 import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/methods'
 
 export const CREATE_SNAP = 'CREATE_SNAP'

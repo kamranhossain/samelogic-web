@@ -34,13 +34,15 @@ function newSnap(state = initialState.newSnap, action){
     case ActionTypes.VALIDATE_SNAP_FIELDS_SUCCESS:
         return {...state, error: null, loading: false}
     case ActionTypes.VALIDATE_SNAP_FIELDS_FAILURE:
-        let result = action.payload.data
-        if(!result) {
-            error = {message: action.payload.message}
-        } else {
-            error = {emoji: result.emoji, snap: result.snap, comment: result.comment}
+        {
+            let result = action.payload.data
+            if(!result) {
+                error = {message: action.payload.message}
+            } else {
+                error = {emoji: result.emoji, snap: result.snap, comment: result.comment}
+            }
+            return {...state, error: error, loading: false}
         }
-        return {...state, error: error, loading: false}
     case ActionTypes.RESET_SNAP_FIELDS:
         return {...state, error: null, loading: null}
     default:
