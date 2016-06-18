@@ -48,9 +48,11 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 }
                 catch(e){
                     job.log('Parse failed', {
-                        level: 'error',
-                        data: resp.data,
-                        exception: e
+                        level: 'warning',
+                        data: {
+                            response: resp.data,
+                            exception: e
+                        }
                     })
                 }
                 SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: 
