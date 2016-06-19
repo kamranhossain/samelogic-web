@@ -34,9 +34,7 @@ class SnapForm extends Component {
             'pull-right': snap.valid
         })
         return (
-            <div className="snap-form">
-                {survey.current && survey.ready ?
-                
+            <div className="snap-form">                
                 <form onSubmit={handleSubmit}>
                     {this.renderError(newSnap)}
 
@@ -93,8 +91,7 @@ class SnapForm extends Component {
                         </div>
 
                     </div>
-                </form> : null
-                }
+                </form>
             </div>
         )
     }

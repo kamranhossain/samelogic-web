@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import Crouton from 'react-crouton'
 
 import SurveyNotFound from '/imports/ui/surveys/components/SurveyNotFound/SurveyNotFound.jsx'
+import HeaderContainer from '/imports/ui/surveys/containers/HeaderContainer'
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
 class SurveyAppContainer extends Component {
@@ -30,6 +31,7 @@ class SurveyAppContainer extends Component {
         return (
             <div className="container">
                 
+                <HeaderContainer />
                 {notification && notification.level &&
                     <Crouton
                     id={Date.now()}
@@ -39,7 +41,7 @@ class SurveyAppContainer extends Component {
                     hidden={notificationData.hidden}
                     timeout={notificationData.timeout}/>
                 }
-                {children}
+                {survey.current && survey.ready ? children : <SurveyNotFound /> }
             </div>
         )
     }
