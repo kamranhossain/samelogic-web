@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Crouton from 'react-crouton'
 
 import SurveyNotFound from '/imports/ui/surveys/components/SurveyNotFound/SurveyNotFound.jsx'
 import HeaderContainer from '/imports/ui/surveys/containers/HeaderContainer'
@@ -14,33 +13,11 @@ class SurveyAppContainer extends Component {
         this.props.actions.loadSurvey(surveyId)
     }
     render() {
-        const {children, survey, notification} = this.props
-        const loading = !survey.ready
-        const notificationData = {
-            id: Date.now(),
-            type: 'error',
-            message: 'Hello React-Crouton',
-            autoMiss: true || false,
-            onDismiss: null,
-            buttons: [],
-            hidden: false,
-            timeout: 2000
-        }
-        const details = loading ? null : children
-
+        const {children, survey} = this.props
         return (
             <div className="container">
                 
                 <HeaderContainer />
-                {notification && notification.level &&
-                    <Crouton
-                    id={Date.now()}
-                    type={notification.level}
-                    message={notification.message}
-                    buttons={notificationData.buttons}
-                    hidden={notificationData.hidden}
-                    timeout={notificationData.timeout}/>
-                }
                 {survey.current && survey.ready ? children : <SurveyNotFound /> }
             </div>
         )
@@ -53,7 +30,13 @@ SurveyAppContainer.propTypes = {
         ready: PropTypes.bool.isRequired,
         current: PropTypes.object.isRequired
     }),
-    notification: PropTypes.object
+    notification: PropTypes.object,
+    params: PropTypes.shape({
+        surveyId: PropTypes.string.isRequired
+    }).isRequired,
+    actions: PropTypes.shape({
+        loadSurvey: PropTypes.func.isRequired
+    }).isRequired
 }
 
 const mapStateToProps = (state) => {
