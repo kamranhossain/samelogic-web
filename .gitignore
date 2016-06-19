@@ -39,3 +39,6 @@ node_modules
 # Meteor Settings files
 settings.json
 settings-prod.json
+custom.bootstrap.less
+custom.bootstrap.mixins.import.less
+launch.json
