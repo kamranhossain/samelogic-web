@@ -18,7 +18,11 @@ class SurveyAppContainer extends Component {
             <div className="container">
                 
                 <HeaderContainer />
-                {survey.current && survey.ready ? children : <SurveyNotFound /> }
+                {survey.ready ?
+                     <div>
+                        {survey.current ? children : <SurveyNotFound /> }
+                     </div>
+                : null}
             </div>
         )
     }
@@ -30,7 +34,6 @@ SurveyAppContainer.propTypes = {
         ready: PropTypes.bool.isRequired,
         current: PropTypes.object.isRequired
     }),
-    notification: PropTypes.object,
     params: PropTypes.shape({
         surveyId: PropTypes.string.isRequired
     }).isRequired,

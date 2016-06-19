@@ -4,7 +4,7 @@ class SurveyNotFound extends Component {
     render() {
         return (
             <div>
-                No Surveys :(
+                <h1>Survey Not Found!</h1>
             </div>
         )
     }
