@@ -5,6 +5,7 @@ export const CREATE_SNAP = 'CREATE_SNAP'
 export const CREATE_SNAP_SUCCESS = 'CREATE_SNAP_SUCCESS'
 export const CREATE_SNAP_FAILURE = 'CREATE_SNAP_FAILURE'
 export const RESET_NEW_SNAP = 'RESET_NEW_SNAP'
+export const CREATE_SNAP_UPLOAD_PROGRESS = 'CREATE_SNAP_UPLOAD_PROGRESS'
 
 //Validate Snap fields like Emoji, Snap and Message on the server
 export const VALIDATE_SNAP_FIELDS = 'VALIDATE_SNAP_FIELDS'
@@ -23,6 +24,13 @@ export function createSnapFailure(error) {
     return {
         type: CREATE_SNAP_FAILURE,
         payload: error
+    }
+}
+
+export function createSnapUploadProgress(progress){
+    return{
+        type: CREATE_SNAP_UPLOAD_PROGRESS,
+        progress
     }
 }
 
@@ -45,6 +53,7 @@ export function createSnap(values) {
             const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {surveyResponseId: responseId} )
             
             uploader.send(values.snap[0], ( err, url ) => {
+                computation.stop()
                 if ( err ) {
                     reject('There was an error uploading the video.')
                 } else {
@@ -59,6 +68,10 @@ export function createSnap(values) {
                         }
                     })
                 }
+            })
+
+            const computation = Tracker.autorun(() => {
+                dispatch(createSnapUploadProgress(uploader.progress()))
             })
         })   
         

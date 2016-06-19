@@ -3,11 +3,16 @@ import Header from '/imports/ui/surveys/components/Header/Header.jsx'
 
 
 function checkLoading(state){
-    return !state.surveys.survey.ready
+    return (!state.surveys.survey.ready
+           || state.surveys.snaps.newSnap.loading)
 }
 
-function getLoadingPercent(){
-    return 0
+function getLoadingPercent(state){
+    let percent = 0
+    if(state.surveys.snaps.newSnap.loading && state.surveys.snaps.newSnap.progress > 0){
+        percent = state.surveys.snaps.newSnap.progress
+    }
+    return percent * 100
 }
 
 function mapStateToProps(state) {

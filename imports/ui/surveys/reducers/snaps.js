@@ -2,7 +2,7 @@ import * as ActionTypes from '/imports/ui/surveys/actions'
 import Emojis from '/imports/api/collections/emojis' 
 
 const initialState = {
-    newSnap: {snap:null, error: null, loading: false},
+    newSnap: {snap:null, error: null, loading: false, progress: 0},
     saved: false,
     saving: false,
     emojis: {
@@ -23,10 +23,12 @@ function newSnap(state = initialState.newSnap, action){
     case ActionTypes.CREATE_SNAP:
         return {...state, loading: true}
     case ActionTypes.CREATE_SNAP_SUCCESS:
-        return {...state, snap:action.payload.data, error:null, loading: false}
+        return {...state, snap:action.payload.data, error:null, loading: false, progress: 0}
     case ActionTypes.CREATE_SNAP_FAILURE:
         error = action.payload.data || {message: action.payload.message}//2nd one is network or server down errors
-        return {...state, snap:null, error:error, loading: false}
+        return {...state, snap:null, error:error, loading: false, progress: 0}
+    case ActionTypes.CREATE_SNAP_UPLOAD_PROGRESS:
+        return {...state, progress: action.progress}
     case ActionTypes.RESET_NEW_SNAP:
         return {...state, snap:null, error:null, loading: false}
     case ActionTypes.VALIDATE_SNAP_FIELDS:
