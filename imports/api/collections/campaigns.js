@@ -13,6 +13,23 @@ class CampaignsCollection extends Mongo.Collection {
 
 export const Campaigns = new CampaignsCollection('Campaigns')
 
+const IdentitySchema = new SimpleSchema({
+    name: {
+        type: String
+    },
+    title: {
+        type: String
+    },
+    organisation: {
+        type: String
+    },
+    photoUri: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Url,
+        optional: true
+    }
+})
+
 Campaigns.schema = new SimpleSchema({
     title: {
         type: String,
@@ -21,6 +38,9 @@ Campaigns.schema = new SimpleSchema({
     description: {
         type: String,
         max: 1000
+    },
+    identity: {
+        type: IdentitySchema
     },
     createdAt: {
         type: Date,
@@ -43,5 +63,6 @@ Campaigns.publicFields = {
     _id: 1,
     title: 1,
     description: 1,
+    identity: 1,
     createdAt: 1
 }

@@ -3,15 +3,15 @@ import React, { Component, PropTypes } from 'react'
 export default class SurveyorIdentity extends Component{
     
     render(){        
-        const { identity }= this.props
+        const { value }= this.props
                
         return(
             <div>                            
                 <div className="SenderPic">
                 </div>
                 
-                <div className="medium-lite-txt">Bianca Welds</div>
-                <div className="small-lite-txt">Program Manager, CMIP</div>
+                <div className="medium-lite-txt">{value.name}</div>
+                <div className="small-lite-txt">{value.title}, {value.organisation}</div>
             </div>
         )
     }
@@ -19,10 +19,10 @@ export default class SurveyorIdentity extends Component{
 
 
 SurveyorIdentity.propTypes = {
-    identity: PropTypes.shape({
+    value: PropTypes.shape({
         name: PropTypes.string,
         position: PropTypes.string,
-        company: PropTypes.string,
-        photoUrl: PropTypes.string
+        organisation: PropTypes.string,
+        photoUri: PropTypes.string
     })
 }

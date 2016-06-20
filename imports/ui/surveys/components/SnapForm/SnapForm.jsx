@@ -43,7 +43,7 @@ class SnapForm extends Component {
                         <h3 className="medium-lite-txt"><b>{survey.current.title}</b></h3>
                     </div>
                     <div className="row">
-                        <SurveyorIdentity />
+                        <SurveyorIdentity value={survey.current.identity} />
                     </div>                    
                     <div className="row emoji-selector-container">
                         <EmojiSelector options={emojis.items} {...emoji} />

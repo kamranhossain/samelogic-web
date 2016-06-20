@@ -13,7 +13,12 @@ export default new ValidatedMethod({
 
         const campaign = {
             title,
-            description
+            description,
+            identity: {
+                name: 'Bianca Welds',
+                title: 'Program Manager',
+                organisation: 'CMIP'
+            }
         }
 
         return Campaigns.insert(campaign)
