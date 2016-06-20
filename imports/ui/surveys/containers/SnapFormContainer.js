@@ -75,13 +75,13 @@ const mapDispatchToProps = () => {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         newSnap: state.surveys.snaps.newSnap,
         survey: state.surveys.survey,
         emojis: state.surveys.emojis,
-        initialValues: { surveyId : state.surveys.survey.current ? state.surveys.survey.current._id : ''}
-
+        initialValues: { surveyId : state.surveys.survey.current ? state.surveys.survey.current._id : ''},
+        selectedEmoji: ownProps.selectedEmoji
     }
 }
 

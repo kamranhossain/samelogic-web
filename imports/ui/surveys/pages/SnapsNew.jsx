@@ -1,14 +1,20 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import SnapFormContainer from '/imports/ui/surveys/containers/SnapFormContainer'
 
-class SnapsNew extends Component {
+export default class SnapsNew extends Component {
     render() {
+        const { location: {query}} = this.props
+        const selectedEmoji = query ? query.e : 0
         return (
             <div>
-                <SnapFormContainer />
+                <SnapFormContainer selectedEmoji={selectedEmoji} />
             </div>
         )
     }
 }
 
-export default SnapsNew
+SnapsNew.propTypes = {
+    location: PropTypes.shape({
+        query: PropTypes.object.isRequired
+    }).isRequired
+}
