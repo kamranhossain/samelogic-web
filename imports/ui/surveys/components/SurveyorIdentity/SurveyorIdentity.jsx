@@ -6,9 +6,8 @@ export default class SurveyorIdentity extends Component{
         const { value }= this.props
                
         return(
-            <div>                            
-                <div className="SenderPic">
-                </div>
+            <div className="surveyor-identity">       
+                <img className="photo" src={value.photoUri} title={value.name} />
                 
                 <div className="medium-lite-txt">{value.name}</div>
                 <div className="small-lite-txt">{value.title}, {value.organisation}</div>

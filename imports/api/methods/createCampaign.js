@@ -17,7 +17,8 @@ export default new ValidatedMethod({
             identity: {
                 name: 'Bianca Welds',
                 title: 'Program Manager',
-                organisation: 'CMIP'
+                organisation: 'CMIP',
+                photoUri: '/img/bianca.png'
             }
         }
 

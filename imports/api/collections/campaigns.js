@@ -25,7 +25,6 @@ const IdentitySchema = new SimpleSchema({
     },
     photoUri: {
         type: String,
-        regEx: SimpleSchema.RegEx.Url,
         optional: true
     }
 })
