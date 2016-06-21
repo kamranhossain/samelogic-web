@@ -23,8 +23,6 @@ class SnapForm extends Component {
         const { asyncValidating, fields, handleSubmit, submitting, newSnap, survey, emojis, selectedEmoji } = this.props
         const { surveyId, emoji, snap, comment } = fields
 
-        emoji.value = selectedEmoji
-
         const snapSelectorSelectedClass = classNames({
             'col-xs-6 snap-selector-selected': snap.valid,
             'col-xs-12': !snap.valid
