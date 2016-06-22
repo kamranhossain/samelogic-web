@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
+import { CampaignAnalytics } from './campaignAnalytics'
 import findCampaignsByName from './campaigns/findCampaignsByName'
-import emojiAutovalue from '/imports/api/collections/common/emojiAutovalue'
 
 class CampaignsCollection extends Mongo.Collection {
     insert(doc, callback){
@@ -29,22 +29,7 @@ const IdentitySchema = new SimpleSchema({
         optional: true
     }
 })
-const EmojiStats = new SimpleSchema({
-    emoji: {
-        type: Number,
-        autoValue: emojiAutovalue    
-    },
-    count: {
-        type: Number,
-        defaultValue: 0,
-        min: 0
-    }
-})
-const CampaignAnalytics = new SimpleSchema({
-    emojis: {
-        type: [EmojiStats]
-    }
-})
+
 Campaigns.schema = new SimpleSchema({
     title: {
         type: String,
