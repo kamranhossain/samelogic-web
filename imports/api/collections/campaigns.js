@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
 import findCampaignsByName from './campaigns/findCampaignsByName'
+import emojiAutovalue from '/imports/api/collections/common/emojiAutovalue'
 
 class CampaignsCollection extends Mongo.Collection {
     insert(doc, callback){
@@ -28,7 +29,22 @@ const IdentitySchema = new SimpleSchema({
         optional: true
     }
 })
-
+const EmojiStats = new SimpleSchema({
+    emoji: {
+        type: Number,
+        autoValue: emojiAutovalue    
+    },
+    count: {
+        type: Number,
+        defaultValue: 0,
+        min: 0
+    }
+})
+const CampaignAnalytics = new SimpleSchema({
+    emojis: {
+        type: [EmojiStats]
+    }
+})
 Campaigns.schema = new SimpleSchema({
     title: {
         type: String,
@@ -40,6 +56,9 @@ Campaigns.schema = new SimpleSchema({
     },
     identity: {
         type: IdentitySchema
+    },
+    analytics: {
+        type: CampaignAnalytics
     },
     createdAt: {
         type: Date,
@@ -55,6 +74,7 @@ Campaigns.adminFields = {
     _id: 1,
     title: 1,
     description: 1,
+    analytics: 1,
     createdAt: 1
 }
 
