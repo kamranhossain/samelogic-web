@@ -27,6 +27,7 @@
     "eslint-plugin-meteor": "^3.4.0",
     "eslint-plugin-react": "^4.2.3",
     "npm-run-all": "^2.1.0",
+    "pivotal-deliver": "0.1.0",
     "react-addons-test-utils": "15.0.2"
   },
   "dependencies": {
