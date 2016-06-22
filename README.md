@@ -56,3 +56,4 @@ Run the following command for publishing new `settings.json` to prod servers:
 `heroku config:set METEOR_SETTINGS="$(cat settings-prod.json)" --app samelogic-web`.
 
 Use bash shell on windows when running this command.
+
