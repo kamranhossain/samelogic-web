@@ -43,7 +43,8 @@ Campaigns.schema = new SimpleSchema({
         type: IdentitySchema
     },
     analytics: {
-        type: CampaignAnalytics
+        type: CampaignAnalytics,
+        defaultValue: {}
     },
     createdAt: {
         type: Date,

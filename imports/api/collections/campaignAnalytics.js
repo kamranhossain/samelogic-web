@@ -1,12 +1,11 @@
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
-import emojiAutovalue from '/imports/api/collections/common/emojiAutovalue'
+import Emojis from '/imports/api/collections/emojis'
 
 export const EmojiStats = new SimpleSchema({
     emoji: {
-        type: Number,
-        autoValue: emojiAutovalue    
+        type: Number
     },
     count: {
         type: Number,
@@ -16,6 +15,13 @@ export const EmojiStats = new SimpleSchema({
 })
 export const CampaignAnalytics = new SimpleSchema({
     emojis: {
-        type: [EmojiStats]
+        type: [EmojiStats],
+        defaultValue: defaultEmojis()
     }
 })
+
+function defaultEmojis(){
+    return Emojis.values().map((e) => {
+        return {emoji: e}
+    })
+}
