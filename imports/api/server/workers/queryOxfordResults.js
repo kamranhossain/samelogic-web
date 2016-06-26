@@ -4,6 +4,7 @@ import { HTTP } from 'meteor/http'
 import jc from './jobCollection'
 
 import { SurveyResponses } from '../../collections/surveyResponses'
+import { Campaigns } from '../../collections/campaigns'
 
 jc.processJobs('queryOxfordResult', (job, callback) =>{
     HTTP.get(job.data.operationLocation, {
