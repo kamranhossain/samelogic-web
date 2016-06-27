@@ -44,15 +44,17 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
             case 'Succeeded': {
                 const oxfordJson = JSON.parse(resp.data.processingResult)
                 
+                const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
                 SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: 
                 { 
+                    emotionData: parsedOxfordResult,
                     rawOxfordData: oxfordJson
                 }})
-                const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
+
                 const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
+                // TODO: if emoji is null, log or do something.
                 const surveyResponse = SurveyResponses.findOne({_id: job.data.surveyResponseId})
                 Campaigns.update({_id: surveyResponse.campaignId, 'analytics.emojis.emoji': emoji}, { $inc: {'analytics.emojis.$.count': 1}})
-
                 
                 job.done()
                 break
@@ -147,5 +149,7 @@ function chooseEmotionFromScores(scores) {
 
 
 function mapEmojiFromEmotion(emotion){
-    return Emojis.nodes.filter((e) => e.emotions.find((em) => em == emotion))
+    const emoji = Emojis.nodes.find((e) => e.emotions.find((em) => em == emotion))
+
+    return emoji ? emoji.value : null
 }
