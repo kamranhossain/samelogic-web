@@ -17,6 +17,10 @@ class Dashboard extends Component{
     componentDidMount() {
         this.props.loadCampaigns()
     }
+
+    campaignSelected(campaign){
+        this.props.loadCampaignAnalytics(campaign._id)
+    }
     render(){
         const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions } = this.props
         
@@ -78,6 +82,7 @@ const DashboardContainer = createContainer(({actions, selectedCampaign, selected
     return {
         loadEmotions: actions.loadEmotion,
         loadCampaigns: actions.loadCampaigns,
+        loadCampaignAnalytics: actions.loadCampaignAnalytics,
         campaigns,
         selectedCampaign,
         selectedEmotion,
@@ -103,7 +108,8 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(
             {...AdminActions,
                 loadCampaigns: AdminActions.loadCampaignsFactory(),
-                loadEmotions: AdminActions.loadEmotionsFactory()
+                loadEmotions: AdminActions.loadEmotionsFactory(),
+                loadCampaignAnalytics: AdminActions.loadCampaignAnalyticsFactory()
             }, dispatch)
         
     }
