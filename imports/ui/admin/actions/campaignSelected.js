@@ -10,6 +10,6 @@ export function campaignSelected(selectedCampaign) {
             type: CAMPAIGN_SELECTED,
             selectedCampaign  
         })
-        dispatch(AdminActions.loadEmotionsFactory()(selectedCampaign._id))
+        dispatch(AdminActions.loadCampaignAnalyticsFactory()(selectedCampaign._id))
     }
 }

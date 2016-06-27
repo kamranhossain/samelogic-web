@@ -4,6 +4,7 @@ import { Campaigns } from '/imports/api/collections/campaigns'
 
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 
+export const CAMPAIGN = actionTypeBuilder.type('CAMPAIGN')
 export const CAMPAIGNS = actionTypeBuilder.type('CAMPAIGNS')
 export const CAMPAIGNS_REMOVE = actionTypeBuilder.type('CAMPAIGNS_REMOVE')
 export const CAMPAIGNS_INSERT = actionTypeBuilder.type('CAMPAIGNS_INSERT')
@@ -28,7 +29,25 @@ export function loadCampaignsFactory() {
         }
     }
 }
-
+export function loadCampaignAnalyticsFactory() {
+    return (campaignId) => {
+        return dispatch => {
+            dispatch({
+                type: CAMPAIGN,
+                meteor: {
+                    subscribe: () => Meteor.subscribe('campaign.analytics', campaignId, {
+                        onStop: error => {
+                            if (error && error.error === 401) {
+                                dispatch(newErrorNotification('failed to load campaign analytics'))
+                            }
+                        }
+                    }),
+                    get: () => Campaigns.findOne(campaignId)
+                }
+            })
+        }
+    }
+}
 export function deleteCampaignFactory(collection) {
     return id => {
         return dispatch => {

@@ -60,8 +60,11 @@ Campaigns.adminFields = {
     _id: 1,
     title: 1,
     description: 1,
-    analytics: 1,
     createdAt: 1
+}
+
+Campaigns.analyticsFields = {
+    ...Campaigns.adminFields, analytics: 1
 }
 
 Campaigns.publicFields = {

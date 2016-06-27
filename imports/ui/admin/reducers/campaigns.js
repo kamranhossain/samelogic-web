@@ -16,6 +16,8 @@ export default function(state = initialState, action) {
 
     case actionTypeBuilder.changed(ActionTypes.CAMPAIGNS):
         return {...state, items: data}
+    case actionTypeBuilder.changed(ActionTypes.CAMPAIGN):
+        return {...state, current: data}
     default:
         return state
     }

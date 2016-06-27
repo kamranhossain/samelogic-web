@@ -24,6 +24,18 @@ Meteor.publish('campaigns.admin', () => {
     })    
 })
 
+Meteor.publish('campaign.analytics', (campaignId) => {
+    new SimpleSchema({
+        campaignId: { type: String }
+    }).validate({campaignId})
+    const query = {
+        _id: campaignId
+    }
+    return Campaigns.find(query,{
+        fields: Campaigns.analyticsFields
+    })    
+})
+
 
 Meteor.publish('surveyResponses.admin', (campaignId, emotionKey) => {
     new SimpleSchema({

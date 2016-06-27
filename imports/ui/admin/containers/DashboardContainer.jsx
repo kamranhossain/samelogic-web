@@ -18,13 +18,13 @@ class Dashboard extends Component{
         this.props.loadCampaigns()
     }
     render(){
-        const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions, } = this.props
+        const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions } = this.props
         
         let details, emotionDisplayContainer, customerFeedbackContainer
         
-        if(selectedCampaign){
+        if(campaigns.current){
             emotionDisplayContainer = (
-                <EmotionalPulseList emotions={emotions} selected={selectedEmotion} onChange={emotionSelected} />
+                <EmotionalPulseList emotions={campaigns.current.analytics.emojis} selected={selectedEmotion} onChange={emotionSelected} />
             )
         }
         if(selectedEmotion){

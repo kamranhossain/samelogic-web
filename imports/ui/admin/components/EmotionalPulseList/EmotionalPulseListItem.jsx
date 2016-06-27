@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import classNames from 'classnames'
+import Emojis from '/imports/api/collections/emojis'
 
 class EmotionalPulseListItem extends Component {
     render() {
@@ -12,10 +13,10 @@ class EmotionalPulseListItem extends Component {
             }
         )
         return (
-            <div className={classes} title={value.key}
+            <div className={classes} title={value.emoji}
                 onClick={this.props.onClick.bind(this, value)}>
-                <span className={value.key}></span>
-                {value.key}-{value.count}
+                <span className={value.emoji}></span>
+                {Emojis.get(value.emoji, 'label')}-{value.count}
             </div>
         )
     }
