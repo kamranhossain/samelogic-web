@@ -5,6 +5,7 @@ import jc from './jobCollection'
 
 import { SurveyResponses } from '../../collections/surveyResponses'
 import { Campaigns } from '../../collections/campaigns'
+import Emojis from '/imports/api/collections/emojis'
 
 jc.processJobs('queryOxfordResult', (job, callback) =>{
     HTTP.get(job.data.operationLocation, {
@@ -42,25 +43,16 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 break
             case 'Succeeded': {
                 const oxfordJson = JSON.parse(resp.data.processingResult)
-                let parsedOxfordResult
                 
-                try{
-                    parsedOxfordResult = crunchOxfordJSON(oxfordJson)
-                }
-                catch(e){
-                    job.log('Parse failed', {
-                        level: 'warning',
-                        data: {
-                            response: resp.data,
-                            exception: e
-                        }
-                    })
-                }
                 SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: 
                 { 
-                    emotionData: parsedOxfordResult,
                     rawOxfordData: oxfordJson
                 }})
+                const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
+                const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
+                const surveyResponse = SurveyResponses.findOne({_id: job.data.surveyResponseId})
+                Campaigns.update({_id: surveyResponse.campaignId, 'analytics.emojis.emoji': emoji}, { $inc: {'analytics.emojis.$.count': 1}})
+
                 
                 job.done()
                 break
@@ -150,4 +142,10 @@ function chooseEmotionFromScores(scores) {
     var paired = Object.keys(scores).map(key => [scores[key], key])
     var sorted = paired.sort((s1, s2) => s1[0] < s2[0])
     return sorted[0][1]
+}
+
+
+
+function mapEmojiFromEmotion(emotion){
+    return Emojis.nodes().filter((e) => e.emotions.find((em) => em == emotion))
 }
