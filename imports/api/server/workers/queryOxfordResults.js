@@ -147,5 +147,5 @@ function chooseEmotionFromScores(scores) {
 
 
 function mapEmojiFromEmotion(emotion){
-    return Emojis.nodes().filter((e) => e.emotions.find((em) => em == emotion))
+    return Emojis.nodes.filter((e) => e.emotions.find((em) => em == emotion))
 }
