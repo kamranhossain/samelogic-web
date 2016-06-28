@@ -54,7 +54,17 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
                 // TODO: if emoji is null, log or do something.
                 const surveyResponse = SurveyResponses.findOne({_id: job.data.surveyResponseId})
-                Campaigns.update({_id: surveyResponse.campaignId, 'analytics.emojis.emoji': emoji}, { $inc: {'analytics.emojis.$.count': 1}})
+                Campaigns.update(
+                    {
+                        _id: surveyResponse.campaignId, 'analytics.emojis.emoji': emoji
+                    }, 
+                    { 
+                        $inc: {
+                            'analytics.responses': 1,
+                            'analytics.emojis.$.count': 1 
+                        }
+                    }
+                )
                 
                 job.done()
                 break
