@@ -5,7 +5,7 @@ import Emojis from '/imports/api/collections/emojis'
 class EmotionalPulseListItem extends Component {
     render() {
         const {selected, value} = this.props
-        
+        const emojiLabel = Emojis.get(value.emoji, 'label')
         var classes = classNames(
             'emotional-pulse-item',
             {
@@ -13,10 +13,10 @@ class EmotionalPulseListItem extends Component {
             }
         )
         return (
-            <div className={classes} title={value.emoji}
+            <div className={classes} title={`${value.count} people are ${emojiLabel}`}
                 onClick={this.props.onClick.bind(this, value)}>
                 <span className={value.emoji}></span>
-                {Emojis.get(value.emoji, 'label')}-{value.count}
+                {emojiLabel}-{value.percent}%
             </div>
         )
     }
