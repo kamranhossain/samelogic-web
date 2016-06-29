@@ -40,7 +40,7 @@ class SnapForm extends Component {
 
                     <input type="hidden" {...surveyId} />
                     <div className="row">
-                        <h3 className="medium-lite-txt"><b>{survey.current.title}</b></h3>
+                        <h3><b>{survey.current.title}</b></h3>
                     </div>
                     <div className="row">
                         <SurveyorIdentity value={survey.current.identity} />
@@ -52,7 +52,7 @@ class SnapForm extends Component {
                         <div className="col-md-12">
                             {snap.valid ? 
                                 <SnapPlayer snap={snap.value[0]} /> : 
-                                <div className="medium-lite-txt lmt lmb">Tell us about your experience in <strong>15 - 60 seconds</strong>!</div>
+                                <div>Tell us about your experience in <strong>15 - 60 seconds</strong>!</div>
                             }
                             <div className="help-block">
                                 {snap.touched ? snap.error : ''}

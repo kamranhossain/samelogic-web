@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import SurveyNotFound from '/imports/ui/surveys/components/SurveyNotFound/SurveyNotFound.jsx'
 import HeaderContainer from '/imports/ui/surveys/containers/HeaderContainer'
+import Footer from '/imports/ui/surveys/components/Footer/Footer.jsx'
 import * as SurveyActions from '/imports/ui/surveys/actions'
 
 class SurveyAppContainer extends Component {
@@ -22,6 +23,7 @@ class SurveyAppContainer extends Component {
                         {survey.current ? children : <SurveyNotFound /> }
                      </div>
                 : null}
+                <Footer />
             </div>
         )
     }
