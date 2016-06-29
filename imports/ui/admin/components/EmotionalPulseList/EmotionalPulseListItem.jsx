@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import pluralize from 'pluralize'
 import classNames from 'classnames'
 import Emojis from '/imports/api/collections/emojis'
 
@@ -13,7 +14,7 @@ class EmotionalPulseListItem extends Component {
             }
         )
         return (
-            <div className={classes} title={`${value.count} people are ${emojiLabel}`}
+            <div className={classes} title={`${value.count} ${pluralize('people', value.count)} ${pluralize('are', value.count)} ${emojiLabel}`}
                 onClick={this.props.onClick.bind(this, value)}>
                 <span className={value.emoji}></span>
                 {emojiLabel}-{value.percent}%
