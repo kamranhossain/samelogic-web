@@ -15,8 +15,7 @@ class SurveyAppContainer extends Component {
     render() {
         const {children, survey} = this.props
         return (
-            <div className="container">
-                
+            <div className="survey-app-container">                
                 <HeaderContainer />
                 {survey.ready ?
                      <div>

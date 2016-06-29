@@ -6,7 +6,7 @@ export default class SnapsNew extends Component {
         const { location: {query}} = this.props
         const selectedEmoji = query ? query.e : 0
         return (
-            <div>
+            <div className="container snaps-new">
                 <SnapFormContainer selectedEmoji={selectedEmoji} />
             </div>
         )

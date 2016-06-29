@@ -15,7 +15,7 @@ class Header extends Component {
             percent = 1
 
         return (
-            <div>               
+            <div className="header">               
                 <ProgressBar onTop={true} autoIncrement={autoIncrement} percent={percent} />
             </div>
         )
