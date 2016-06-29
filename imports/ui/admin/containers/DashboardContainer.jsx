@@ -31,7 +31,7 @@ class Dashboard extends Component{
                 (e)=> {
                     return {
                         ...e,
-                        percent: (e.count/campaigns.current.analytics.totalVideoProcessedResponses * 100)
+                        percent: campaigns.current.analytics.totalVideoProcessedResponses > 0 ? (e.count/campaigns.current.analytics.totalVideoProcessedResponses * 100) : 0
                     }
                 })
             emotionDisplayContainer = (
@@ -41,6 +41,7 @@ class Dashboard extends Component{
             randomDataContainer = (
                 <div>
                     The url to survey: <a href={`/surveys/${campaigns.current._id}/snap`}>Go to snap</a>
+                    <br />
                     Responses: {campaigns.current.analytics.totalResponses}
                     <br />
                     Processed Responses: {campaigns.current.analytics.totalVideoProcessedResponses}
