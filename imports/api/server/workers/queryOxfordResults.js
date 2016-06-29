@@ -60,7 +60,7 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                     }, 
                     { 
                         $inc: {
-                            'analytics.responses': 1,
+                            'analytics.totalVideoProcessedResponses': 1,
                             'analytics.emojis.$.count': 1 
                         }
                     }

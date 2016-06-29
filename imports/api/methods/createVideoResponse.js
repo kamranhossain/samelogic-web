@@ -1,6 +1,7 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
+import { Campaigns } from '../collections/campaigns'
 import { SurveyResponses } from '../collections/surveyResponses'
 
 export default new ValidatedMethod({
@@ -10,6 +11,17 @@ export default new ValidatedMethod({
         emoji: { type: Number}
     }).validator(),
     run({ campaignId, emoji}) {
+
+        Campaigns.update(
+            {
+                _id: campaignId
+            }, 
+            { 
+                $inc: {
+                    'analytics.totalResponses': 1
+                }
+            }
+        )
 
         const surveyResponse = {
             campaignId,

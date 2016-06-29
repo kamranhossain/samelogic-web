@@ -3,11 +3,11 @@ import EmotionalPulseListItem from '/imports/ui/admin/components/EmotionalPulseL
 
 class EmotionalPulseList extends Component {
     render() {
-        const {emotions, selected} = this.props
+        const {items, selected} = this.props
         let selectedKey = selected === undefined ? '' : selected.key
         return (
             <div>
-                {emotions.map((emotion) =>
+                {items.map((emotion) =>
                     <EmotionalPulseListItem key={emotion.emoji} value={emotion} selected={selectedKey === emotion.emoji} onClick={this.props.onChange} />
                 )}
             </div>
@@ -16,7 +16,7 @@ class EmotionalPulseList extends Component {
 }
 
 EmotionalPulseList.propTypes = {
-    emotions: PropTypes.object.isRequired,
+    items: PropTypes.object.isRequired,
     selected: PropTypes.object,
     onChange: PropTypes.func
 }

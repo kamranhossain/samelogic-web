@@ -19,6 +19,16 @@ export const CampaignAnalytics = new SimpleSchema({
         defaultValue: 0,
         min: 0
     },
+    totalResponses: {
+        type: Number,
+        defaultValue: 0,
+        min: 0
+    },
+    totalVideoProcessedResponses: {
+        type: Number,
+        defaultValue: 0,
+        min: 0
+    },
     emojis: {
         type: [EmojiStats],
         defaultValue: defaultEmojis()

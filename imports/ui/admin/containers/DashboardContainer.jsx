@@ -22,13 +22,28 @@ class Dashboard extends Component{
         this.props.loadCampaignAnalytics(campaign._id)
     }
     render(){
-        const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion, emotions } = this.props
+        const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion } = this.props
         
-        let details, emotionDisplayContainer, customerFeedbackContainer
+        let details, emotionDisplayContainer, customerFeedbackContainer, randomDataContainer
         
         if(campaigns.current){
+            const emojis = campaigns.current.analytics.emojis.map(
+                (e)=> {
+                    return {
+                        ...e,
+                        percent: (e.count/campaigns.current.analytics.totalVideoProcessedResponses * 100)
+                    }
+                })
             emotionDisplayContainer = (
-                <EmotionalPulseList emotions={campaigns.current.analytics.emojis} selected={selectedEmotion} onChange={emotionSelected} />
+                <EmotionalPulseList items={emojis} selected={selectedEmotion} onChange={emotionSelected} />
+            )
+
+            randomDataContainer = (
+                <div>
+                    Responses: {campaigns.current.analytics.totalResponses}
+                    <br />
+                    Processed Responses: {campaigns.current.analytics.totalVideoProcessedResponses}
+                </div>
             )
         }
         if(selectedEmotion){
@@ -53,6 +68,9 @@ class Dashboard extends Component{
                 
                 {details}
                 {customerFeedbackContainer}
+
+                <hr />
+                {randomDataContainer}
             </div> 
         )
         return(
