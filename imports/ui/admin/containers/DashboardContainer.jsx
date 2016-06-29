@@ -89,6 +89,7 @@ Dashboard.propTypes = {
         title: PropTypes.string.required
     }),
     loadCampaigns: PropTypes.func.isRequired,
+    loadCampaignAnalytics: PropTypes.func.isRequired,
     campaignSelected: PropTypes.func.isRequired,
     emotionSelected: PropTypes.func.isRequired,
     campaigns: PropTypes.object,
