@@ -22,7 +22,7 @@ class Dashboard extends Component{
         this.props.loadCampaignAnalytics(campaign._id)
     }
     render(){
-        const { campaignSelected,emotionSelected, selectedCampaign, campaigns, selectedEmotion } = this.props
+        const { campaignSelected,emotionSelected, campaigns, selectedEmotion } = this.props
         
         let details, emotionDisplayContainer, customerFeedbackContainer, randomDataContainer
         
@@ -54,7 +54,7 @@ class Dashboard extends Component{
                 </div>
             )
         }
-        if(selectedCampaign && selectedEmotion){
+        if(campaigns.current && selectedEmotion){
             customerFeedbackContainer = (
                 <CustomerFeedbackContainer />
             )
@@ -63,7 +63,7 @@ class Dashboard extends Component{
             <div>
                 <div>Dashboard</div>
                 
-                <CampaignSelector campaigns={campaigns} selected={selectedCampaign} onChange={campaignSelected} />
+                <CampaignSelector campaigns={campaigns} onChange={campaignSelected} />
                 
                 {emotionDisplayContainer}
                 
@@ -115,7 +115,6 @@ const DashboardContainer = createContainer(({actions, selectedCampaign, selected
 
 const mapStateToProps = (state) => {
     return {
-        selectedCampaign: state.admin.dashboard.selectedCampaign,
         selectedEmotion: state.admin.dashboard.selectedEmotion,
         emotions: state.admin.emotions,
         campaigns: state.admin.campaigns
