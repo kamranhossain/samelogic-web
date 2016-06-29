@@ -40,6 +40,7 @@ class Dashboard extends Component{
 
             randomDataContainer = (
                 <div>
+                    The url to survey: <a href={`/surveys/${campaigns.current._id}/snap`}>Go to snap</a>
                     Responses: {campaigns.current.analytics.totalResponses}
                     <br />
                     Processed Responses: {campaigns.current.analytics.totalVideoProcessedResponses}
