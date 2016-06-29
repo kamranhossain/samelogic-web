@@ -14,11 +14,6 @@ export const EmojiStats = new SimpleSchema({
     }
 })
 export const CampaignAnalytics = new SimpleSchema({
-    responses: {
-        type: Number,
-        defaultValue: 0,
-        min: 0
-    },
     totalResponses: {
         type: Number,
         defaultValue: 0,
