@@ -7,12 +7,12 @@ import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 export const RESPONSES = actionTypeBuilder.type('RESPONSES')
 
 export function loadResponsesFactory() {
-    return () => {
+    return (campaignId, emoji) => {
         return dispatch => {
             dispatch({
                 type: RESPONSES,
                 meteor: {
-                    subscribe: () => Meteor.subscribe('responses.admin', {
+                    subscribe: () => Meteor.subscribe('responses.admin', campaignId, emoji, {
                         onStop: error => {
                             if (error && error.error === 401) {
                                 dispatch(newErrorNotification('failed to load campaigns'))

@@ -9,7 +9,7 @@ import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
 import EmotionalPulseList from '/imports/ui/admin/components/EmotionalPulseList/EmotionalPulseList.jsx'
 import EmotionalPulseDetail from '/imports/ui/admin/components/EmotionalPulseDetail/EmotionalPulseDetail.jsx'
-import CustomerFeedbackContainer from '/imports/ui/admin/containers/CustomerFeedbackContainer.jsx'
+import CampaignFeedbackList from '/imports/ui/admin/components/CampaignFeedbackList/CampaignFeedbackList.jsx'
 
 
 
@@ -21,8 +21,12 @@ class Dashboard extends Component{
     campaignSelected(campaign){
         this.props.loadCampaignAnalytics(campaign._id)
     }
+    emojiSelected(emoji){
+        this.props.emojiStatsSelected(emoji)
+        this.props.loadResponses(this.props.campaigns.current._id, emoji.emoji)
+    }
     render(){
-        const { emotionSelected, campaigns, selectedEmotion } = this.props
+        const { campaigns, responses } = this.props
         
         let details, emotionDisplayContainer, customerFeedbackContainer, randomDataContainer
         
@@ -35,7 +39,7 @@ class Dashboard extends Component{
                     }
                 })
             emotionDisplayContainer = (
-                <EmotionalPulseList items={emojis} selected={selectedEmotion} onChange={emotionSelected} />
+                <EmotionalPulseList items={emojis} selected={campaigns.emojiStats} onChange={this.emojiSelected.bind(this)} />
             )
 
             randomDataContainer = (
@@ -47,18 +51,20 @@ class Dashboard extends Component{
                     Processed Responses: {campaigns.current.analytics.totalVideoProcessedResponses}
                 </div>
             )
-        }
-        if(selectedEmotion){
-            details = (
-                <div>
-                    <EmotionalPulseDetail emotion={selectedEmotion} />
-                </div>
-            )
-        }
-        if(campaigns.current && selectedEmotion){
-            customerFeedbackContainer = (
-                <CustomerFeedbackContainer />
-            )
+
+
+            if(campaigns.emojiStats){
+                details = (
+                    <div>
+                        <EmotionalPulseDetail emotion={campaigns.emojiStats} />
+                    </div>
+                )
+            }
+            if(responses.items){
+                customerFeedbackContainer = (
+                    <CampaignFeedbackList feedbacks={responses} />
+                )
+            }
         }
         let dash = (
             <div>
@@ -90,34 +96,33 @@ Dashboard.propTypes = {
     }),
     loadCampaigns: PropTypes.func.isRequired,
     loadCampaignAnalytics: PropTypes.func.isRequired,
+    loadResponses: PropTypes.func.isRequired,
     campaignSelected: PropTypes.func.isRequired,
-    emotionSelected: PropTypes.func.isRequired,
+    emojiStatsSelected: PropTypes.func.isRequired,
     campaigns: PropTypes.object,
-    selectedEmotion: PropTypes.object,
-    emotions: PropTypes.object
+    responses: PropTypes.object
     
 }
 
-const DashboardContainer = createContainer(({actions, selectedCampaign, selectedEmotion, emotions, campaigns}) => {
+const DashboardContainer = createContainer(({actions, selectedCampaign, campaigns, responses}) => {
 
     return {
         loadCampaigns: actions.loadCampaigns,
         loadCampaignAnalytics: actions.loadCampaignAnalytics,
+        loadResponses: actions.loadResponses,
+        emojiStatsSelected: actions.emojiStatsSelected,
         campaigns,
+        responses,
         selectedCampaign,
-        selectedEmotion,
-        emotions,
-        connected: Meteor.status().connected,
-        emotionSelected: actions.emotionSelected
+        connected: Meteor.status().connected
     }
  
 }, Dashboard)
 
 const mapStateToProps = (state) => {
     return {
-        selectedEmotion: state.admin.dashboard.selectedEmotion,
-        emotions: state.admin.emotions,
-        campaigns: state.admin.campaigns
+        campaigns: state.admin.campaigns,
+        responses: state.admin.responses
     }
 }
 
@@ -126,7 +131,8 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(
             {...AdminActions,
                 loadCampaigns: AdminActions.loadCampaignsFactory(),
-                loadCampaignAnalytics: AdminActions.loadCampaignAnalyticsFactory()
+                loadCampaignAnalytics: AdminActions.loadCampaignAnalyticsFactory(),
+                loadResponses: AdminActions.loadResponsesFactory()
             }, dispatch)
         
     }

@@ -6,10 +6,12 @@ class CampaignFeedbackList extends Component {
         
         return (
             <div>
-                {feedbacks.map((f) =>
+                {feedbacks.items.map((f) =>
                     <div key={f._id}>
                         {f._id}
                         <pre>{f.emotionData ? 'oxford results returned' : 'waiting on oxford results'}</pre>
+                        <br />
+                        
                         <hr />
                     </div>
                 )}

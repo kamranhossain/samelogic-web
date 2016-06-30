@@ -10,6 +10,14 @@ export const CAMPAIGNS_REMOVE = actionTypeBuilder.type('CAMPAIGNS_REMOVE')
 export const CAMPAIGNS_INSERT = actionTypeBuilder.type('CAMPAIGNS_INSERT')
 export const CAMPAIGNS_UPDATE = actionTypeBuilder.type('CAMPAIGNS_UPDATE')
 
+export const EMOJI_STATS_SELECTED = 'EMOJI_STATS_SELECTED'
+
+export function emojiStatsSelected(emojiStat) {
+    return {
+        type: EMOJI_STATS_SELECTED,
+        data: emojiStat    
+    }
+}
 export function loadCampaignsFactory() {
     return () => {
         return dispatch => {

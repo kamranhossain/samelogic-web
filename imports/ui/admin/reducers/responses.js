@@ -2,7 +2,6 @@ import * as ActionTypes from '/imports/ui/admin/actions'
 
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 const initialState = {
-    emojiStats: undefined,
     current: undefined,
     ready: false,
     items: []
@@ -12,14 +11,10 @@ export default function(state = initialState, action) {
     const { data, ready, type } = action
 
     switch (type) {
-    case actionTypeBuilder.ready(ActionTypes.CAMPAIGNS):
+    case actionTypeBuilder.ready(ActionTypes.RESPONSES):
         return {...state, ready}
-    case actionTypeBuilder.changed(ActionTypes.CAMPAIGNS):
+    case actionTypeBuilder.changed(ActionTypes.RESPONSES):
         return {...state, items: data}
-    case actionTypeBuilder.changed(ActionTypes.CAMPAIGN):
-        return {...state, current: data}
-    case actionTypeBuilder.changed(ActionTypes.EMOJI_STATS_SELECTED):
-        return {...state, emojiStats: data}
     default:
         return state
     }

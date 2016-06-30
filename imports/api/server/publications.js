@@ -37,15 +37,15 @@ Meteor.publish('campaign.analytics', (campaignId) => {
 })
 
 
-Meteor.publish('responses.admin', (campaignId, emotionKey) => {
+Meteor.publish('responses.admin', (campaignId, emoji) => {
     new SimpleSchema({
         campaignId: { type: String },
-        emotionKey: {type: String}
+        emoji: {type: Number}
         
-    }).validate({campaignId, emotionKey})
+    }).validate({campaignId, emoji})
     const query = {
         campaignId: campaignId,
-        '': emotionKey
+        'analytics.primaryEmoji': emoji
     }
     return Responses.find(query,{
         fields: Responses.adminFields
