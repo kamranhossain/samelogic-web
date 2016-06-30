@@ -18,7 +18,7 @@ export default function(state = initialState, action) {
         return {...state, items: data}
     case actionTypeBuilder.changed(ActionTypes.CAMPAIGN):
         return {...state, current: data}
-    case actionTypeBuilder.changed(ActionTypes.EMOJI_STATS_SELECTED):
+    case ActionTypes.EMOJI_STATS_SELECTED:
         return {...state, emojiStats: data}
     default:
         return state
