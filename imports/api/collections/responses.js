@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo'
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
+import { ResponseAnalytics } from './responseAnalytics'
 import emojiAutovalue from '/imports/api/collections/common/emojiAutovalue'
 
 class ResponsesCollection extends Mongo.Collection {
@@ -47,6 +48,10 @@ Responses.schema = new SimpleSchema ({
         type: Object,
         optional: true,
         blackbox: true
+    },
+    analytics: {
+        type: ResponseAnalytics,
+        defaultValue: {}
     },
     emoji: {
         type: Number,

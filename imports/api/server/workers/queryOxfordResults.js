@@ -45,13 +45,15 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 const oxfordJson = JSON.parse(resp.data.processingResult)
                 
                 const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
+                const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
+
                 Responses.update({_id: job.data.responseId}, { $set: 
                 { 
                     emotionData: parsedOxfordResult,
-                    rawOxfordData: oxfordJson
+                    rawOxfordData: oxfordJson,
+                    'analytics.primaryEmoji': emoji
                 }})
 
-                const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
                 // TODO: if emoji is null, log or do something.
                 const response = Responses.findOne({_id: job.data.responseId})
                 Campaigns.update(
