@@ -1,14 +1,16 @@
 import React, {Component, PropTypes} from 'react'
+import Emojis from '/imports/api/collections/emojis'
 
 class EmotionalPulseDetail extends Component {
     render() {
         
         const {emotion} = this.props
         
+        const emojiLabel = Emojis.get(emotion.emoji, 'label')
         return (
             <div>
-                <h2>{emotion.amount} Customers</h2>
-                <h3>are {emotion.label}</h3>
+                <h2>{emotion.count} Customers</h2>
+                <h3>are {emojiLabel}</h3>
             </div>
         )
     }
@@ -16,8 +18,7 @@ class EmotionalPulseDetail extends Component {
 
 EmotionalPulseDetail.propTypes = {
     emotion: PropTypes.shape({
-        key: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
+        emoji: PropTypes.number.isRequired,
         percent: PropTypes.number.isRequired,
         amount: PropTypes.number.isRequired
     }).isRequired
