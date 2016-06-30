@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data'
 import React, { Component, PropTypes } from 'react'
 import { connect }  from 'react-redux'
 
-import { SurveyResponses } from '/imports/api/collections/surveyResponses'
+import { Responses } from '/imports/api/collections/responses'
 
 
 import CampaignFeedbackList from '/imports/ui/admin/components/CampaignFeedbackList/CampaignFeedbackList.jsx'
@@ -34,9 +34,9 @@ CustomerFeedback.propTypes = {
 
 const CustomerFeedbackContainer = createContainer(({selectedCampaign, selectedEmotion}) => {
 
-    const surveyResponseHandle = Meteor.subscribe('surveyResponses.admin', selectedCampaign._id, selectedEmotion.key)
-    const loading = !surveyResponseHandle.ready()
-    const feedbacks = SurveyResponses.find({campaignId: selectedCampaign._id}).fetch()
+    const responseHandle = Meteor.subscribe('responses.admin', selectedCampaign._id, selectedEmotion.key)
+    const loading = !responseHandle.ready()
+    const feedbacks = Responses.find({campaignId: selectedCampaign._id}).fetch()
     
     
     if(!loading && !feedbacks){

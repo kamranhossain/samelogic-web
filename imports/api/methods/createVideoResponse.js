@@ -2,7 +2,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
 import { Campaigns } from '../collections/campaigns'
-import { SurveyResponses } from '../collections/surveyResponses'
+import { Responses } from '../collections/responses'
 
 export default new ValidatedMethod({
     name: 'surveys.createVideoResponse',
@@ -23,13 +23,13 @@ export default new ValidatedMethod({
             }
         )
 
-        const surveyResponse = {
+        const response = {
             campaignId,
             emoji,
             type: 'video'
         }
 
-        return SurveyResponses.insert(surveyResponse)
+        return Responses.insert(response)
     }
 })
 

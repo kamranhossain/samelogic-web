@@ -30,7 +30,7 @@ jc.processJobs('startVideoAnalysis', (job, callback) =>{
         }
         else{
             new Job('surveyJobQueue', 'queryOxfordResult',{
-                surveyResponseId: job.data.surveyResponseId,
+                responseId: job.data.responseId,
                 operationLocation: resp.headers['operation-location']
             })
             .priority('normal')

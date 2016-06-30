@@ -50,7 +50,7 @@ export function createSnap(values) {
             })
 
             // trigger the file upload
-            const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {surveyResponseId: responseId} )
+            const uploader = new Slingshot.Upload( 'uploadSurveyVideo', {responseId: responseId} )
             
             uploader.send(values.snap[0], ( err, url ) => {
                 computation.stop()
@@ -58,7 +58,7 @@ export function createSnap(values) {
                     reject('There was an error uploading the video.')
                 } else {
                     updateVideoResponseUrl.call({
-                        surveyResponseId: responseId,
+                        responseId: responseId,
                         url: url
                     }, (err) =>{                    
                         if ( err ) {                            

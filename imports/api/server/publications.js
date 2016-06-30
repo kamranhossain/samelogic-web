@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 import { Campaigns } from '../collections/campaigns'
-import { SurveyResponses } from '../collections/surveyResponses'
+import { Responses } from '../collections/responses'
 
 
 Meteor.publish('campaign.public', (campaignId) => {
@@ -37,17 +37,18 @@ Meteor.publish('campaign.analytics', (campaignId) => {
 })
 
 
-Meteor.publish('surveyResponses.admin', (campaignId, emotionKey) => {
+Meteor.publish('responses.admin', (campaignId, emotionKey) => {
     new SimpleSchema({
         campaignId: { type: String },
         emotionKey: {type: String}
         
     }).validate({campaignId, emotionKey})
     const query = {
-        campaignId: campaignId
+        campaignId: campaignId,
+        '': emotionKey
     }
-    return SurveyResponses.find(query,{
-        fields: SurveyResponses.adminFields
+    return Responses.find(query,{
+        fields: Responses.adminFields
     })
     //TODO: complete implementation
 })

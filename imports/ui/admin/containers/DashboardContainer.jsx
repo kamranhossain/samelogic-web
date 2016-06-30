@@ -101,7 +101,6 @@ Dashboard.propTypes = {
 const DashboardContainer = createContainer(({actions, selectedCampaign, selectedEmotion, emotions, campaigns}) => {
 
     return {
-        loadEmotions: actions.loadEmotion,
         loadCampaigns: actions.loadCampaigns,
         loadCampaignAnalytics: actions.loadCampaignAnalytics,
         campaigns,
@@ -127,7 +126,6 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(
             {...AdminActions,
                 loadCampaigns: AdminActions.loadCampaignsFactory(),
-                loadEmotions: AdminActions.loadEmotionsFactory(),
                 loadCampaignAnalytics: AdminActions.loadCampaignAnalyticsFactory()
             }, dispatch)
         

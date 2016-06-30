@@ -15,6 +15,6 @@ Slingshot.createDirective( 'uploadSurveyVideo', Slingshot.S3Storage, {
         return true
     },
     key: function ( file, metaContext ) {
-        return metaContext.surveyResponseId
+        return metaContext.responseId
     }
 })

@@ -3,7 +3,7 @@ import { HTTP } from 'meteor/http'
 
 import jc from './jobCollection'
 
-import { SurveyResponses } from '../../collections/surveyResponses'
+import { Responses } from '../../collections/responses'
 import { Campaigns } from '../../collections/campaigns'
 import Emojis from '/imports/api/collections/emojis'
 
@@ -45,7 +45,7 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 const oxfordJson = JSON.parse(resp.data.processingResult)
                 
                 const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
-                SurveyResponses.update({_id: job.data.surveyResponseId}, { $set: 
+                Responses.update({_id: job.data.responseId}, { $set: 
                 { 
                     emotionData: parsedOxfordResult,
                     rawOxfordData: oxfordJson
@@ -53,10 +53,10 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
 
                 const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
                 // TODO: if emoji is null, log or do something.
-                const surveyResponse = SurveyResponses.findOne({_id: job.data.surveyResponseId})
+                const response = Responses.findOne({_id: job.data.responseId})
                 Campaigns.update(
                     {
-                        _id: surveyResponse.campaignId, 'analytics.emojis.emoji': emoji
+                        _id: response.campaignId, 'analytics.emojis.emoji': emoji
                     }, 
                     { 
                         $inc: {

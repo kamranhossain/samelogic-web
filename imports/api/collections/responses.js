@@ -4,7 +4,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
 import emojiAutovalue from '/imports/api/collections/common/emojiAutovalue'
 
-class SurveyResponsesCollection extends Mongo.Collection {
+class ResponsesCollection extends Mongo.Collection {
     insert(doc, callback){
         const ourDoc = doc
         ourDoc.createdAt = ourDoc.createdAt || new Date()
@@ -12,13 +12,13 @@ class SurveyResponsesCollection extends Mongo.Collection {
     }
 }
 
-export const SurveyResponses = new SurveyResponsesCollection('CampaignResponses',{
+export const Responses = new ResponsesCollection('Responses',{
     transform: (doc) => {
         return doc
     }
 })
 
-SurveyResponses.schema = new SimpleSchema ({
+Responses.schema = new SimpleSchema ({
     campaignId: {
         type: String
     },
@@ -55,9 +55,9 @@ SurveyResponses.schema = new SimpleSchema ({
     }
 })
 
-SurveyResponses.attachSchema(SurveyResponses.schema, {transform: true})
+Responses.attachSchema(Responses.schema, {transform: true})
 
-SurveyResponses.adminFields = {
+Responses.adminFields = {
     campaignId: 1,
     type: 1,
     contentUrl: 1,
@@ -67,6 +67,6 @@ SurveyResponses.adminFields = {
     createdAt: 1
 }
 
-SurveyResponses.publicFields = {
+Responses.publicFields = {
     campaignId: 1
 }
