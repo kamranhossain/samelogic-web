@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import pluralize from 'pluralize'
 import Emojis from '/imports/api/collections/emojis'
 
 class EmotionalPulseDetail extends Component {
@@ -9,8 +10,8 @@ class EmotionalPulseDetail extends Component {
         const emojiLabel = Emojis.get(emotion.emoji, 'label')
         return (
             <div>
-                <h2>{emotion.count} Customers</h2>
-                <h3>are {emojiLabel}</h3>
+                <h2>{`${emotion.count} ${pluralize('Customer', emotion.count)}`}</h2>
+                <h3>{`${pluralize('is', emotion.count)} ${emojiLabel}`}</h3>
             </div>
         )
     }
