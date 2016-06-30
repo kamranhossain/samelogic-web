@@ -22,7 +22,7 @@ class Dashboard extends Component{
         this.props.loadCampaignAnalytics(campaign._id)
     }
     render(){
-        const { campaignSelected,emotionSelected, campaigns, selectedEmotion } = this.props
+        const { emotionSelected, campaigns, selectedEmotion } = this.props
         
         let details, emotionDisplayContainer, customerFeedbackContainer, randomDataContainer
         
@@ -64,7 +64,7 @@ class Dashboard extends Component{
             <div>
                 <div>Dashboard</div>
                 
-                <CampaignSelector campaigns={campaigns} onChange={campaignSelected} />
+                <CampaignSelector campaigns={campaigns} onChange={this.campaignSelected.bind(this)} />
                 
                 {emotionDisplayContainer}
                 
@@ -109,7 +109,6 @@ const DashboardContainer = createContainer(({actions, selectedCampaign, selected
         selectedEmotion,
         emotions,
         connected: Meteor.status().connected,
-        campaignSelected: actions.campaignSelected,
         emotionSelected: actions.emotionSelected
     }
  
