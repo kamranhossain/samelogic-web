@@ -4,6 +4,7 @@ import { combineReducers } from 'redux'
 import dashboard from './dashboard'
 import campaigns from './campaigns'
 import responses from './responses'
+import auth from './auth'
 
 const initialState = {
     loading: false
@@ -21,7 +22,8 @@ const adminReducers = combineReducers({
     state,
     dashboard,
     campaigns,
-    responses
+    responses,
+    auth
 })
 
 export default adminReducers
