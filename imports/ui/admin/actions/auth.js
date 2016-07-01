@@ -4,17 +4,7 @@ import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 export const USER_LOGGING_IN = actionTypeBuilder.type('USER_LOGGING_IN')
 export const USER_DATA = actionTypeBuilder.type('USER_DATA')
 
-export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
 export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
-
-export function signInUserSuccess() {
-    return {
-        type: USER_LOGGING_IN,
-        meteor: {
-            get: () => Meteor.loggingIn()
-        }
-    }
-}
 
 export function signInUserFailure(error) {
     return {
@@ -24,13 +14,22 @@ export function signInUserFailure(error) {
 }
 
 export function loadUser() {
-    return {
-        type: USER_DATA,
-        meteor: {
-            subscribe: () => Meteor.subscribe('userData'),
-            get: () => Meteor.user()
-        }
-    }    
+    return dispatch => {
+        dispatch({
+            type: USER_LOGGING_IN,
+            meteor: {
+                get: () => Meteor.loggingIn()
+            }
+        })
+
+        dispatch({
+            type: USER_DATA,
+            meteor: {
+                subscribe: () => Meteor.subscribe('userData'),
+                get: () => Meteor.user()
+            }
+        })
+    }
 }
 export function loginWithPassword(email, password) {
     return () => {

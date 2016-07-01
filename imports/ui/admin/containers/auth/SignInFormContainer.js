@@ -23,7 +23,7 @@ const validateAndSignIn = (values, dispatch) => {
     return new Promise((resolve, reject) => {
         dispatch(AdminActions.loginWithPassword(values.email, values.password))
             .then(() => {
-                dispatch(AdminActions.signInUserSuccess())
+                //dispatch(AdminActions.signInUserSuccess())
                 //dispatch(push(`/surveys/${values.surveyId}/completed`))
                 resolve()
             })
@@ -42,7 +42,7 @@ const mapDispatchToProps = () => {
 }
 
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         newSignIn: state.admin.auth.newSignIn
     }
