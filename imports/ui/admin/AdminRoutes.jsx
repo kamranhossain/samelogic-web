@@ -11,6 +11,8 @@ import Dashboard from '/imports/ui/admin/pages/Dashboard.jsx'
 import CreateCampaign from '/imports/ui/admin/pages/CreateCampaign.jsx'
 import SignIn from '/imports/ui/admin/pages/SignIn.jsx'
 
+
+
 // Redirects to /login by default
 const UserIsAuthenticated = UserAuthWrapper({
     authSelector: state => state.admin.auth.user, // how to get the user state
@@ -18,7 +20,6 @@ const UserIsAuthenticated = UserAuthWrapper({
     wrapperDisplayName: 'UserIsAuthenticated', // a nice name for this auth check
     failureRedirectPath: '/admin/signin'
 })
-
 
 export default (
   <Route name="admin-routes" path="/admin" component={ AdminContainer }>

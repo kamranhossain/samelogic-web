@@ -7,10 +7,12 @@ export const USER_DATA = actionTypeBuilder.type('USER_DATA')
 export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
 export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
 
-export function signInUserSuccess(user) {
+export function signInUserSuccess() {
     return {
-        type: SIGNIN_USER_SUCCESS,
-        payload: user
+        type: USER_LOGGING_IN,
+        meteor: {
+            get: () => Meteor.loggingIn()
+        }
     }
 }
 
@@ -22,25 +24,16 @@ export function signInUserFailure(error) {
 }
 
 export function loadUser() {
-    return dispatch => {
-        dispatch({
-            type: USER_LOGGING_IN,
-            meteor: {
-                get: () => Meteor.loggingIn()
-            }
-        })
-
-        dispatch({
-            type: USER_DATA,
-            meteor: {
-                subscribe: () => Meteor.subscribe('userData'),
-                get: () => Meteor.user()
-            }
-        })
-    }
+    return {
+        type: USER_DATA,
+        meteor: {
+            subscribe: () => Meteor.subscribe('userData'),
+            get: () => Meteor.user()
+        }
+    }    
 }
 export function loginWithPassword(email, password) {
-    return dispatch => {
+    return () => {
         return new Promise((resolve, reject) => {
             Meteor.loginWithPassword(email, password, err => {
                 if (err) {
