@@ -22,13 +22,13 @@ const validateAndSignIn = (values, dispatch) => {
 
     return new Promise((resolve, reject) => {
         dispatch(AdminActions.loginWithPassword(values.email, values.password))
-            .then((response) => {
-                dispatch(AdminActions.createSnapSuccess(response))
-                dispatch(push(`/surveys/${values.surveyId}/completed`))
+            .then(() => {
+                dispatch(AdminActions.signInUserSuccess({}))
+                //dispatch(push(`/surveys/${values.surveyId}/completed`))
                 resolve()
             })
             .catch(e => {
-                dispatch(AdminActions.createSnapFailure(e))
+                dispatch(AdminActions.signInUserFailure({data: e}))
                 reject(e)
             })
     })
@@ -38,14 +38,13 @@ const validateAndSignIn = (values, dispatch) => {
 
 const mapDispatchToProps = () => {
     return {
-        signIn: validateAndSignIn
     }
 }
 
 
 function mapStateToProps(state, ownProps) {
     return {
-        user: state.admin.auth.user
+        newSignIn: state.admin.auth.newSignIn
     }
 }
 

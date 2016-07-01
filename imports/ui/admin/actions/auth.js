@@ -1,9 +1,25 @@
 import { Meteor } from 'meteor/meteor'
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
-import { newErrorNotification } from '/imports/ui/app/actions'
 
 export const USER_LOGGING_IN = actionTypeBuilder.type('USER_LOGGING_IN')
 export const USER_DATA = actionTypeBuilder.type('USER_DATA')
+
+export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
+export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
+
+export function signInUserSuccess(user) {
+    return {
+        type: SIGNIN_USER_SUCCESS,
+        payload: user
+    }
+}
+
+export function signInUserFailure(error) {
+    return {
+        type: SIGNIN_USER_FAILURE,
+        payload: error
+    }
+}
 
 export function loadUser() {
     return dispatch => {
@@ -25,10 +41,16 @@ export function loadUser() {
 }
 export function loginWithPassword(email, password) {
     return dispatch => {
-        Meteor.loginWithPassword(email, password, err => {
-            if (err) {
-                return dispatch(newErrorNotification('Error authenticating user.'))
-            }
+        return new Promise((resolve, reject) => {
+            Meteor.loginWithPassword(email, password, err => {
+                if (err) {
+                    reject(err)
+                }
+                else{
+                    resolve()
+                }
+            })
         })
+        
     }
 }
