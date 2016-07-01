@@ -27,7 +27,7 @@ export function loginWithPassword(email, password) {
     return dispatch => {
         Meteor.loginWithPassword(email, password, err => {
             if (err) {
-                return dispatch(newErrorNotification('danger', 'Une erreur est survenue pendant votre authentification.'))
+                return dispatch(newErrorNotification('Error authenticating user.'))
             }
         })
     }
