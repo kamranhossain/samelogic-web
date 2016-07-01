@@ -12,7 +12,7 @@ export default function(state = initialState, action) {
     const { data, type } = action
     let error
     switch (type) {
-    case actionTypeBuilder.changed(ActionTypes.USER_DATA):
+    case actionTypeBuilder.ready(ActionTypes.USER_DATA):
         return {...state, user: data }
 
     case actionTypeBuilder.changed(ActionTypes.USER_LOGGING_IN):

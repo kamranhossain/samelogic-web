@@ -3,6 +3,9 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 import { Campaigns } from '../collections/campaigns'
 import { Responses } from '../collections/responses'
 
+Meteor.publish('userData', () => {
+    return Meteor.users.find({_id: this.userId})
+})
 
 Meteor.publish('campaign.public', (campaignId) => {
     new SimpleSchema({

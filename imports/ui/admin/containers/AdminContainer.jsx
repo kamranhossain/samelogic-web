@@ -8,8 +8,11 @@ import { push } from 'react-router-redux'
 import * as AdminActions from '/imports/ui/admin/actions'
 import Layout from '/imports/ui/admin/layouts/Layout.jsx'
 
-const AdminContainer = createContainer(({actions}) => {
-    actions.loadUser()
+const AdminContainer = createContainer(({actions, user, location}) => {
+    if(!user)
+        actions.loadUser()
+    const {query} = location
+    const redirect = query ? query.redirect : null
     return {
         connected: Meteor.status().connected
     }
@@ -18,6 +21,7 @@ const AdminContainer = createContainer(({actions}) => {
 
 const mapStateToProps = (state) => {
     return {
+        user: state.admin.auth.user
     }
 }
 
