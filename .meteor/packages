@@ -31,3 +31,4 @@ react-meteor-data
 zeroasterisk:s-enum
 accounts-password
 shawnmclean:redux-meteorware@0.0.6
+accounts-base

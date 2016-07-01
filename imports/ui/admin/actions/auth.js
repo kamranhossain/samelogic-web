@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 import { newErrorNotification } from '/imports/ui/app/actions'
 
