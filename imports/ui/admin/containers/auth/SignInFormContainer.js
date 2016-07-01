@@ -1,25 +1,20 @@
 import { reduxForm } from 'redux-form'
 import { push } from 'react-router-redux'
+import {generateValidation} from 'redux-form-validation'
 
 import SignInForm from '/imports/ui/admin/components/SignInForm/SignInForm.jsx'
-/*import {
-  createPost, createPostSuccess, createPostFailure, resetNewPost, validatePostFields, validatePostFieldsSuccess, validatePostFieldsFailure
-} from '/imports/ui/surveys/actions/snaps' */
 import * as AdminActions from '/imports/ui/admin/actions'
 
 
 //Client side validation
-function validate(values) {
-    const errors = {}
-
-    if (!values.email || values.email.trim() === '') {
-        errors.email = 'Enter email'
+const validations = {
+    email: {
+        required: true,
+        email: true
+    },
+    password: {
+        required: true
     }
-    if (!values.password || !values.password.trim() === '') {
-        errors.password = 'Enter password'
-    }
-
-    return errors
 }
 
 //For any field errors upon submission (i.e. not instant check)
@@ -59,7 +54,6 @@ function mapStateToProps(state, ownProps) {
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
     form: 'SignInForm',
-    fields: ['email', 'password'],
-    validate,
+    ...generateValidation(validations),
     onSubmit: validateAndSignIn
 }, mapStateToProps, mapDispatchToProps)(SignInForm)
