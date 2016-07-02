@@ -4,7 +4,14 @@ import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 export const USER_LOGGING_IN = actionTypeBuilder.type('USER_LOGGING_IN')
 export const USER_DATA = actionTypeBuilder.type('USER_DATA')
 
+export const SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS'
 export const SIGNIN_USER_FAILURE = 'SIGNIN_USER_FAILURE'
+
+export function signInUserSuccess() {
+    return {
+        type: SIGNIN_USER_SUCCESS
+    }
+}
 
 export function signInUserFailure(error) {
     return {

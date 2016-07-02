@@ -3,7 +3,7 @@ import * as ActionTypes from '/imports/ui/admin/actions'
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 
 export const initialState = {
-    newSignIn: {error: null, loading: false},
+    newSignIn: {error: null},
     user: null,
     loggingIn: false
 }
@@ -17,9 +17,12 @@ export default function(state = initialState, action) {
 
     case actionTypeBuilder.changed(ActionTypes.USER_LOGGING_IN):
         return {...state, loggingIn: data }
+        
+    case ActionTypes.SIGNIN_USER_SUCCESS:
+        return {...state, newSignIn: { error: null }}
     case ActionTypes.SIGNIN_USER_FAILURE:
         error = action.payload.data || {message: action.payload.message}//2nd one is network or server down errors
-        return {...state, user: null, newSignIn: {error: error, loading: false}}
+        return {...state, user: null, newSignIn: {error: error}}
     default:
         return state
     }
