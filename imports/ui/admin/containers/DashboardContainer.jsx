@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router'
 
 import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
@@ -69,7 +70,7 @@ class Dashboard extends Component{
         let dash = (
             <div>
                 <div>Dashboard</div>
-                
+                <Link to="/admin/campaigns/create">Create Campaign</Link>
                 <CampaignSelector campaigns={campaigns} onChange={this.campaignSelected.bind(this)} />
                 
                 {emotionDisplayContainer}
