@@ -98,7 +98,6 @@ Dashboard.propTypes = {
     loadCampaigns: PropTypes.func.isRequired,
     loadCampaignAnalytics: PropTypes.func.isRequired,
     loadResponses: PropTypes.func.isRequired,
-    campaignSelected: PropTypes.func.isRequired,
     emojiStatsSelected: PropTypes.func.isRequired,
     campaigns: PropTypes.object,
     responses: PropTypes.object
