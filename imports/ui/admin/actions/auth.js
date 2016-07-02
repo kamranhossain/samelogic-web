@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
+import { push } from 'react-router-redux'
+import { newErrorNotification } from '/imports/ui/app/actions'
 
 export const USER_LOGGING_IN = actionTypeBuilder.type('USER_LOGGING_IN')
 export const USER_DATA = actionTypeBuilder.type('USER_DATA')
@@ -49,7 +51,17 @@ export function loginWithPassword(email, password) {
                     resolve()
                 }
             })
+        })        
+    }
+}
+export function logout() {
+    return dispatch => {
+        Meteor.logout(err => {
+            if (err) {
+                return dispatch(newErrorNotification('Error logging out.'))
+            }
+
+            dispatch(push('/admin/signin'))
         })
-        
     }
 }

@@ -55,8 +55,7 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(
             {...SurveyActions,
                 loadSurvey: SurveyActions.loadSurveyFactory()
-            }, dispatch)
-        
+            }, dispatch)        
     }
 }
 

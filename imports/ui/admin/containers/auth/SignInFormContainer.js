@@ -9,10 +9,12 @@ import * as AdminActions from '/imports/ui/admin/actions'
 const validations = {
     email: {
         required: true,
-        email: true
+        email: true,
+        validateOnBlur: true
     },
     password: {
-        required: true
+        required: true,
+        validateOnBlur: true
     }
 }
 
