@@ -1,27 +1,30 @@
-import { Meteor } from 'meteor/meteor'
-import { createContainer } from 'meteor/react-meteor-data'
+import React, {Component, PropTypes} from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect }  from 'react-redux'
-import { push } from 'react-router-redux'
 
 import * as AdminActions from '/imports/ui/admin/actions'
-import Layout from '/imports/ui/admin/layouts/Layout.jsx'
 
-const AdminContainer = createContainer(({actions, user, location}) => {
-    if(!user)
-        actions.loadUser()
-    const {query} = location
-    const redirect = query ? query.redirect : null
-    return {
-        connected: Meteor.status().connected
+class AdminContainer extends Component {
+
+    render(){
+        const {children} = this.props
+
+        return (
+            <div className="admin-container">
+                {children}
+            </div>
+        )
     }
     
-}, Layout)
+}
+
+AdminContainer.PropTypes = {
+    children: PropTypes.number.isRequired
+}
 
 const mapStateToProps = (state) => {
     return {
-        user: state.admin.auth.user
     }
 }
 

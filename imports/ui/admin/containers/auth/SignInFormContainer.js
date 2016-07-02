@@ -1,5 +1,4 @@
 import { reduxForm } from 'redux-form'
-import { push } from 'react-router-redux'
 import {generateValidation} from 'redux-form-validation'
 
 import SignInForm from '/imports/ui/admin/components/SignInForm/SignInForm.jsx'
