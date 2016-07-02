@@ -8,6 +8,9 @@ import createLogger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 
 import {reducer as formReducer} from 'redux-form'
+
+import * as ActionTypes from '/imports/ui/admin/actions'
+
 import adminReducers from '/imports/ui/admin/reducers'
 import surveyReducers from '/imports/ui/surveys/reducers'
 import appReducers from '/imports/ui/app/reducers'
@@ -47,6 +50,8 @@ const store = createStore(reducer, {}, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
+
+store.dispatch(ActionTypes.loadUser())
 
 const history = syncHistoryWithStore(browserHistory, store)
 
