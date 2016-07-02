@@ -15,7 +15,7 @@ class AuthAppContainer extends Component {
                 redirectTo(redirect)
             }
             else{
-                redirectTo('admin')
+                redirectTo('/admin')
             }
         }
 
