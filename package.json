@@ -45,7 +45,7 @@
     "redux": "3.5.2",
     "redux-auth-wrapper": "0.5.2",
     "redux-form": "5.3.1",
-    "redux-form-validation": "0.0.7",
+    "redux-form-validation": "git+https://github.com/shawnmclean/redux-form-validation.git",
     "redux-logger": "2.6.1",
     "redux-thunk": "2.1.0"
   }
