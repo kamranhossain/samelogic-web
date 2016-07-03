@@ -40,7 +40,7 @@ SurveyAppContainer.propTypes = {
     children: PropTypes.node,
     survey: PropTypes.shape({
         ready: PropTypes.bool.isRequired,
-        current: PropTypes.object.isRequired
+        current: PropTypes.object
     }),
     params: PropTypes.shape({
         surveyId: PropTypes.string.isRequired
