@@ -69,7 +69,6 @@ class Dashboard extends Component{
         }
         let dash = (
             <div>
-                <Link to="/admin/campaigns/create">Create Campaign</Link>
                 <CampaignSelector campaigns={campaigns} onChange={this.campaignSelected.bind(this)} />
                 
                 {emotionDisplayContainer}

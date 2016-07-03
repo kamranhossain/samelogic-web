@@ -10,6 +10,7 @@ import AuthAppContainer from '/imports/ui/admin/containers/auth/AuthAppContainer
 import Dashboard from '/imports/ui/admin/pages/Dashboard.jsx'
 import CreateCampaign from '/imports/ui/admin/pages/CreateCampaign.jsx'
 import SignIn from '/imports/ui/admin/pages/SignIn.jsx'
+import Campaigns from '/imports/ui/admin/pages/Campaigns.jsx'
 
 
 
@@ -26,6 +27,7 @@ export default (
     <Route component={UserIsAuthenticated(DashboardAppContainer)}>
       <IndexRoute component={ Dashboard } />
       <Route path="campaigns">
+        <IndexRoute component={Campaigns} />
         <Route path="create" component={CreateCampaign} />
       </Route>
     </Route>

@@ -9,7 +9,9 @@ class DashboardAppContainer extends Component {
         return (
             <div className="dashboard-app-container">
                 <HeaderContainer />
+                <div className="container">
                 {children}
+                </div>
             </div>
         )
     }
