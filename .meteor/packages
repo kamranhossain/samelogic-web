@@ -16,7 +16,7 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 less
-nemo64:bootstrap
+nemo64:bootstrap@3.3.5_2
 standard-minifier-css
 standard-minifier-js
 aldeed:simple-schema
