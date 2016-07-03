@@ -20,8 +20,8 @@ class Header extends Component {
 
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
-                            <li className="active"><Link to="admin">Dashboard</Link></li>
-                            <li><Link to="admin/campaigns">Campaigns</Link></li>                            
+                            <li className="active"><Link to="/admin">Dashboard</Link></li>
+                            <li><Link to="/admin/campaigns">Campaigns</Link></li>                            
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             <li className="dropdown">
