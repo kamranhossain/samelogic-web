@@ -20,11 +20,36 @@
 }
 
 .btn-disc{
-    background: rgba(255,255,255,0.2);
+    background: linear-gradient(-134deg, #998EFF 0%, #F8CBFF 100%);
+    
+    background: linear-gradient(270deg, #3023ae, #c86dd7);
+background-size: 400% 400%;
+
+-webkit-animation: AnimationName 2s ease infinite;
+-moz-animation: AnimationName 2s ease infinite;
+animation: AnimationName 2s ease infinite;
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:94% 0%}
+    50%{background-position:7% 100%}
+    100%{background-position:94% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:94% 0%}
+    50%{background-position:7% 100%}
+    100%{background-position:94% 0%}
+}
+@keyframes AnimationName { 
+    0%{background-position:94% 0%}
+    50%{background-position:7% 100%}
+    100%{background-position:94% 0%}
+}
+    
     margin: auto;
     width: 120px;
     height: 150px;
     border-radius: 6px;
+    border: 0px;
 }
 .btn-file.btn-disc > .inner {
   z-index: 9;
