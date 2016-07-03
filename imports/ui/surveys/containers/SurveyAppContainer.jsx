@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import DocumentTitle from 'react-document-title'
 
 import SurveyNotFound from '/imports/ui/surveys/components/SurveyNotFound/SurveyNotFound.jsx'
 import HeaderContainer from '/imports/ui/surveys/containers/HeaderContainer'
@@ -16,11 +17,17 @@ class SurveyAppContainer extends Component {
     render() {
         const {children, survey} = this.props
         return (
-            <div className="survey-app-container">                
+            <div className="survey-app-container">
+                <DocumentTitle title="Loading... - Samelogic"></DocumentTitle>
                 <HeaderContainer />
                 {survey.ready ?
                      <div>
-                        {survey.current ? children : <SurveyNotFound /> }
+                        {survey.current ? 
+                            <div>
+                                <DocumentTitle title={`${survey.current.title} - Samelogic`}></DocumentTitle>
+                                {children}
+                            </div> 
+                            : <SurveyNotFound /> }
                      </div>
                 : null}
                 <Footer />
