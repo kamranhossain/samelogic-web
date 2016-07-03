@@ -20,7 +20,7 @@ class AuthAppContainer extends Component {
         }
 
         return (
-            <div className="auth-app-container">
+            <div className="auth-app-container container">
                 {auth.isLoggingIn ? null : children}
             </div>
         )

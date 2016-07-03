@@ -19,34 +19,37 @@ class SignInForm extends Component {
         const { fields: {email, password}, handleSubmit, submitting, newSignIn} = this.props
         return (
             <div className="sign-in-form">
-                Sign In Form
-                <form onSubmit={handleSubmit}>
-                    {this.renderError(newSignIn)}
-                    <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
-                        <label className="control-label">Email</label>
-                        <input type="text" className="form-control" {...email} />
-                        <FormMessages className="help-block" tagName="div" field={email}>
-                            <span when="required">
-                                Email is required
-                            </span>
-                            <span when="email">
-                                Please enter a valid email
-                            </span>
-                        </FormMessages>
-                    </div>
+                <div className="wrapper">
+                    <form onSubmit={handleSubmit} className="form-signin">
+                        <h3>Welcome Back! Please Sign In</h3>
+                        <hr className="colorgraph" />
+                        {this.renderError(newSignIn)}
+                        <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
+                            <label className="control-label">Email</label>
+                            <input type="text" className="form-control" {...email} />
+                            <FormMessages className="help-block" tagName="div" field={email}>
+                                <span when="required">
+                                    Email is required
+                                </span>
+                                <span when="email">
+                                    Please enter a valid email
+                                </span>
+                            </FormMessages>
+                        </div>
 
 
-                    <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
-                        <label className="control-label">Password</label>
-                        <input type="password" className="form-control" {...password} />
-                        <FormMessages className="help-block" tagName="div" field={password}>
-                            <span when="required">
-                                Password is required
-                            </span>
-                        </FormMessages>
-                    </div>
-                    <button type="submit" className="btn btn-primary"  disabled={submitting} >Submit</button>
-                </form>
+                        <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
+                            <label className="control-label">Password</label>
+                            <input type="password" className="form-control" {...password} />
+                            <FormMessages className="help-block" tagName="div" field={password}>
+                                <span when="required">
+                                    Password is required
+                                </span>
+                            </FormMessages>
+                        </div>
+                        <button type="submit" className="btn btn-primary"  disabled={submitting} >Submit</button>
+                    </form>
+                </div>
             </div>
         )
     }
