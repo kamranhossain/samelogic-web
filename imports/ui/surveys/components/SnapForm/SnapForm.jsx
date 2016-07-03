@@ -72,7 +72,7 @@ class SnapForm extends Component {
                                         }} 
                                     />
                                     <span className="inner center-block red-bg">
-                                        <i className="glyphicon glyphicon-camera white" />
+                                        <i className="glyphicon glyphicon-facetime-video white" />
                                     </span>
                                 </div>
                             </div>
