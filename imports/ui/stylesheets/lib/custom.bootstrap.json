@@ -35,18 +35,18 @@
     "wells"                : true,
     "close"                : true,
 
-    "modals"               : false,
-    "tooltip"              : false,
-    "popovers"             : false,
+    "modals"               : true,
+    "tooltip"              : true,
+    "popovers"             : true,
     "carousel"             : false,
 
-    "affix"                : false,
-    "alert"                : false,
-    "button"               : false,
-    "collapse"             : false,
-    "scrollspy"            : false,
-    "tab"                  : false,
-    "transition"           : false,
+    "affix"                : true,
+    "alert"                : true,
+    "button"               : true,
+    "collapse"             : true,
+    "scrollspy"            : true,
+    "tab"                  : true,
+    "transition"           : true,
 
     "utilities"            : true,
     "responsive-utilities" : true
