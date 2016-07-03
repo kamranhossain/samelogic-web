@@ -31,6 +31,6 @@ export default SEnum([
         label: 'Unsatisfied',
         emotions: ['sadness', 'disgust', 'anger', 'fear'],
         includeInSnapsSurvey: true,
-        feedback: 'I\’m so sorry you had a horrible experience Cindy.\n I\’d really love to hear how you felt so we can make this better.'         
+        feedback: 'I\’m so sorry you had a horrible experience.\n I\’d really love to hear how you felt so we can make this better.'         
     }
 ])
