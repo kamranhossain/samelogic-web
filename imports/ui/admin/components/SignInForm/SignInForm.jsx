@@ -18,21 +18,25 @@ class SignInForm extends Component {
     render() {
         const { fields: {email, password}, handleSubmit, submitting, newSignIn} = this.props
         return (
-            <div className="sign-in-form">
+            <div className="sign-in-form ">
+                
                 <div className="wrapper">
-                    <form onSubmit={handleSubmit} className="form-signin">
+                    <form onSubmit={handleSubmit} className="form-signin center-text">
+                        
+                        <img src="../img/samelogic-logo.png" alt="Samelogic Logo"/>
+                        
                         <h3>Welcome Back! Please Sign In</h3>
-                        <hr className="colorgraph" />
+                        <hr/>
                         {this.renderError(newSignIn)}
                         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                             <label className="control-label">Email</label>
                             <input type="text" className="form-control" {...email} />
                             <FormMessages className="help-block" tagName="div" field={email}>
                                 <span when="required">
-                                    Email is required
+                                    Oops, you kinda need your email to sign in.
                                 </span>
                                 <span when="email">
-                                    Please enter a valid email
+                                    Umm, this email doesn't look correct.
                                 </span>
                             </FormMessages>
                         </div>
@@ -43,11 +47,11 @@ class SignInForm extends Component {
                             <input type="password" className="form-control" {...password} />
                             <FormMessages className="help-block" tagName="div" field={password}>
                                 <span when="required">
-                                    Password is required
+                                    Hey, you need a password to sign in!
                                 </span>
                             </FormMessages>
                         </div>
-                        <button type="submit" className="btn btn-primary"  disabled={submitting} >Submit</button>
+                        <button type="submit" className="btn btn-primary full-width"  disabled={submitting} >Sign In</button>
                     </form>
                 </div>
             </div>
