@@ -14,10 +14,11 @@ class EmotionalPulseListItem extends Component {
             }
         )
         return (
-            <div className={classes} title={`${value.count} ${pluralize('people', value.count)} ${pluralize('are', value.count)} ${emojiLabel}`}
+            <div className={classes} className="emotional-item" title={`${value.count} ${pluralize('people', value.count)} ${pluralize('are', value.count)} ${emojiLabel}`}
                 onClick={this.props.onClick.bind(this, value)}>
-                <span className={value.emoji}></span>
-                {emojiLabel}-{value.percent}%
+                <h4><span className={value.emoji}></span></h4>
+                {emojiLabel}
+                <h2>{value.percent}%</h2>
             </div>
         )
     }
