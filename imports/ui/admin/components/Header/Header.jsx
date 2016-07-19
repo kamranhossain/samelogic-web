@@ -24,18 +24,8 @@ class Header extends Component {
                             <li><Link to="/admin/campaigns">Campaigns</Link></li>                            
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li className="dropdown">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span className="caret"></span></a>
-                                <ul className="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" className="divider"></li>
-                                    <li className="dropdown-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a onClick={actions.logout} href="#">Sign Out</a></li>
-                                </ul>
-                            </li>
+
+                            <li><a onClick={actions.logout} href="#">Sign Out</a></li>
                         </ul>
                     </div>
                 </div>    
