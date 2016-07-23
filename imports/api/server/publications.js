@@ -48,7 +48,7 @@ Meteor.publish('responses.admin', (campaignId, emoji) => {
     }).validate({campaignId, emoji})
     const query = {
         campaignId: campaignId,
-        'analytics.primaryEmoji': emoji
+        emoji: emoji
     }
     return Responses.find(query,{
         fields: Responses.adminFields
