@@ -5,7 +5,14 @@ import { Responses } from '/imports/api/collections/responses'
 import actionTypeBuilder from '/imports/ui/app/actions/actionTypeBuilder'
 
 export const RESPONSES = actionTypeBuilder.type('RESPONSES')
+export const RESPONSE_SELECTED = 'RESPONSE_SELECTED'
 
+export function responseSelected(selectedResponse) {
+    return {
+        type: RESPONSE_SELECTED,
+        selectedResponse        
+    }
+}
 export function loadResponsesFactory() {
     return (campaignId, emoji) => {
         return dispatch => {

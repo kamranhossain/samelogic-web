@@ -27,7 +27,7 @@ class Dashboard extends Component{
         this.props.loadResponses(this.props.campaigns.current._id, emoji.emoji)
     }
     render(){
-        const { campaigns, responses } = this.props
+        const { campaigns, responses, responseSelected } = this.props
         
         let details, emotionDisplayContainer, customerFeedbackContainer, randomDataContainer
         
@@ -63,7 +63,7 @@ class Dashboard extends Component{
             }
             if(responses.items){
                 customerFeedbackContainer = (
-                    <CampaignFeedbackList feedbacks={responses} />
+                    <CampaignFeedbackList feedbacks={responses} responseSelected={responseSelected} />
                 )
             }
         }
@@ -108,6 +108,7 @@ const DashboardContainer = createContainer(({actions, selectedCampaign, campaign
         loadCampaigns: actions.loadCampaigns,
         loadCampaignAnalytics: actions.loadCampaignAnalytics,
         loadResponses: actions.loadResponses,
+        responseSelected: actions.responseSelected,
         emojiStatsSelected: actions.emojiStatsSelected,
         campaigns,
         responses,

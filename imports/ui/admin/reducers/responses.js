@@ -15,6 +15,8 @@ export default function(state = initialState, action) {
         return {...state, ready}
     case actionTypeBuilder.changed(ActionTypes.RESPONSES):
         return {...state, items: data}
+    case ActionTypes.RESPONSE_SELECTED:
+        return {...state, current: action.responseSelected}
     default:
         return state
     }

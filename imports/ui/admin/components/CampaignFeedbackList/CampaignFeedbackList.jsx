@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react'
+import { Button } from 'react-bootstrap'
 
 class CampaignFeedbackList extends Component {
     render() {
-        const {feedbacks} = this.props
+        const {feedbacks, responseSelected} = this.props
         
         return (
             <div>
@@ -13,6 +14,8 @@ class CampaignFeedbackList extends Component {
                         <br />
                         
                         <hr />
+
+                        <Button bsStyle="primary" onClick={() => responseSelected(f)}>Watch Video</Button>
                     </div>
                 )}
             </div>
@@ -21,7 +24,8 @@ class CampaignFeedbackList extends Component {
 }
 
 CampaignFeedbackList.propTypes = {
-    feedbacks: PropTypes.array.isRequired
+    feedbacks: PropTypes.array.isRequired,
+    responseSelected: PropTypes.func.isRequired
 }
 
 export default CampaignFeedbackList
