@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
+import { Modal } from 'react-bootstrap'
 
 import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
@@ -83,6 +84,15 @@ class Dashboard extends Component{
         return(
             <div>
                     {dash}
+
+                    <Modal show={responses.current != undefined}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Modal</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <h4>Some Content</h4>
+                        </Modal.Body>
+                    </Modal>
             </div>
         )
     }
