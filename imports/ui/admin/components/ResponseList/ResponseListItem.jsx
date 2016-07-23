@@ -3,18 +3,18 @@ import pluralize from 'pluralize'
 import classNames from 'classnames'
 import Emojis from '/imports/api/collections/emojis'
 
-class EmotionalPulseListItem extends Component {
+class ResponseListItem extends Component {
     render() {
         const {selected, value} = this.props
         const emojiLabel = Emojis.get(value.emoji, 'label')
         var classes = classNames(
-            'emotional-pulse-item',
+            'response-item',
             {
                 'selected': selected
             }
         )
         return (
-            <div className={classes} className="emotional-item" title={`${value.count} ${pluralize('people', value.count)} ${pluralize('are', value.count)} ${emojiLabel}`}
+            <div className={classes} title={`${value.count} ${pluralize('people', value.count)} ${pluralize('are', value.count)} ${emojiLabel}`}
                 onClick={this.props.onClick.bind(this, value)}>
                 <h4><span className={value.emoji}></span></h4>
                 {emojiLabel}
@@ -24,10 +24,10 @@ class EmotionalPulseListItem extends Component {
     }
 }
 
-EmotionalPulseListItem.propTypes = {
+ResponseListItem.propTypes = {
     value: PropTypes.object,
     selected: PropTypes.bool,
     onClick: PropTypes.func
 }
 
-export default EmotionalPulseListItem
+export default ResponseListItem

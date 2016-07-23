@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
-import EmotionalPulseListItem from '/imports/ui/admin/components/EmotionalPulseList/EmotionalPulseListItem.jsx'
+import ResponseListItem from '/imports/ui/admin/components/ResponseList/ResponseListItem.jsx'
 
-class EmotionalPulseList extends Component {
+class ResponseList extends Component {
     render() {
         const {items, selected} = this.props
         let selectedKey = selected === undefined ? '' : selected.key
@@ -9,7 +9,7 @@ class EmotionalPulseList extends Component {
             <div className="container">
                 
                 {items.map((emotion) =>
-                    <EmotionalPulseListItem key={emotion.emoji} value={emotion} selected={selectedKey === emotion.emoji} onClick={this.props.onChange} />
+                    <ResponseListItem key={emotion.emoji} value={emotion} selected={selectedKey === emotion.emoji} onClick={this.props.onChange} />
                 )}
                 
             </div>
@@ -17,10 +17,10 @@ class EmotionalPulseList extends Component {
     }
 }
 
-EmotionalPulseList.propTypes = {
+ResponseList.propTypes = {
     items: PropTypes.object.isRequired,
     selected: PropTypes.object,
     onChange: PropTypes.func
 }
 
-export default EmotionalPulseList
+export default ResponseList

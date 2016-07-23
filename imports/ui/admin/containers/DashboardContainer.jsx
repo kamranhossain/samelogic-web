@@ -8,7 +8,7 @@ import { Link } from 'react-router'
 
 import * as AdminActions from '/imports/ui/admin/actions'
 import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/CampaignSelector.jsx'
-import EmotionalPulseList from '/imports/ui/admin/components/EmotionalPulseList/EmotionalPulseList.jsx'
+import ResponseList from '/imports/ui/admin/components/ResponseList/ResponseList.jsx'
 import EmotionalPulseDetail from '/imports/ui/admin/components/EmotionalPulseDetail/EmotionalPulseDetail.jsx'
 import CampaignFeedbackList from '/imports/ui/admin/components/CampaignFeedbackList/CampaignFeedbackList.jsx'
 
@@ -40,7 +40,7 @@ class Dashboard extends Component{
                     }
                 })
             emotionDisplayContainer = (
-                <EmotionalPulseList items={emojis} selected={campaigns.emojiStats} onChange={this.emojiSelected.bind(this)} />
+                <ResponseList items={emojis} selected={campaigns.emojiStats} onChange={this.emojiSelected.bind(this)} />
             )
 
             randomDataContainer = (
