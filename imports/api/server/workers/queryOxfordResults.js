@@ -58,12 +58,11 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 const response = Responses.findOne({_id: job.data.responseId})
                 Campaigns.update(
                     {
-                        _id: response.campaignId, 'analytics.emojis.emoji': emoji
+                        _id: response.campaignId
                     }, 
                     { 
                         $inc: {
-                            'analytics.totalVideoProcessedResponses': 1,
-                            'analytics.emojis.$.count': 1 
+                            'analytics.totalVideoProcessedResponses': 1
                         }
                     }
                 )

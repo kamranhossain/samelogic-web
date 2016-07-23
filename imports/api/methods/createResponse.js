@@ -5,20 +5,23 @@ import { Campaigns } from '../collections/campaigns'
 import { Responses } from '../collections/responses'
 
 export default new ValidatedMethod({
-    name: 'surveys.createVideoResponse',
+    name: 'surveys.createResponse',
     validate: new SimpleSchema({
         campaignId: { type: String },
-        emoji: { type: Number}
+        emoji: { type: Number},
+        type: { type: String, allowedValues: ['video']}
     }).validator(),
-    run({ campaignId, emoji}) {
+    run({ campaignId, emoji, type}) {
 
         Campaigns.update(
             {
-                _id: campaignId
+                _id: campaignId,
+                'analytics.emojis.emoji': emoji
             }, 
             { 
                 $inc: {
-                    'analytics.totalResponses': 1
+                    'analytics.totalResponses': 1,
+                    'analytics.emojis.$.count': 1 
                 }
             }
         )
@@ -26,7 +29,7 @@ export default new ValidatedMethod({
         const response = {
             campaignId,
             emoji,
-            type: 'video'
+            type: type
         }
 
         return Responses.insert(response)

@@ -3,15 +3,15 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter'
 import { _ } from 'meteor/underscore'
 
 import createCampaign from './createCampaign'
-import createVideoResponse from './createVideoResponse'
+import createResponse from './createResponse'
 import updateVideoResponseUrl from './updateVideoResponseUrl'
 
-export { createCampaign, createVideoResponse, updateVideoResponseUrl }
+export { createCampaign, createResponse, updateVideoResponseUrl }
 
 // Get list of all method names on Surveys
 const METHODS = _.pluck([
     createCampaign,
-    createVideoResponse,
+    createResponse,
     updateVideoResponseUrl
 ], 'name')
 

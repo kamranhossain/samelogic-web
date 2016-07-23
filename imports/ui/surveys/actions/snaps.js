@@ -1,5 +1,5 @@
 import { Slingshot } from 'meteor/edgee:slingshot'
-import { createVideoResponse, updateVideoResponseUrl } from '/imports/api/methods'
+import { createResponse, updateVideoResponseUrl } from '/imports/api/methods'
 
 export const CREATE_SNAP = 'CREATE_SNAP'
 export const CREATE_SNAP_SUCCESS = 'CREATE_SNAP_SUCCESS'
@@ -40,9 +40,10 @@ export function createSnap(values) {
         return new Promise((resolve, reject) => {
             dispatch({type: CREATE_SNAP})
             // create response so we can get an id related to that response.
-            const responseId = createVideoResponse.call({
+            const responseId = createResponse.call({
                 campaignId: values.surveyId,
-                emoji: parseInt(values.emoji)
+                emoji: parseInt(values.emoji),
+                type: 'video'
             }, (err) =>{
                 if ( err ) {
                     reject('There was an error starting the process. Please refresh and try again.')

@@ -1,4 +1,3 @@
-export * from './createVideoSurveyResponse'
 export * from './emojiSelected'
 export * from './snapSelected'
 export * from './surveys'
