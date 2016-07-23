@@ -5,7 +5,6 @@ import jc from './jobCollection'
 
 import { Responses } from '../../collections/responses'
 import { Campaigns } from '../../collections/campaigns'
-import Emojis from '/imports/api/collections/emojis'
 
 jc.processJobs('queryOxfordResult', (job, callback) =>{
     HTTP.get(job.data.operationLocation, {
@@ -45,13 +44,11 @@ jc.processJobs('queryOxfordResult', (job, callback) =>{
                 const oxfordJson = JSON.parse(resp.data.processingResult)
                 
                 const parsedOxfordResult = crunchOxfordJSON(oxfordJson)
-                const emoji = mapEmojiFromEmotion(parsedOxfordResult.emotion)
 
                 Responses.update({_id: job.data.responseId}, { $set: 
                 { 
                     emotionData: parsedOxfordResult,
-                    rawOxfordData: oxfordJson,
-                    'analytics.primaryEmoji': emoji
+                    rawOxfordData: oxfordJson
                 }})
 
                 // TODO: if emoji is null, log or do something.
@@ -155,12 +152,4 @@ function chooseEmotionFromScores(scores) {
     var paired = Object.keys(scores).map(key => [scores[key], key])
     var sorted = paired.sort((s1, s2) => s1[0] < s2[0])
     return sorted[0][1]
-}
-
-
-
-function mapEmojiFromEmotion(emotion){
-    const emoji = Emojis.nodes.find((e) => e.emotions.find((em) => em == emotion))
-
-    return emoji ? emoji.value : null
 }
