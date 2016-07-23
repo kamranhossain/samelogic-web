@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
-import ResponseListItem from '/imports/ui/admin/components/ResponseList/ResponseListItem.jsx'
+import EmojiStatsButtonListItem from '/imports/ui/admin/components/EmojiStatsButtonList/EmojiStatsButtonListItem.jsx'
 
-class ResponseList extends Component {
+class EmojiStatsButtonList extends Component {
     render() {
         const {items, selected} = this.props
         let selectedKey = selected === undefined ? '' : selected.key
@@ -9,7 +9,7 @@ class ResponseList extends Component {
             <div className="container">
                 
                 {items.map((emotion) =>
-                    <ResponseListItem key={emotion.emoji} value={emotion} selected={selectedKey === emotion.emoji} onClick={this.props.onChange} />
+                    <EmojiStatsButtonListItem key={emotion.emoji} value={emotion} selected={selectedKey === emotion.emoji} onClick={this.props.onChange} />
                 )}
                 
             </div>
@@ -17,10 +17,10 @@ class ResponseList extends Component {
     }
 }
 
-ResponseList.propTypes = {
+EmojiStatsButtonList.propTypes = {
     items: PropTypes.object.isRequired,
     selected: PropTypes.object,
     onChange: PropTypes.func
 }
 
-export default ResponseList
+export default EmojiStatsButtonList

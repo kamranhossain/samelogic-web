@@ -3,7 +3,7 @@ import pluralize from 'pluralize'
 import classNames from 'classnames'
 import Emojis from '/imports/api/collections/emojis'
 
-class ResponseListItem extends Component {
+class EmojiStatsButtonListItem extends Component {
     render() {
         const {selected, value} = this.props
         const emojiLabel = Emojis.get(value.emoji, 'label')
@@ -24,10 +24,10 @@ class ResponseListItem extends Component {
     }
 }
 
-ResponseListItem.propTypes = {
+EmojiStatsButtonListItem.propTypes = {
     value: PropTypes.object,
     selected: PropTypes.bool,
     onClick: PropTypes.func
 }
 
-export default ResponseListItem
+export default EmojiStatsButtonListItem
