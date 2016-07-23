@@ -36,7 +36,7 @@ class Dashboard extends Component{
                 (e)=> {
                     return {
                         ...e,
-                        percent: campaigns.current.analytics.totalVideoProcessedResponses > 0 ? (e.count/campaigns.current.analytics.totalVideoProcessedResponses * 100) : 0
+                        percent: campaigns.current.analytics.totalResponses > 0 ? (e.count/campaigns.current.analytics.totalResponses * 100) : 0
                     }
                 })
             emotionDisplayContainer = (
