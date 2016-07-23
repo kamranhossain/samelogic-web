@@ -18,7 +18,7 @@ class ResponseListItem extends Component {
                 onClick={this.props.onClick.bind(this, value)}>
                 <h4><span className={value.emoji}></span></h4>
                 {emojiLabel}
-                <h2>{value.percent}%</h2>
+                <h2>{value.percent.toFixed(1)}%</h2>
             </div>
         )
     }
