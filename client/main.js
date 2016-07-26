@@ -3,6 +3,8 @@ import {Accounts} from 'meteor/accounts-base'
 import { render } from 'react-dom'
 import { renderRoutes } from '/imports/startup/client/routes.jsx'
 
+import '/node_modules/react-html5video/dist/ReactHtml5Video.css'
+
 Meteor.startup(() => {
     render(renderRoutes(), document.getElementById('app'))
 
