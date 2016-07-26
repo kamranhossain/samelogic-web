@@ -7,7 +7,7 @@ class SnapPlayerModal extends Component {
             return (
                 <div className="snap-player-modal">
                     <div className="row">
-                        <Video controls autoPlay loop muted>
+                        <Video controls>
                             <source src={response.contentUrl} type="video/webm" />
                         </Video>
                     </div>
