@@ -12,6 +12,7 @@ import CampaignSelector from '/imports/ui/admin/components/CampaignSelector/Camp
 import EmojiStatsButtonList from '/imports/ui/admin/components/EmojiStatsButtonList/EmojiStatsButtonList.jsx'
 import EmotionalPulseDetail from '/imports/ui/admin/components/EmotionalPulseDetail/EmotionalPulseDetail.jsx'
 import CampaignFeedbackList from '/imports/ui/admin/components/CampaignFeedbackList/CampaignFeedbackList.jsx'
+import SnapPlayerModal from '/imports/ui/admin/components/SnapPlayerModal/SnapPlayerModal.jsx'
 
 
 
@@ -93,7 +94,7 @@ class Dashboard extends Component{
                             <Modal.Title>Modal</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <h4>Some Content</h4>
+                            <SnapPlayerModal response={responses.current} />
                         </Modal.Body>
                     </Modal>
             </div>

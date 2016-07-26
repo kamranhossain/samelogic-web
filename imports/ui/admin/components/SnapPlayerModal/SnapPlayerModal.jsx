@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react'
-import { Modal } from 'react-bootstrap'
 
 class SnapPlayerModal extends Component {
     render() {
@@ -12,7 +11,7 @@ class SnapPlayerModal extends Component {
 }
 
 SnapPlayerModal.propTypes = {
-    show: PropTypes.bool.isRequired
+    response: PropTypes.object.isRequired
 }
 
 export default SnapPlayerModal
