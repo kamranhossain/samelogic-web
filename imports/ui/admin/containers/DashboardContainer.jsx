@@ -27,6 +27,9 @@ class Dashboard extends Component{
         this.props.emojiStatsSelected(emoji)
         this.props.loadResponses(this.props.campaigns.current._id, emoji.emoji)
     }
+    unSelectResponse(){
+        this.props.actions.responseSelected(null)
+    }
     render(){
         const { campaigns, responses, responseSelected } = this.props
         
@@ -85,7 +88,7 @@ class Dashboard extends Component{
             <div>
                     {dash}
 
-                    <Modal show={responses.current != undefined}>
+                    <Modal show={responses.current != undefined} onHide={this.unSelectResponse.bind(this)}>
                         <Modal.Header closeButton>
                             <Modal.Title>Modal</Modal.Title>
                         </Modal.Header>
@@ -108,8 +111,8 @@ Dashboard.propTypes = {
     loadResponses: PropTypes.func.isRequired,
     emojiStatsSelected: PropTypes.func.isRequired,
     campaigns: PropTypes.object,
-    responses: PropTypes.object
-    
+    responses: PropTypes.object,
+    actions: PropTypes.object
 }
 
 const DashboardContainer = createContainer(({actions, selectedCampaign, campaigns, responses}) => {
@@ -120,6 +123,7 @@ const DashboardContainer = createContainer(({actions, selectedCampaign, campaign
         loadResponses: actions.loadResponses,
         responseSelected: actions.responseSelected,
         emojiStatsSelected: actions.emojiStatsSelected,
+        actions,
         campaigns,
         responses,
         selectedCampaign,
