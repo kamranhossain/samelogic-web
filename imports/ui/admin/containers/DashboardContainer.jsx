@@ -91,7 +91,7 @@ class Dashboard extends Component{
 
                     <Modal show={responses.current != undefined} onHide={this.unSelectResponse.bind(this)}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Modal</Modal.Title>
+                            <Modal.Title>Response Analytics</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <SnapPlayerModal response={responses.current} />
