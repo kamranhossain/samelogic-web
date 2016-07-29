@@ -11,7 +11,7 @@ class SnapPlayerModal extends Component {
                     <Panel header="Emotions Expressed">
                         <ul className="list-inline">
                             { emotionSeries.map(f =>
-                                <li title={`${(f.duration/emotionData.timescale).toFixed(1)}% of video is ${f.emotion}`}>
+                                <li>
                                     {f.emotion}
                                 </li>
                             )}
@@ -75,5 +75,5 @@ function getEmotionSeriesFromEvents(events) {
         res[value.emotion].duration += value.duration
         return res
     }, {})
-    return result
+    return result.sort((a,b) => a.duration - b.duration)
 }
