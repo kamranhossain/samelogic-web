@@ -31,6 +31,7 @@
     "react-addons-test-utils": "15.0.2"
   },
   "dependencies": {
+    "bootstrap": "3.3.7",
     "classnames": "2.2.5",
     "pluralize": "3.0.0",
     "react": "15.0.2",
