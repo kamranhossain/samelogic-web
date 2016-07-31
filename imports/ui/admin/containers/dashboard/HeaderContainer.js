@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Header from '/imports/ui/admin/components/Header/Header.jsx'
+import Header from '/imports/ui/admin/components/Dashboard/Header/Header.jsx'
 
 import * as AdminActions from '/imports/ui/admin/actions'
 
