@@ -7,7 +7,14 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <DashboardHomeContainer />
+                <div className="page animsition">
+                    <div className="page-header">
+                        <h1 className="page-title">Analytics Overview</h1>
+                    </div>
+                    <div className="page-content container-fluid">
+                        <DashboardHomeContainer />
+                    </div>
+                </div>
             </div>
         )
     }
