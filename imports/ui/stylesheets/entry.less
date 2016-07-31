@@ -1,7 +1,7 @@
+@import "{}/node_modules/bootstrap/less/bootstrap.less";
 
 
 
-@import "{}/imports/ui/stylesheets/bootstrap.less";
 
 @import "{}/imports/ui/stylesheets/utils.less";
 @import "{}/imports/ui/stylesheets/inputs.less";
@@ -40,3 +40,6 @@
 @import "{}/imports/ui/admin/components/EmojiStatsButtonList/EmojiStatsButtonListItem.less";
 @import "{}/imports/ui/admin/components/EmojiStatsButtonList/EmojiStatsButtonList.less";
 @import "{}/imports/ui/admin/components/SnapPlayerModal/SnapPlayerModel.less";
+
+// Fonts are used everywhere, load last so variables are properly overridden
+@import "fonts.less";
