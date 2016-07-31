@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 
 import HeaderContainer from '/imports/ui/admin/containers/dashboard/HeaderContainer'
+import SideMenuContainer from '/imports/ui/admin/containers/dashboard/SideMenuContainer'
 
 class DashboardAppContainer extends Component {
     render() {
@@ -9,6 +10,7 @@ class DashboardAppContainer extends Component {
         return (
             <div className="dashboard-app-container">
                 <HeaderContainer />
+                <SideMenuContainer />
                 <div className="container">
                     {children}
                 </div>

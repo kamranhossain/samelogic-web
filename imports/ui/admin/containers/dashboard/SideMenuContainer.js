@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Header from '/imports/ui/admin/components/Dashboard/Header/Header.jsx'
+import SideMenu from '/imports/ui/admin/components/Dashboard/SideMenu/SideMenu.jsx'
 
 import * as AdminActions from '/imports/ui/admin/actions'
 
@@ -17,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(SideMenu)
