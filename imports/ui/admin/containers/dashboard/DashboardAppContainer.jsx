@@ -8,7 +8,7 @@ class DashboardAppContainer extends Component {
         const {children} = this.props
 
         return (
-            <div className="dashboard-app-container">
+            <div className="dashboard site-gridmenu-active site-menubar-unfold">
                 <HeaderContainer />
                 <SideMenuContainer />
                 <div className="container">
