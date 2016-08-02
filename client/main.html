@@ -11,7 +11,28 @@
   <link rel="icon" href="../img/favicon/favicon.ico">
   
   <!-- FONTS -->
+  <script src="/public/js/core.js"></script>
+  <script src="/public/js/site.js"></script>
+  <script src="/public/js/sections/menu.js"></script>
+  <script src="/public/js/sections/menubar.js"></script>
+  <script src="/public/js/sections/gridmenu.js"></script>
+  <script src="/public/js/sections/sidebar.js"></script>
+
+   <script src="/public/js/configs/config-colors.js"></script>
+  <script src="/public/js/components/asscrollable.js"></script>
+  <script src="/public/js/components/animsition.js"></script>
+  <script src="/public/js/components/slidepanel.js"></script>
+  <script src="/public/js/components/switchery.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <script>
+    (function(document, window, $) {
+      'use strict';
+      var Site = window.Site;
+      $(document).ready(function() {
+        Site.run();
+      });
+    })(document, window, jQuery);
+</script>
 </head>
 
 <body>
