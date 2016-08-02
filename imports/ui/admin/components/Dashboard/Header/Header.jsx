@@ -21,8 +21,8 @@ class Header extends Component {
                 <i className="icon wb-more-horizontal" aria-hidden="true"></i>
                 </button>
                 <div className="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-                <img className="navbar-brand-logo" src="{{assets}}/images/logo.png" title="Remark" />
-                <span className="navbar-brand-text hidden-xs"> Remark</span>
+                <img className="navbar-brand-logo" src="/img/samelogic-logo-small-white.png" title="Samelogic" />
+                <span className="navbar-brand-text hidden-xs"> Samelogic</span>
                 </div>
                 <button type="button" className="navbar-toggle collapsed" data-target="#site-navbar-search"
                 data-toggle="collapse">
@@ -459,18 +459,6 @@ class Header extends Component {
                     </a>
                     </li>
                 </ul>
-                </div>
-                <div className="collapse navbar-search-overlap" id="site-navbar-search">
-                <form role="search">
-                    <div className="form-group">
-                    <div className="input-search">
-                        <i className="input-search-icon wb-search" aria-hidden="true"></i>
-                        <input type="text" className="form-control" name="site-search" placeholder="Search..." />
-                        <button type="button" className="input-search-close icon wb-close" data-target="#site-navbar-search"
-                        data-toggle="collapse" aria-label="Close"></button>
-                    </div>
-                    </div>
-                </form>
                 </div>
             </div>
             </nav>
